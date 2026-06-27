@@ -14,8 +14,8 @@ export default function Navbar() {
             <Link href="/escuela" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">
               Escuela de Costos
             </Link>
-            <Link href="/escuela/cursos" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">
-              Cursos
+            <Link href="/escuela/novedades" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">
+              Novedades
             </Link>
             <Link href="/costea" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">
               App Costea
@@ -23,11 +23,11 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link href="/auth" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors text-sm">
+            <Link href="/auth/login" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors text-sm">
               Iniciar sesión
             </Link>
             <Link
-              href="/escuela"
+              href="/auth/signup"
               className="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-700 transition-colors"
             >
               Comenzar gratis
