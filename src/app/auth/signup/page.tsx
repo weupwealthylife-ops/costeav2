@@ -47,7 +47,7 @@ export default function SignupPage() {
                 type="text"
                 required
                 className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                placeholder="Tu nombre"
+                placeholder="Tu nombre completo"
               />
             </div>
             <div>
@@ -60,6 +60,18 @@ export default function SignupPage() {
                 required
                 className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 placeholder="tu@correo.com"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Teléfono / WhatsApp
+              </label>
+              <input
+                name="phone"
+                type="tel"
+                required
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                placeholder="+57 300 000 0000"
               />
             </div>
             <div>
@@ -85,7 +97,7 @@ export default function SignupPage() {
           </form>
 
           <p className="mt-4 text-xs text-gray-400 text-center">
-            Al registrarte aceptas nuestros términos y condiciones.
+            Sin tarjeta de crédito · Primer curso 100% gratis
           </p>
 
           <div className="mt-4 text-center text-sm text-gray-500">

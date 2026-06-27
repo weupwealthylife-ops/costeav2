@@ -2,6 +2,76 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
+const problems = [
+  {
+    icon: "😔",
+    title: "Vendes mucho pero no sabes si estás ganando",
+    desc: "La mayoría de emprendedores fijan precios a ojo o copiando a la competencia, sin saber si eso les deja utilidad real.",
+  },
+  {
+    icon: "📉",
+    title: "No tienes un sistema claro de costos",
+    desc: "Las hojas de cálculo se complican, los datos se pierden y cada mes es un misterio saber si el negocio es rentable.",
+  },
+  {
+    icon: "💸",
+    title: "No puedes pagar una asesoría personalizada",
+    desc: "Los consultores son costosos. Las cámaras de comercio dan talleres genéricos. Nadie te enseña con los números reales de tu negocio.",
+  },
+];
+
+const journey = [
+  {
+    step: "01",
+    hu: "HU1",
+    title: "Créate una cuenta",
+    desc: "Regístrate gratis con tu nombre, correo y teléfono. En menos de 2 minutos ya tienes acceso.",
+    color: "bg-emerald-500",
+  },
+  {
+    step: "02",
+    hu: "HU2",
+    title: "Explora tu dashboard",
+    desc: "Visualiza todos los cursos y módulos disponibles organizados por nivel. Empieza por donde quieras.",
+    color: "bg-emerald-500",
+  },
+  {
+    step: "03",
+    hu: "HU3",
+    title: "Aprende a tu ritmo",
+    desc: "Videos cortos y prácticos. Durante el curso accedes a una versión simplificada de Costea para aplicar lo que aprendes.",
+    color: "bg-emerald-600",
+  },
+  {
+    step: "04",
+    hu: "HU4",
+    title: "Califica tu experiencia",
+    desc: "Al terminar cada módulo, cuéntanos cómo te fue. Tu feedback nos ayuda a mejorar.",
+    color: "bg-emerald-600",
+  },
+  {
+    step: "05",
+    hu: "HU5",
+    title: "Certifícate",
+    desc: "Presenta el examen de certificación para demostrar tu conocimiento y desbloquear el siguiente nivel.",
+    color: "bg-emerald-700",
+  },
+  {
+    step: "06",
+    hu: "HU6",
+    title: "Accede a Costea completo",
+    desc: "Al terminar la ruta de aprendizaje desbloqueas acceso completo a la App Costea con todas sus herramientas.",
+    color: "bg-emerald-700",
+  },
+  {
+    step: "07",
+    hu: "HU7",
+    title: "Asesoría personalizada",
+    desc: "Completa todos los exámenes y accede a una sesión de asesoría personalizada con el equipo Costea.",
+    color: "bg-emerald-800",
+  },
+];
+
 const courses = [
   {
     slug: "fundamentos-de-costos",
@@ -46,23 +116,17 @@ const courses = [
 ];
 
 const benefits = [
-  { icon: "🎯", title: "Aprendizaje práctico", desc: "Cada lección incluye ejercicios reales con números de tu negocio." },
-  { icon: "⚡", title: "A tu ritmo", desc: "Accede cuando quieras, desde cualquier dispositivo, sin horarios fijos." },
-  { icon: "🧮", title: "Conectado a Costea", desc: "Aplica lo que aprendes directamente en la App Costea desde el primer día." },
-  { icon: "📜", title: "Certificado de finalización", desc: "Obtén tu certificado al completar cada curso y compártelo con tus clientes." },
+  { icon: "🎯", title: "Aprendizaje práctico", desc: "Cada lección incluye ejercicios con los números de tu negocio." },
+  { icon: "⚡", title: "A tu ritmo", desc: "Accede cuando quieras, desde cualquier dispositivo." },
+  { icon: "🧮", title: "Conectado a Costea", desc: "Aplica lo aprendido directamente en la App Costea desde el primer día." },
+  { icon: "📜", title: "Certificado por módulo", desc: "Obtén tu certificado al completar cada curso y compártelo." },
 ];
-
-const levelColor: Record<string, string> = {
-  Básico: "bg-green-100 text-green-700",
-  Intermedio: "bg-yellow-100 text-yellow-700",
-  Avanzado: "bg-red-100 text-red-700",
-};
 
 const testimonials = [
   {
     name: "María Fernanda R.",
     company: "Pastelería Dulce Arte",
-    text: "Antes cobraba a ojo. Después de la Escuela de Costos, sé exactamente cuánto me cuesta cada torta y cuánto debo cobrar.",
+    text: "Antes cobraba a ojo. Después de la Escuela de Costos, sé exactamente cuánto me cuesta cada torta y cuánto debo cobrar para ganar.",
   },
   {
     name: "Carlos Andrés M.",
@@ -76,6 +140,12 @@ const testimonials = [
   },
 ];
 
+const levelColor: Record<string, string> = {
+  Básico: "bg-green-100 text-green-700",
+  Intermedio: "bg-yellow-100 text-yellow-700",
+  Avanzado: "bg-red-100 text-red-700",
+};
+
 export default function EscuelaPage() {
   return (
     <>
@@ -85,14 +155,14 @@ export default function EscuelaPage() {
       <section className="bg-gradient-to-br from-emerald-700 to-emerald-500 text-white py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <span className="inline-block bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
-            Escuela de Costos — Costea V2
+            Escuela de Costos · Costea V2
           </span>
           <h1 className="text-5xl font-extrabold leading-tight mb-6">
             Aprende a gestionar los costos<br />de tu negocio con confianza
           </h1>
           <p className="text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
-            Cursos prácticos diseñados para emprendedores y empresarios colombianos que quieren
-            tomar decisiones financieras inteligentes sin ser contadores.
+            Cursos prácticos para emprendedores y empresarios colombianos que quieren
+            tomar decisiones financieras inteligentes, sin necesidad de ser contadores.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -112,8 +182,69 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* Problem section */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              ¿Te identificas con alguno de estos problemas?
+            </h2>
+            <p className="text-gray-500 max-w-xl mx-auto">
+              La mayoría de emprendedores trabajan mucho pero ganan poco porque
+              no tienen claridad sobre sus costos reales.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {problems.map((p) => (
+              <div key={p.title} className="bg-white border border-gray-100 rounded-2xl p-6">
+                <div className="text-4xl mb-4">{p.icon}</div>
+                <h3 className="font-bold text-gray-900 mb-2">{p.title}</h3>
+                <p className="text-gray-500 text-sm">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 bg-emerald-50 border border-emerald-100 rounded-2xl p-6 text-center">
+            <p className="text-emerald-800 font-semibold text-lg">
+              La Escuela de Costos de Costea existe para resolver exactamente eso.
+            </p>
+            <p className="text-emerald-600 text-sm mt-1">
+              Sin jerga contable, con ejemplos reales y conectado directamente a la App Costea.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Journey / How it works */}
       <section className="py-20 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">¿Cómo funciona?</h2>
+            <p className="text-gray-500">Tu camino de aprendizaje, paso a paso.</p>
+          </div>
+          <div className="relative">
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-emerald-100 hidden md:block" />
+            <div className="space-y-6">
+              {journey.map((j) => (
+                <div key={j.step} className="flex gap-6 items-start">
+                  <div className={`w-12 h-12 rounded-full ${j.color} text-white font-bold text-sm flex items-center justify-center shrink-0 z-10`}>
+                    {j.step}
+                  </div>
+                  <div className="flex-1 pb-2">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="font-bold text-gray-900">{j.title}</h3>
+                      <span className="text-xs bg-gray-100 text-gray-400 px-2 py-0.5 rounded-full">{j.hu}</span>
+                    </div>
+                    <p className="text-gray-500 text-sm">{j.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="py-20 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             ¿Por qué aprender con Costea?
@@ -131,7 +262,7 @@ export default function EscuelaPage() {
       </section>
 
       {/* Courses */}
-      <section id="cursos" className="py-20 px-4 bg-gray-50">
+      <section id="cursos" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">Nuestros cursos</h2>
@@ -141,7 +272,7 @@ export default function EscuelaPage() {
             {courses.map((course) => (
               <div
                 key={course.slug}
-                className="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-emerald-200 transition-all flex flex-col"
+                className="border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-emerald-200 transition-all flex flex-col"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <span className={`text-xs font-semibold px-2 py-1 rounded-full ${levelColor[course.level]}`}>
@@ -170,7 +301,7 @@ export default function EscuelaPage() {
                   href={course.free ? `/escuela/cursos/${course.slug}` : "/auth/signup"}
                   className="mt-auto bg-emerald-600 text-white text-center py-2.5 rounded-lg font-semibold hover:bg-emerald-700 transition-colors text-sm"
                 >
-                  {course.free ? "Comenzar curso" : "Acceder al curso"}
+                  {course.free ? "Comenzar curso gratis" : "Acceder al curso"}
                 </Link>
               </div>
             ))}
@@ -178,36 +309,19 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* Novedades CTA */}
-      <section className="py-16 px-4 bg-emerald-50 border-y border-emerald-100">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <span className="text-xs font-semibold bg-emerald-600 text-white px-3 py-1 rounded-full">Nuevo</span>
-            <h2 className="text-2xl font-bold text-gray-900 mt-3 mb-2">Conoce las nuevas funciones de la App Costea</h2>
-            <p className="text-gray-600 text-sm">Hemos mejorado la herramienta. Mira lo que viene y cómo te va a ayudar.</p>
-          </div>
-          <Link
-            href="/escuela/novedades"
-            className="shrink-0 bg-emerald-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-emerald-700 transition-colors whitespace-nowrap"
-          >
-            Ver novedades →
-          </Link>
-        </div>
-      </section>
-
       {/* Testimonials */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 bg-emerald-700 text-white">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Lo que dicen nuestros estudiantes
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((t) => (
-              <div key={t.name} className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                <p className="text-gray-700 text-sm leading-relaxed mb-5">"{t.text}"</p>
+              <div key={t.name} className="bg-white/10 rounded-2xl p-6">
+                <p className="text-emerald-100 text-sm mb-4 leading-relaxed">"{t.text}"</p>
                 <div>
-                  <div className="font-semibold text-gray-900 text-sm">{t.name}</div>
-                  <div className="text-gray-400 text-xs">{t.company}</div>
+                  <div className="font-bold text-white">{t.name}</div>
+                  <div className="text-emerald-300 text-xs">{t.company}</div>
                 </div>
               </div>
             ))}
@@ -216,18 +330,23 @@ export default function EscuelaPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-emerald-700 text-white py-20 px-4">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Empieza hoy, es gratis</h2>
-          <p className="text-emerald-200 mb-8">
-            Crea tu cuenta y accede al primer curso sin costo. Sin tarjeta de crédito.
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            ¿Listo para saber realmente cuánto cuesta tu negocio?
+          </h2>
+          <p className="text-gray-500 mb-8">
+            Regístrate gratis y accede al primer curso completo sin tarjeta de crédito.
           </p>
           <Link
             href="/auth/signup"
-            className="bg-white text-emerald-700 px-8 py-4 rounded-xl text-lg font-bold hover:bg-emerald-50 transition-colors"
+            className="bg-emerald-600 text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200"
           >
-            Crear cuenta gratuita
+            Comenzar gratis ahora
           </Link>
+          <p className="mt-4 text-sm text-gray-400">
+            Más de 1,200 emprendedores ya están aprendiendo con Costea.
+          </p>
         </div>
       </section>
 
