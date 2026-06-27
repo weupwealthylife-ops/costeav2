@@ -7,7 +7,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Costea logo" width={36} height={36} className="rounded-xl" />
+            <Image src="/logo.svg" alt="Costea logo" width={36} height={36} className="rounded-xl" />
             <div className="flex flex-col leading-tight">
               <span className="text-lg font-extrabold text-gray-900">Escuela de Costos</span>
               <span className="text-xs text-gray-400 font-medium">by Costea®</span>

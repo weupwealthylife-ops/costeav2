@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <Image src="/logo.png" alt="Costea logo" width={36} height={36} className="rounded-xl" />
+              <Image src="/logo.svg" alt="Costea logo" width={36} height={36} className="rounded-xl" />
               <div className="flex flex-col leading-tight">
                 <span className="text-white font-extrabold text-lg">Escuela de Costos</span>
                 <span className="text-gray-500 text-xs">by Costea®</span>
