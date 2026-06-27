@@ -26,49 +26,49 @@ const journey = [
     hu: "HU1",
     title: "Créate una cuenta",
     desc: "Regístrate gratis con tu nombre, correo y teléfono. En menos de 2 minutos ya tienes acceso.",
-    color: "bg-emerald-500",
+    color: "bg-blue-500",
   },
   {
     step: "02",
     hu: "HU2",
     title: "Explora tu dashboard",
     desc: "Visualiza todos los cursos y módulos disponibles organizados por nivel. Empieza por donde quieras.",
-    color: "bg-emerald-500",
+    color: "bg-blue-500",
   },
   {
     step: "03",
     hu: "HU3",
     title: "Aprende a tu ritmo",
     desc: "Videos cortos y prácticos. Durante el curso accedes a una versión simplificada de Costea para aplicar lo que aprendes.",
-    color: "bg-emerald-600",
+    color: "bg-blue-600",
   },
   {
     step: "04",
     hu: "HU4",
     title: "Califica tu experiencia",
     desc: "Al terminar cada módulo, cuéntanos cómo te fue. Tu feedback nos ayuda a mejorar.",
-    color: "bg-emerald-600",
+    color: "bg-blue-600",
   },
   {
     step: "05",
     hu: "HU5",
     title: "Certifícate",
     desc: "Presenta el examen de certificación para demostrar tu conocimiento y desbloquear el siguiente nivel.",
-    color: "bg-emerald-700",
+    color: "bg-blue-700",
   },
   {
     step: "06",
     hu: "HU6",
     title: "Accede a Costea completo",
     desc: "Al terminar la ruta de aprendizaje desbloqueas acceso completo a la App Costea con todas sus herramientas.",
-    color: "bg-emerald-700",
+    color: "bg-blue-700",
   },
   {
     step: "07",
     hu: "HU7",
     title: "Asesoría personalizada",
     desc: "Completa todos los exámenes y accede a una sesión de asesoría personalizada con el equipo Costea.",
-    color: "bg-emerald-800",
+    color: "bg-blue-800",
   },
 ];
 
@@ -152,7 +152,7 @@ export default function EscuelaPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-emerald-700 to-emerald-500 text-white py-24 px-4">
+      <section className="bg-gradient-to-br from-blue-700 to-blue-500 text-white py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <span className="inline-block bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
             Escuela de Costos · Costea V2
@@ -160,14 +160,14 @@ export default function EscuelaPage() {
           <h1 className="text-5xl font-extrabold leading-tight mb-6">
             Aprende a gestionar los costos<br />de tu negocio con confianza
           </h1>
-          <p className="text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
             Cursos prácticos para emprendedores y empresarios colombianos que quieren
             tomar decisiones financieras inteligentes, sin necesidad de ser contadores.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/auth/signup"
-              className="bg-white text-emerald-700 px-8 py-4 rounded-xl text-lg font-bold hover:bg-emerald-50 transition-colors shadow-lg"
+              className="bg-white text-blue-700 px-8 py-4 rounded-xl text-lg font-bold hover:bg-blue-50 transition-colors shadow-lg"
             >
               Comenzar gratis
             </Link>
@@ -178,7 +178,7 @@ export default function EscuelaPage() {
               Ver cursos
             </Link>
           </div>
-          <p className="mt-6 text-emerald-200 text-sm">Sin tarjeta de crédito · Primer curso 100% gratis</p>
+          <p className="mt-6 text-blue-200 text-sm">Sin tarjeta de crédito · Primer curso 100% gratis</p>
         </div>
       </section>
 
@@ -203,11 +203,11 @@ export default function EscuelaPage() {
               </div>
             ))}
           </div>
-          <div className="mt-10 bg-emerald-50 border border-emerald-100 rounded-2xl p-6 text-center">
-            <p className="text-emerald-800 font-semibold text-lg">
+          <div className="mt-10 bg-blue-50 border border-blue-100 rounded-2xl p-6 text-center">
+            <p className="text-blue-800 font-semibold text-lg">
               La Escuela de Costos de Costea existe para resolver exactamente eso.
             </p>
-            <p className="text-emerald-600 text-sm mt-1">
+            <p className="text-blue-600 text-sm mt-1">
               Sin jerga contable, con ejemplos reales y conectado directamente a la App Costea.
             </p>
           </div>
@@ -222,7 +222,7 @@ export default function EscuelaPage() {
             <p className="text-gray-500">Tu camino de aprendizaje, paso a paso.</p>
           </div>
           <div className="relative">
-            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-emerald-100 hidden md:block" />
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-blue-100 hidden md:block" />
             <div className="space-y-6">
               {journey.map((j) => (
                 <div key={j.step} className="flex gap-6 items-start">
@@ -272,14 +272,14 @@ export default function EscuelaPage() {
             {courses.map((course) => (
               <div
                 key={course.slug}
-                className="border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-emerald-200 transition-all flex flex-col"
+                className="border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-blue-200 transition-all flex flex-col"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <span className={`text-xs font-semibold px-2 py-1 rounded-full ${levelColor[course.level]}`}>
                     {course.level}
                   </span>
                   {course.free && (
-                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-emerald-100 text-emerald-700">
+                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-blue-100 text-blue-700">
                       Gratis
                     </span>
                   )}
@@ -289,7 +289,7 @@ export default function EscuelaPage() {
                 <ul className="space-y-1 mb-5">
                   {course.topics.map((t) => (
                     <li key={t} className="flex items-center gap-2 text-sm text-gray-600">
-                      <span className="text-emerald-500">✓</span> {t}
+                      <span className="text-blue-500">✓</span> {t}
                     </li>
                   ))}
                 </ul>
@@ -299,7 +299,7 @@ export default function EscuelaPage() {
                 </div>
                 <Link
                   href={course.free ? `/escuela/cursos/${course.slug}` : "/auth/signup"}
-                  className="mt-auto bg-emerald-600 text-white text-center py-2.5 rounded-lg font-semibold hover:bg-emerald-700 transition-colors text-sm"
+                  className="mt-auto bg-blue-600 text-white text-center py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-sm"
                 >
                   {course.free ? "Comenzar curso gratis" : "Acceder al curso"}
                 </Link>
@@ -310,7 +310,7 @@ export default function EscuelaPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-4 bg-emerald-700 text-white">
+      <section className="py-20 px-4 bg-blue-700 text-white">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">
             Lo que dicen nuestros estudiantes
@@ -318,10 +318,10 @@ export default function EscuelaPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((t) => (
               <div key={t.name} className="bg-white/10 rounded-2xl p-6">
-                <p className="text-emerald-100 text-sm mb-4 leading-relaxed">"{t.text}"</p>
+                <p className="text-blue-100 text-sm mb-4 leading-relaxed">"{t.text}"</p>
                 <div>
                   <div className="font-bold text-white">{t.name}</div>
-                  <div className="text-emerald-300 text-xs">{t.company}</div>
+                  <div className="text-blue-300 text-xs">{t.company}</div>
                 </div>
               </div>
             ))}
@@ -340,7 +340,7 @@ export default function EscuelaPage() {
           </p>
           <Link
             href="/auth/signup"
-            className="bg-emerald-600 text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200"
+            className="bg-blue-600 text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
           >
             Comenzar gratis ahora
           </Link>

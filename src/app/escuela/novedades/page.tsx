@@ -43,7 +43,7 @@ const roadmap = [
 const features = [
   {
     tag: "Nuevo",
-    tagColor: "bg-emerald-100 text-emerald-700",
+    tagColor: "bg-blue-100 text-blue-700",
     title: "Panel de inicio rediseñado",
     description:
       "Accede de un vistazo a tus productos costeados, el punto de equilibrio actual y tus últimos análisis, todo en un solo lugar.",
@@ -69,7 +69,7 @@ const features = [
   },
   {
     tag: "Nuevo",
-    tagColor: "bg-emerald-100 text-emerald-700",
+    tagColor: "bg-blue-100 text-blue-700",
     title: "Análisis de múltiples productos",
     description:
       "Compara la rentabilidad de todos tus productos en una sola vista y descubre cuáles generan más margen.",
@@ -96,7 +96,7 @@ const features = [
 ];
 
 const statusStyle: Record<string, string> = {
-  disponible: "bg-emerald-500",
+  disponible: "bg-blue-500",
   proximo: "bg-yellow-400",
   planeado: "bg-gray-300",
 };
@@ -107,9 +107,9 @@ export default function NovedadesPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-gray-900 to-emerald-900 text-white py-20 px-4">
+      <section className="bg-gradient-to-br from-gray-900 to-blue-900 text-white py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="inline-block bg-emerald-500/30 text-emerald-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+          <span className="inline-block bg-blue-500/30 text-blue-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
             Novedades · App Costea V2
           </span>
           <h1 className="text-4xl font-extrabold mb-4">Lo nuevo en Costea</h1>
@@ -134,7 +134,7 @@ export default function NovedadesPage() {
                     <div className="flex items-center gap-3 mb-1">
                       <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
                         item.status === "disponible"
-                          ? "bg-emerald-100 text-emerald-700"
+                          ? "bg-blue-100 text-blue-700"
                           : item.status === "proximo"
                           ? "bg-yellow-100 text-yellow-700"
                           : "bg-gray-100 text-gray-500"
@@ -164,7 +164,7 @@ export default function NovedadesPage() {
             {features.map((f) => (
               <div key={f.title} className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition-all">
                 {/* Preview area */}
-                <div className="bg-gradient-to-br from-emerald-50 to-white h-40 flex items-center justify-center text-7xl border-b border-gray-100">
+                <div className="bg-gradient-to-br from-blue-50 to-white h-40 flex items-center justify-center text-7xl border-b border-gray-100">
                   {f.preview}
                 </div>
                 <div className="p-6">
@@ -178,7 +178,7 @@ export default function NovedadesPage() {
                   <ul className="space-y-1.5">
                     {f.details.map((d) => (
                       <li key={d} className="flex items-center gap-2 text-sm text-gray-600">
-                        <span className="text-emerald-500 font-bold">✓</span> {d}
+                        <span className="text-blue-500 font-bold">✓</span> {d}
                       </li>
                     ))}
                   </ul>
@@ -190,16 +190,16 @@ export default function NovedadesPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-emerald-700 text-white py-16 px-4">
+      <section className="bg-blue-700 text-white py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-3">¿Quieres acceder a todas estas funciones?</h2>
-          <p className="text-emerald-200 mb-8 text-sm">
+          <p className="text-blue-200 mb-8 text-sm">
             Crea tu cuenta gratis y empieza a usar la nueva App Costea hoy.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/auth/signup"
-              className="bg-white text-emerald-700 px-6 py-3 rounded-xl font-bold hover:bg-emerald-50 transition-colors"
+              className="bg-white text-blue-700 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors"
             >
               Crear cuenta gratuita
             </Link>

@@ -19,12 +19,12 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-white flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <span className="text-3xl font-extrabold text-emerald-600">Costea</span>
-            <span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full ml-1">V2</span>
+            <span className="text-3xl font-extrabold text-blue-600">Costea</span>
+            <span className="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full ml-1">V2</span>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900 mt-4">Crea tu cuenta gratuita</h1>
           <p className="text-gray-500 text-sm mt-1">Accede a la Escuela de Costos y a la App Costea</p>
@@ -46,7 +46,7 @@ export default function SignupPage() {
                 name="name"
                 type="text"
                 required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Tu nombre completo"
               />
             </div>
@@ -58,7 +58,7 @@ export default function SignupPage() {
                 name="email"
                 type="email"
                 required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="tu@correo.com"
               />
             </div>
@@ -70,7 +70,7 @@ export default function SignupPage() {
                 name="phone"
                 type="tel"
                 required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="+57 300 000 0000"
               />
             </div>
@@ -83,14 +83,14 @@ export default function SignupPage() {
                 type="password"
                 required
                 minLength={6}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Mínimo 6 caracteres"
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors disabled:opacity-60"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-60"
             >
               {loading ? "Creando cuenta..." : "Crear cuenta gratuita"}
             </button>
@@ -102,7 +102,7 @@ export default function SignupPage() {
 
           <div className="mt-4 text-center text-sm text-gray-500">
             ¿Ya tienes cuenta?{" "}
-            <Link href="/auth/login" className="text-emerald-600 font-semibold hover:text-emerald-700">
+            <Link href="/auth/login" className="text-blue-600 font-semibold hover:text-blue-700">
               Inicia sesión
             </Link>
           </div>

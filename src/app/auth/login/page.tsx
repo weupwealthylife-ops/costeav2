@@ -19,12 +19,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-white flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <span className="text-3xl font-extrabold text-emerald-600">Costea</span>
-            <span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full ml-1">V2</span>
+            <span className="text-3xl font-extrabold text-blue-600">Costea</span>
+            <span className="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full ml-1">V2</span>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900 mt-4">Bienvenido de vuelta</h1>
           <p className="text-gray-500 text-sm mt-1">Inicia sesión para continuar tu aprendizaje</p>
@@ -48,7 +48,7 @@ export default function LoginPage() {
                 name="email"
                 type="email"
                 required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="tu@correo.com"
               />
             </div>
@@ -60,14 +60,14 @@ export default function LoginPage() {
                 name="password"
                 type="password"
                 required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="••••••••"
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors disabled:opacity-60"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-60"
             >
               {loading ? "Ingresando..." : "Iniciar sesión"}
             </button>
@@ -75,7 +75,7 @@ export default function LoginPage() {
 
           <div className="mt-6 text-center text-sm text-gray-500">
             ¿No tienes cuenta?{" "}
-            <Link href="/auth/signup" className="text-emerald-600 font-semibold hover:text-emerald-700">
+            <Link href="/auth/signup" className="text-blue-600 font-semibold hover:text-blue-700">
               Regístrate gratis
             </Link>
           </div>

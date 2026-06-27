@@ -6,7 +6,7 @@ const tools = [
   {
     icon: "🧮",
     tag: "Disponible",
-    tagColor: "bg-emerald-100 text-emerald-700",
+    tagColor: "bg-blue-100 text-blue-700",
     title: "Calculadora de Costos",
     description:
       "Ingresa tus insumos, mano de obra y gastos indirectos. Costea calcula el costo unitario y el precio mínimo de venta con el margen que tú defines.",
@@ -54,9 +54,9 @@ export default function CosteaAppPage() {
     <>
       <Navbar />
 
-      <section className="bg-gradient-to-br from-gray-900 to-emerald-900 text-white py-20 px-4">
+      <section className="bg-gradient-to-br from-gray-900 to-blue-900 text-white py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="inline-block bg-emerald-500/30 text-emerald-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+          <span className="inline-block bg-blue-500/30 text-blue-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
             App Costea V2
           </span>
           <h1 className="text-4xl font-extrabold mb-4">
@@ -68,7 +68,7 @@ export default function CosteaAppPage() {
           </p>
           <Link
             href="/costea/calculadora"
-            className="inline-block bg-emerald-500 hover:bg-emerald-400 text-white px-8 py-4 rounded-xl text-lg font-bold transition-colors shadow-lg"
+            className="inline-block bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-xl text-lg font-bold transition-colors shadow-lg"
           >
             Usar la Calculadora de Costos →
           </Link>
@@ -82,7 +82,7 @@ export default function CosteaAppPage() {
             <div
               key={t.title}
               className={`border rounded-2xl p-8 hover:shadow-lg transition-all flex flex-col ${
-                t.primary ? "border-emerald-200 bg-emerald-50" : "border-gray-100 bg-white"
+                t.primary ? "border-blue-200 bg-blue-50" : "border-gray-100 bg-white"
               }`}
             >
               <div className="flex items-center gap-3 mb-4">
@@ -97,7 +97,7 @@ export default function CosteaAppPage() {
                 href={t.href}
                 className={`text-center py-3 rounded-xl font-semibold text-sm transition-colors ${
                   t.primary
-                    ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >

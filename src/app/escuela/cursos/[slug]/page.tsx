@@ -107,22 +107,22 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-emerald-700 to-emerald-500 text-white py-16 px-4">
+      <section className="bg-gradient-to-br from-blue-700 to-blue-500 text-white py-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <Link href="/escuela" className="text-emerald-200 text-sm hover:text-white transition-colors mb-4 inline-block">
+          <Link href="/escuela" className="text-blue-200 text-sm hover:text-white transition-colors mb-4 inline-block">
             ← Volver a cursos
           </Link>
           <div className="flex items-center gap-2 mb-4">
             <span className={`text-xs font-semibold px-2 py-1 rounded-full ${levelColor[course.level]}`}>
               {course.level}
             </span>
-            <span className="text-xs text-emerald-200">{totalLessons} lecciones · {freeLessons} gratis</span>
+            <span className="text-xs text-blue-200">{totalLessons} lecciones · {freeLessons} gratis</span>
           </div>
           <h1 className="text-4xl font-extrabold mb-3">{course.title}</h1>
-          <p className="text-emerald-100 text-lg mb-8 max-w-2xl">{course.description}</p>
+          <p className="text-blue-100 text-lg mb-8 max-w-2xl">{course.description}</p>
           <Link
             href="/auth/signup"
-            className="inline-block bg-white text-emerald-700 px-6 py-3 rounded-xl font-bold hover:bg-emerald-50 transition-colors"
+            className="inline-block bg-white text-blue-700 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors"
           >
             Comenzar curso gratis
           </Link>
@@ -143,7 +143,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
                   <div key={lesson.title} className="flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition-colors">
                     <div className="flex items-center gap-3">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${
-                        lesson.free ? "bg-emerald-100 text-emerald-600" : "bg-gray-100 text-gray-400"
+                        lesson.free ? "bg-blue-100 text-blue-600" : "bg-gray-100 text-gray-400"
                       }`}>
                         {lesson.free ? "▶" : "🔒"}
                       </div>
@@ -151,7 +151,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
                         {lesson.title}
                       </span>
                       {lesson.free && (
-                        <span className="text-xs bg-emerald-100 text-emerald-600 px-2 py-0.5 rounded-full">
+                        <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">
                           Gratis
                         </span>
                       )}
@@ -165,7 +165,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         </div>
 
         {/* CTA */}
-        <div className="mt-10 bg-emerald-50 border border-emerald-100 rounded-2xl p-8 text-center">
+        <div className="mt-10 bg-blue-50 border border-blue-100 rounded-2xl p-8 text-center">
           <h3 className="text-xl font-bold text-gray-900 mb-2">
             ¿Listo para desbloquear todo el curso?
           </h3>
@@ -175,13 +175,13 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/auth/signup"
-              className="bg-emerald-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-emerald-700 transition-colors"
+              className="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors"
             >
               Crear cuenta gratuita
             </Link>
             <Link
               href="/auth/login"
-              className="bg-white border border-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:border-emerald-300 transition-colors"
+              className="bg-white border border-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:border-blue-300 transition-colors"
             >
               Ya tengo cuenta
             </Link>

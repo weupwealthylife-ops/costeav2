@@ -42,14 +42,14 @@ export default function HomePage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-emerald-50 to-white py-20 px-4">
+      <section className="bg-gradient-to-br from-blue-50 to-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <span className="inline-block bg-emerald-100 text-emerald-700 text-sm font-semibold px-3 py-1 rounded-full mb-6">
+          <span className="inline-block bg-blue-100 text-blue-700 text-sm font-semibold px-3 py-1 rounded-full mb-6">
             Nueva versión disponible — Costea V2
           </span>
           <h1 className="text-5xl font-extrabold text-gray-900 leading-tight mb-6">
             Aprende a costear tu negocio y toma{" "}
-            <span className="text-emerald-600">decisiones inteligentes</span>
+            <span className="text-blue-600">decisiones inteligentes</span>
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
             La Escuela de Costos de Costea te da los conocimientos y las herramientas
@@ -58,13 +58,13 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/escuela"
-              className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200"
+              className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
             >
               Explorar la Escuela de Costos
             </Link>
             <Link
               href="/costea"
-              className="bg-white text-gray-800 border border-gray-300 px-8 py-4 rounded-xl text-lg font-semibold hover:border-emerald-400 hover:text-emerald-700 transition-colors"
+              className="bg-white text-gray-800 border border-gray-300 px-8 py-4 rounded-xl text-lg font-semibold hover:border-blue-400 hover:text-blue-700 transition-colors"
             >
               Ir a la App Costea
             </Link>
@@ -73,12 +73,12 @@ export default function HomePage() {
       </section>
 
       {/* Stats */}
-      <section className="bg-emerald-600 py-12 px-4">
+      <section className="bg-blue-600 py-12 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
           {stats.map((s) => (
             <div key={s.label}>
               <div className="text-4xl font-extrabold">{s.value}</div>
-              <div className="text-emerald-100 text-sm mt-1">{s.label}</div>
+              <div className="text-blue-100 text-sm mt-1">{s.label}</div>
             </div>
           ))}
         </div>
@@ -94,14 +94,14 @@ export default function HomePage() {
             {features.map((f) => (
               <div
                 key={f.title}
-                className="border border-gray-100 rounded-2xl p-8 hover:shadow-lg hover:border-emerald-200 transition-all"
+                className="border border-gray-100 rounded-2xl p-8 hover:shadow-lg hover:border-blue-200 transition-all"
               >
                 <div className="text-4xl mb-4">{f.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{f.title}</h3>
                 <p className="text-gray-600 mb-6">{f.description}</p>
                 <Link
                   href={f.href}
-                  className="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors"
+                  className="text-blue-600 font-semibold hover:text-blue-700 transition-colors"
                 >
                   {f.cta} →
                 </Link>
@@ -122,7 +122,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/auth"
-            className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-colors"
+            className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-colors"
           >
             Crear cuenta gratuita
           </Link>

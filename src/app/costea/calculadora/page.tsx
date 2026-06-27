@@ -62,7 +62,7 @@ export default function CalculadoraPage() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <Link href="/costea" className="text-sm text-emerald-600 hover:text-emerald-700 font-medium">
+            <Link href="/costea" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
               ← Volver a App Costea
             </Link>
             <h1 className="text-3xl font-extrabold text-gray-900 mt-3">Calculadora de Costos</h1>
@@ -81,7 +81,7 @@ export default function CalculadoraPage() {
                   value={productoNombre}
                   onChange={(e) => setProductoNombre(e.target.value)}
                   placeholder="Ej: Torta de cumpleaños 20 porciones"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
                 <div className="mt-4 flex items-center gap-4">
                   <label className="text-sm text-gray-600 whitespace-nowrap">Unidades por lote:</label>
@@ -90,7 +90,7 @@ export default function CalculadoraPage() {
                     min={1}
                     value={unidadesPorLote}
                     onChange={(e) => setUnidadesPorLote(Number(e.target.value))}
-                    className="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
@@ -99,7 +99,7 @@ export default function CalculadoraPage() {
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="font-bold text-gray-900">Materia prima e insumos</h2>
-                  <span className="text-sm text-emerald-600 font-semibold">{fmt(costoMateriaPrima)}</span>
+                  <span className="text-sm text-blue-600 font-semibold">{fmt(costoMateriaPrima)}</span>
                 </div>
 
                 <div className="space-y-3">
@@ -117,19 +117,19 @@ export default function CalculadoraPage() {
                         value={insumo.nombre}
                         onChange={(e) => updateInsumo(insumo.id, "nombre", e.target.value)}
                         placeholder="Ej: Harina"
-                        className="col-span-4 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="col-span-4 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                       <input
                         type="number"
                         min={0}
                         value={insumo.cantidad}
                         onChange={(e) => updateInsumo(insumo.id, "cantidad", Number(e.target.value))}
-                        className="col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                       <select
                         value={insumo.unidad}
                         onChange={(e) => updateInsumo(insumo.id, "unidad", e.target.value)}
-                        className="col-span-2 border border-gray-200 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="col-span-2 border border-gray-200 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       >
                         <option>und</option>
                         <option>kg</option>
@@ -145,7 +145,7 @@ export default function CalculadoraPage() {
                         min={0}
                         value={insumo.costoUnitario}
                         onChange={(e) => updateInsumo(insumo.id, "costoUnitario", Number(e.target.value))}
-                        className="col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                       <button
                         onClick={() => removeInsumo(insumo.id)}
@@ -159,7 +159,7 @@ export default function CalculadoraPage() {
 
                 <button
                   onClick={addInsumo}
-                  className="mt-4 text-sm text-emerald-600 hover:text-emerald-700 font-semibold flex items-center gap-1"
+                  className="mt-4 text-sm text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1"
                 >
                   + Agregar insumo
                 </button>
@@ -175,7 +175,7 @@ export default function CalculadoraPage() {
                     min={0}
                     value={manoDeObra}
                     onChange={(e) => setManoDeObra(Number(e.target.value))}
-                    className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="0"
                   />
                 </div>
@@ -194,7 +194,7 @@ export default function CalculadoraPage() {
                     min={0}
                     value={gastosIndirectos}
                     onChange={(e) => setGastosIndirectos(Number(e.target.value))}
-                    className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="0"
                   />
                 </div>
@@ -207,7 +207,7 @@ export default function CalculadoraPage() {
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
                 <div className="flex items-center justify-between mb-2">
                   <h2 className="font-bold text-gray-900">Margen de utilidad deseado</h2>
-                  <span className="text-2xl font-extrabold text-emerald-600">{margenUtilidad}%</span>
+                  <span className="text-2xl font-extrabold text-blue-600">{margenUtilidad}%</span>
                 </div>
                 <input
                   type="range"
@@ -216,7 +216,7 @@ export default function CalculadoraPage() {
                   step={5}
                   value={margenUtilidad}
                   onChange={(e) => setMargenUtilidad(Number(e.target.value))}
-                  className="w-full accent-emerald-600"
+                  className="w-full accent-blue-600"
                 />
                 <div className="flex justify-between text-xs text-gray-400 mt-1">
                   <span>0%</span>
@@ -228,49 +228,49 @@ export default function CalculadoraPage() {
 
             {/* Right: Results */}
             <div className="space-y-4">
-              <div className="bg-emerald-600 text-white rounded-2xl p-6 sticky top-20">
+              <div className="bg-blue-600 text-white rounded-2xl p-6 sticky top-20">
                 <h2 className="font-bold text-lg mb-6">Resumen de costos</h2>
 
                 <div className="space-y-4">
                   <div className="flex justify-between text-sm">
-                    <span className="text-emerald-100">Materia prima</span>
+                    <span className="text-blue-100">Materia prima</span>
                     <span className="font-semibold">{fmt(costoMateriaPrima)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-emerald-100">Mano de obra</span>
+                    <span className="text-blue-100">Mano de obra</span>
                     <span className="font-semibold">{fmt(manoDeObra)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-emerald-100">Gastos indirectos</span>
+                    <span className="text-blue-100">Gastos indirectos</span>
                     <span className="font-semibold">{fmt(gastosIndirectos)}</span>
                   </div>
-                  <div className="border-t border-emerald-500 pt-3 flex justify-between text-sm">
-                    <span className="text-emerald-100">Costo total del lote</span>
+                  <div className="border-t border-blue-500 pt-3 flex justify-between text-sm">
+                    <span className="text-blue-100">Costo total del lote</span>
                     <span className="font-bold">{fmt(costoTotalLote)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-emerald-100">Unidades en el lote</span>
+                    <span className="text-blue-100">Unidades en el lote</span>
                     <span className="font-semibold">{unidadesPorLote}</span>
                   </div>
                 </div>
 
                 <div className="mt-6 bg-white/15 rounded-xl p-4 space-y-3">
                   <div>
-                    <div className="text-emerald-200 text-xs mb-1">Costo unitario</div>
+                    <div className="text-blue-200 text-xs mb-1">Costo unitario</div>
                     <div className="text-2xl font-extrabold">{fmt(costoUnitario)}</div>
                   </div>
                   <div>
-                    <div className="text-emerald-200 text-xs mb-1">Precio mínimo de venta ({margenUtilidad}% utilidad)</div>
+                    <div className="text-blue-200 text-xs mb-1">Precio mínimo de venta ({margenUtilidad}% utilidad)</div>
                     <div className="text-3xl font-extrabold">{fmt(precioMinimo)}</div>
                   </div>
                   <div>
-                    <div className="text-emerald-200 text-xs mb-1">Utilidad por unidad</div>
+                    <div className="text-blue-200 text-xs mb-1">Utilidad por unidad</div>
                     <div className="text-xl font-bold">{fmt(utilidadUnidad)}</div>
                   </div>
                 </div>
 
                 {costoUnitario === 0 && (
-                  <p className="text-emerald-200 text-xs mt-4 text-center">
+                  <p className="text-blue-200 text-xs mt-4 text-center">
                     Ingresa tus insumos y costos para ver el resultado.
                   </p>
                 )}
