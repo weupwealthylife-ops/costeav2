@@ -22,7 +22,7 @@ export default function Navbar() {
               Novedades
             </Link>
             <Link href="/costea" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
-              App Costea
+              Costeapp
             </Link>
           </div>
 

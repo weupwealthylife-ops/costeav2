@@ -36,7 +36,7 @@ const roadmap = [
     label: "Planeado",
     date: "Q4 2025",
     title: "Integración con la Escuela",
-    description: "Practica directamente los ejercicios de cada lección dentro de la App Costea, conectando el aprendizaje con la acción.",
+    description: "Practica directamente los ejercicios de cada lección dentro de la Costeapp, conectando el aprendizaje con la acción.",
   },
 ];
 
@@ -82,7 +82,7 @@ const features = [
   },
   {
     tag: "Próximamente",
-    tagColor: "bg-yellow-100 text-yellow-700",
+    tagColor: "bg-amber-100 text-amber-700",
     title: "Exportación y reportes",
     description:
       "Genera reportes listos para presentar a tu equipo, contador o inversionistas con un clic.",
@@ -97,7 +97,7 @@ const features = [
 
 const statusStyle: Record<string, string> = {
   disponible: "bg-blue-500",
-  proximo: "bg-yellow-400",
+  proximo: "bg-amber-400",
   planeado: "bg-gray-300",
 };
 
@@ -107,13 +107,15 @@ export default function NovedadesPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-gray-900 to-blue-900 text-white py-20 px-4">
+      <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-900 text-white py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="inline-block bg-blue-500/30 text-blue-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
-            Novedades · App Costea V2
+          <span className="inline-block bg-blue-500/20 text-blue-300 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-8 border border-blue-500/20">
+            Novedades · Costeapp V2
           </span>
-          <h1 className="text-4xl font-extrabold mb-4">Lo nuevo en Costea</h1>
-          <p className="text-gray-300 text-lg">
+          <h1 className="text-5xl font-extrabold tracking-tight leading-[1.1] mb-6">
+            Lo nuevo en Costea
+          </h1>
+          <p className="text-gray-400 text-lg leading-relaxed max-w-xl mx-auto">
             Conoce las mejoras que hemos lanzado y lo que viene próximamente para ayudarte
             a gestionar los costos de tu negocio de forma más fácil y poderosa.
           </p>
@@ -121,30 +123,30 @@ export default function NovedadesPage() {
       </section>
 
       {/* Roadmap */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-24 px-4 bg-white">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 mb-10">Hoja de ruta</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-12">Hoja de ruta</h2>
           <div className="relative">
             <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gray-100" />
-            <div className="space-y-8">
+            <div className="space-y-10">
               {roadmap.map((item) => (
                 <div key={item.title} className="flex gap-6 relative">
-                  <div className={`w-3 h-3 rounded-full mt-1.5 shrink-0 z-10 ${statusStyle[item.status]}`} />
+                  <div className={`w-3 h-3 rounded-full mt-1.5 shrink-0 z-10 ring-4 ring-white ${statusStyle[item.status]}`} />
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-1">
-                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
                         item.status === "disponible"
                           ? "bg-blue-100 text-blue-700"
                           : item.status === "proximo"
-                          ? "bg-yellow-100 text-yellow-700"
+                          ? "bg-amber-100 text-amber-700"
                           : "bg-gray-100 text-gray-500"
                       }`}>
                         {item.label}
                       </span>
                       <span className="text-xs text-gray-400">{item.date}</span>
                     </div>
-                    <h3 className="font-bold text-gray-900">{item.title}</h3>
-                    <p className="text-gray-500 text-sm mt-1">{item.description}</p>
+                    <h3 className="font-bold tracking-tight text-gray-900">{item.title}</h3>
+                    <p className="text-gray-500 text-sm mt-1 leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -154,27 +156,24 @@ export default function NovedadesPage() {
       </section>
 
       {/* Feature cards */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-24 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Nuevas funciones en detalle</h2>
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-3">Nuevas funciones en detalle</h2>
             <p className="text-gray-500">Así se ve la nueva versión de Costea.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {features.map((f) => (
-              <div key={f.title} className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition-all">
-                {/* Preview area */}
-                <div className="bg-gradient-to-br from-blue-50 to-white h-40 flex items-center justify-center text-7xl border-b border-gray-100">
+              <div key={f.title} className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.15)] hover:-translate-y-0.5 transition-all duration-300 ease-out">
+                <div className="bg-gradient-to-br from-blue-50 to-white h-40 flex items-center justify-center text-7xl border-b border-gray-50">
                   {f.preview}
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${f.tagColor}`}>
-                      {f.tag}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{f.title}</h3>
-                  <p className="text-gray-500 text-sm mb-4">{f.description}</p>
+                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${f.tagColor}`}>
+                    {f.tag}
+                  </span>
+                  <h3 className="text-lg font-bold tracking-tight text-gray-900 mt-3 mb-2">{f.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{f.description}</p>
                   <ul className="space-y-1.5">
                     {f.details.map((d) => (
                       <li key={d} className="flex items-center gap-2 text-sm text-gray-600">
@@ -190,25 +189,32 @@ export default function NovedadesPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-blue-700 text-white py-16 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-3">¿Quieres acceder a todas estas funciones?</h2>
-          <p className="text-blue-200 mb-8 text-sm">
-            Crea tu cuenta gratis y empieza a usar la nueva App Costea hoy.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/auth/signup"
-              className="bg-white text-blue-700 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors"
-            >
-              Crear cuenta gratuita
-            </Link>
-            <Link
-              href="/escuela"
-              className="border border-white/40 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/10 transition-colors"
-            >
-              Ver cursos de la Escuela
-            </Link>
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_8px_48px_-12px_rgba(37,99,235,0.5)]">
+            <div>
+              <p className="text-blue-200 text-sm font-semibold uppercase tracking-widest mb-2">Costeapp · V2</p>
+              <h3 className="text-2xl font-bold tracking-tight text-white mb-2">
+                ¿Quieres acceder a todas estas funciones?
+              </h3>
+              <p className="text-blue-100 text-sm leading-relaxed max-w-sm">
+                Crea tu cuenta gratis y empieza a usar la nueva Costeapp hoy.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 shrink-0">
+              <Link
+                href="/auth/signup"
+                className="bg-white text-blue-700 px-7 py-3.5 rounded-xl font-bold text-sm hover:bg-blue-50 transition-all duration-300 ease-out text-center hover:-translate-y-0.5 shadow-lg shadow-blue-800/20"
+              >
+                Crear cuenta gratuita
+              </Link>
+              <Link
+                href="/escuela"
+                className="bg-blue-500/30 hover:bg-blue-500/40 border border-white/20 text-white px-7 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 ease-out text-center"
+              >
+                Ver cursos de la Escuela
+              </Link>
+            </div>
           </div>
         </div>
       </section>

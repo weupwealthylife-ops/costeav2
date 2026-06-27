@@ -27,7 +27,7 @@ export default function SignupPage() {
             <span className="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full ml-1">V2</span>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900 mt-4">Crea tu cuenta gratuita</h1>
-          <p className="text-gray-500 text-sm mt-1">Accede a la Escuela de Costos y a la App Costea</p>
+          <p className="text-gray-500 text-sm mt-1">Accede a la Escuela de Costos y a la Costeapp</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">

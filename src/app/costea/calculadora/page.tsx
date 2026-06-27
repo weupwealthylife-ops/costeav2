@@ -63,7 +63,7 @@ export default function CalculadoraPage() {
           {/* Header */}
           <div className="mb-8">
             <Link href="/costea" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-              ← Volver a App Costea
+              ← Volver a Costeapp
             </Link>
             <h1 className="text-3xl font-extrabold text-gray-900 mt-3">Calculadora de Costos</h1>
             <p className="text-gray-500 mt-1">Calcula el costo real de tu producto o servicio y define el precio de venta.</p>

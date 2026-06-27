@@ -50,7 +50,7 @@ export default async function DashboardPage() {
               Novedades
             </Link>
             <Link href="/costea" className="text-sm text-gray-500 hover:text-blue-600 transition-colors hidden sm:block">
-              App Costea
+              Costeapp
             </Link>
             <span className="text-sm text-gray-600 hidden sm:block">{user.email}</span>
             <form action={logout}>
@@ -180,7 +180,7 @@ export default async function DashboardPage() {
         <div className="mt-10 bg-gradient-to-br from-blue-700 to-blue-500 text-white rounded-2xl p-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <span className="text-xs font-semibold bg-white/20 px-2 py-1 rounded-full">App Costea · Versión gratuita</span>
+              <span className="text-xs font-semibold bg-white/20 px-2 py-1 rounded-full">Costeapp · Versión gratuita</span>
               <h3 className="text-xl font-bold mt-3 mb-2">Pon en práctica lo que aprendes</h3>
               <p className="text-blue-100 text-sm max-w-sm">
                 Mientras estudias tienes acceso a una versión simplificada de Costea para calcular costos reales de tu negocio.

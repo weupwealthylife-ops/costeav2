@@ -30,7 +30,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-3">Herramienta</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/costea" className="hover:text-white transition-colors">App Costea</Link></li>
+              <li><Link href="/costea" className="hover:text-white transition-colors">Costeapp</Link></li>
               <li><Link href="https://costea.com.co" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">costea.com.co</Link></li>
             </ul>
           </div>
