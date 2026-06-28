@@ -383,7 +383,7 @@ export default function EscuelaPage() {
           {/* Compact course rows */}
           <div className="space-y-3">
             {courses.map((course, i) => (
-              <Reveal key={course.slug} delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
+              <Reveal key={course.slug} variant="scale" delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
                 <div className="bg-white border border-gray-100 rounded-2xl px-6 py-5 hover:border-blue-100 hover:shadow-[0_4px_24px_-6px_rgba(37,99,235,0.12)] hover:-translate-y-px transition-all duration-300 ease-out">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                     {/* Step number */}
@@ -452,7 +452,7 @@ export default function EscuelaPage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((item, i) => (
-              <Reveal key={item.name} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
+              <Reveal key={item.name} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
                 <div className="bg-white/5 border border-white/8 rounded-2xl p-8 h-full flex flex-col">
                   <p className="text-gray-300 text-sm leading-relaxed mb-8 flex-1">"{item.text}"</p>
                   <div className="border-t border-white/10 pt-5">

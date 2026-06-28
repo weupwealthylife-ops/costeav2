@@ -195,7 +195,7 @@ export default function CosteaAppPage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {tools.map((tool, i) => (
-              <Reveal key={tool.title.toString()} delay={(i % 2) as 0 | 1 | 2 | 3 | 4}>
+              <Reveal key={tool.title.toString()} variant="scale" delay={(i % 2) as 0 | 1 | 2 | 3 | 4}>
                 <div
                   className={`rounded-2xl p-8 flex flex-col h-full transition-all duration-300 ease-out ${
                     tool.primary
@@ -241,7 +241,7 @@ export default function CosteaAppPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
             {/* Left: sticky panel — Apple/Platzi inspired */}
-            <Reveal className="lg:sticky lg:top-28">
+            <Reveal variant="left" className="lg:sticky lg:top-28">
               <div>
                 <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                   {t("Hoja de ruta", "Roadmap")}

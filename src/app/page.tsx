@@ -121,7 +121,7 @@ export default function HomePage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {features.map((f, i) => (
-              <Reveal key={f.step} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
+              <Reveal key={f.step} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
                 <div className="border border-gray-100 rounded-2xl p-8 hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.15)] hover:border-blue-100 transition-all duration-300 ease-out group hover:-translate-y-0.5 h-full flex flex-col">
                   <span className="text-xs font-bold text-blue-400 tracking-[0.15em] mb-5 block">{f.step}</span>
                   <h3 className="text-xl font-extrabold tracking-tight text-gray-900 mb-2">{f.title}</h3>
