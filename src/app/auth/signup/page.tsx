@@ -25,7 +25,7 @@ export default function SignupPage() {
         <div className="text-center mb-8">
           <BrandLogo theme="light" />
           <h1 className="text-2xl font-bold text-gray-900 mt-6">Crea tu cuenta gratuita</h1>
-          <p className="text-gray-500 text-sm mt-1">Accede a la Escuela de Costos y a la Costeapp</p>
+          <p className="text-gray-500 text-sm mt-1">Accede a la Escuela de Costos y a la Costea App</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">

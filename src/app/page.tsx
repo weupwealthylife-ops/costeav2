@@ -29,7 +29,7 @@ export default function HomePage() {
     },
     {
       step: "02",
-      title: "Costeapp",
+      title: "Costea App",
       description: t(
         "La herramienta que ya conoces, ahora mejorada. Calcula costos, analiza tu negocio y toma decisiones con datos.",
         "The tool you already know, now improved. Calculate costs, analyze your business and make data-driven decisions."
@@ -85,7 +85,7 @@ export default function HomePage() {
                 href="/costea"
                 className="inline-flex items-center justify-center bg-white/12 hover:bg-white/20 border border-white/25 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
               >
-                {t("Ir a la Costeapp", "Go to Costeapp")}
+                {t("Ir a la Costea App", "Go to Costea App")}
               </Link>
             </div>
           </Reveal>
@@ -140,10 +140,13 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gray-50 py-28 px-4">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="relative bg-gradient-to-b from-gray-950 via-[#0d1f5c] to-gray-950 text-white py-28 px-4 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/10 rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-3xl mx-auto text-center relative">
           <Reveal>
-            <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 mb-5">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-5">
               {lang === "es" ? (
                 <>¿Listo para empezar?</>
               ) : (
@@ -152,18 +155,26 @@ export default function HomePage() {
             </h2>
           </Reveal>
           <Reveal delay={1}>
-            <p className="text-gray-500 mb-10 leading-relaxed">
+            <p className="text-gray-400 mb-10 leading-relaxed">
               {t(
                 "Regístrate gratis y accede a los primeros módulos de la Escuela de Costos.",
                 "Sign up free and access the first modules of the School of Costs."
               )}
             </p>
-            <Link
-              href="/auth/signup"
-              className="inline-flex items-center justify-center bg-blue-600 text-white px-10 py-4 rounded-xl text-base font-bold hover:bg-blue-700 transition-all duration-300 ease-out shadow-xl shadow-blue-200 hover:-translate-y-0.5"
-            >
-              {t("Crear cuenta gratuita", "Create free account")}
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/auth/signup"
+                className="inline-flex items-center justify-center bg-blue-600 text-white px-10 py-4 rounded-xl text-base font-bold hover:bg-blue-500 transition-all duration-300 ease-out shadow-lg shadow-blue-900/40 hover:-translate-y-0.5"
+              >
+                {t("Crear cuenta gratuita →", "Create free account →")}
+              </Link>
+              <Link
+                href="/escuela"
+                className="inline-flex items-center justify-center bg-white/10 hover:bg-white/18 border border-white/20 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
+              >
+                {t("Ver cursos", "View courses")}
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>

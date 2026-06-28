@@ -65,7 +65,7 @@ export default function CalculadoraPage() {
           {/* Header */}
           <div className="mb-8">
             <Link href="/costea" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-              ← {t("Volver a Costeapp", "Back to Costeapp")}
+              ← {t("Volver a Costea App", "Back to Costea App")}
             </Link>
             <h1 className="text-3xl font-extrabold text-gray-900 mt-3">{t("Calculadora de Costos", "Cost Calculator")}</h1>
             <p className="text-gray-500 mt-1">{t("Calcula el costo real de tu producto o servicio y define el precio de venta.", "Calculate the real cost of your product or service and set your selling price.")}</p>

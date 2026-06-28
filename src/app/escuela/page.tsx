@@ -46,7 +46,7 @@ export default function EscuelaPage() {
       desc: t("Avanza a tu propio ritmo, desde cualquier dispositivo, cuando quieras.", "Go at your own pace, from any device, whenever you want."),
     },
     {
-      title: t("Conectado a Costeapp", "Connected to Costeapp"),
+      title: t("Conectado a Costea App", "Connected to Costea App"),
       desc: t("Aplica cada concepto directamente en la herramienta desde el primer módulo.", "Apply every concept directly in the tool from the first module."),
     },
     {
@@ -58,10 +58,10 @@ export default function EscuelaPage() {
   const journey = [
     { step: "01", title: t("Crea tu cuenta", "Create your account"), desc: t("Regístrate gratis en menos de 2 minutos. Solo nombre, correo y teléfono.", "Sign up free in under 2 minutes. Just name, email and phone.") },
     { step: "02", title: t("Explora el dashboard", "Explore the dashboard"), desc: t("Todos los cursos organizados por nivel. Empieza donde quieras.", "All courses organized by level. Start wherever you want.") },
-    { step: "03", title: t("Aprende a tu ritmo", "Learn at your own pace"), desc: t("Videos cortos y prácticos, con acceso a Costeapp durante el aprendizaje.", "Short, practical videos with access to Costeapp during learning.") },
+    { step: "03", title: t("Aprende a tu ritmo", "Learn at your own pace"), desc: t("Videos cortos y prácticos, con acceso a Costea App durante el aprendizaje.", "Short, practical videos with access to Costea App during learning.") },
     { step: "04", title: t("Califica y mejora", "Rate and improve"), desc: t("Tu feedback al terminar cada módulo nos ayuda a mejorar el contenido.", "Your feedback at the end of each module helps us improve the content.") },
     { step: "05", title: t("Certifícate", "Get certified"), desc: t("Supera el examen y obtén tu certificado para desbloquear el siguiente nivel.", "Pass the exam and earn your certificate to unlock the next level.") },
-    { step: "06", title: t("Accede a Costeapp completo", "Access full Costeapp"), desc: t("Al completar la ruta desbloqueas todas las herramientas de la plataforma.", "Completing the path unlocks all platform tools.") },
+    { step: "06", title: t("Accede a Costea App completo", "Access full Costea App"), desc: t("Al completar la ruta desbloqueas todas las herramientas de la plataforma.", "Completing the path unlocks all platform tools.") },
     { step: "07", title: t("Asesoría 1 a 1", "1-on-1 advisory"), desc: t("Completa todos los exámenes y agenda una sesión personalizada con el equipo.", "Complete all exams and book a personalized session with the team.") },
   ];
 
@@ -434,10 +434,14 @@ export default function EscuelaPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-28 px-4 bg-gray-950 text-white">
+      <section className="relative py-28 px-4 bg-gradient-to-b from-gray-950 via-[#070f2b] to-gray-950 text-white overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/3 left-1/4 w-96 h-72 bg-blue-600/8 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-60 bg-blue-800/6 rounded-full blur-3xl" />
+        </div>
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <div className="mb-16">
+            <div className="mb-16 relative">
               <p className="text-blue-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                 {t("Testimonios", "Testimonials")}
               </p>
