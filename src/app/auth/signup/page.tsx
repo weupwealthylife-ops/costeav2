@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { signup } from "../actions";
+import BrandLogo from "@/components/ui/BrandLogo";
 
 export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
@@ -22,11 +23,8 @@ export default function SignupPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-block">
-            <span className="text-3xl font-extrabold text-blue-600">Costea</span>
-            <span className="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full ml-1">V2</span>
-          </Link>
-          <h1 className="text-2xl font-bold text-gray-900 mt-4">Crea tu cuenta gratuita</h1>
+          <BrandLogo theme="light" />
+          <h1 className="text-2xl font-bold text-gray-900 mt-6">Crea tu cuenta gratuita</h1>
           <p className="text-gray-500 text-sm mt-1">Accede a la Escuela de Costos y a la Costeapp</p>
         </div>
 
