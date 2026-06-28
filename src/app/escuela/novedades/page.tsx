@@ -110,7 +110,7 @@ export default function NovedadesPage() {
       <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-900 text-white py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-blue-500/20 text-blue-300 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-8 border border-blue-500/20">
-            Novedades · Costeapp V2
+            Novedades Costeapp
           </span>
           <h1 className="text-5xl font-extrabold tracking-tight leading-[1.1] mb-6">
             Lo nuevo en Costea

@@ -44,9 +44,6 @@ export default function HomePage() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-blue-50 via-white to-blue-50 py-28 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <span className="inline-block bg-blue-100 text-blue-700 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-8 border border-blue-100">
-            Nueva versión disponible — Costea V2
-          </span>
           <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.1] mb-6">
             Aprende a costear tu negocio y toma{" "}
             <span className="text-blue-600">decisiones inteligentes</span>

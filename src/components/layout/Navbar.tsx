@@ -18,11 +18,11 @@ export default function Navbar() {
             <Link href="/escuela" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
               Escuela de Costos
             </Link>
-            <Link href="/escuela/novedades" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
-              Novedades
-            </Link>
             <Link href="/costea" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
               Costeapp
+            </Link>
+            <Link href="/escuela/novedades" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+              Novedades
             </Link>
           </div>
 
