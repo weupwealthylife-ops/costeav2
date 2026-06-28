@@ -179,7 +179,7 @@ export default function EscuelaPage() {
               </p>
             </Reveal>
             <Reveal delay={1}>
-              <h1 className="text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
+              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
                 {lang === "es" ? (
                   <>Domina los costos<br />de tu negocio.<br /><span className="text-blue-300">Toma el control.</span></>
                 ) : (
@@ -244,7 +244,7 @@ export default function EscuelaPage() {
                 <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                   {t("El problema", "The problem")}
                 </p>
-                <h2 className="text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.05]">
+                <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.05]">
                   {lang === "es" ? (
                     <>¿Cuánto te<br />cuesta no saber<br />tus costos?</>
                   ) : (
@@ -291,7 +291,7 @@ export default function EscuelaPage() {
               <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                 {t("Por qué Costea", "Why Costea")}
               </p>
-              <h2 className="text-5xl font-extrabold tracking-tight text-gray-900 max-w-lg leading-[1.05]">
+              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 max-w-lg leading-[1.05]">
                 {lang === "es" ? (
                   <>Diseñado para<br />emprendedores reales.</>
                 ) : (
@@ -323,7 +323,7 @@ export default function EscuelaPage() {
                 <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                   {t("Cómo funciona", "How it works")}
                 </p>
-                <h2 className="text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.05] mb-6">
+                <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.05] mb-6">
                   {lang === "es" ? (
                     <>De cero a<br />experto en costos.</>
                   ) : (

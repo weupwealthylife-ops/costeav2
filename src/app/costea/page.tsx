@@ -137,7 +137,7 @@ export default function CosteaAppPage() {
               <p className="text-blue-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
                 Costeapp · {t("Plataforma de Costos", "Cost Platform")}
               </p>
-              <h1 className="text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
+              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
                 {lang === "es" ? (
                   <>Gestiona los costos<br />de tu negocio.<br /><span className="text-blue-300">Sin complicaciones.</span></>
                 ) : (

@@ -57,7 +57,7 @@ export default function HomePage() {
       <section className="bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-600 text-white py-32 px-4">
         <div className="max-w-5xl mx-auto text-center">
           <Reveal>
-            <h1 className="text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
+            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
               {lang === "es" ? (
                 <>Aprende a costear<br />y toma <span className="text-blue-300">decisiones inteligentes</span></>
               ) : (
