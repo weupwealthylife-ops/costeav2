@@ -21,7 +21,7 @@ export default function AuthPage() {
               </label>
               <input
                 type="email"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="tu@correo.com"
               />
             </div>
@@ -31,13 +31,13 @@ export default function AuthPage() {
               </label>
               <input
                 type="password"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="••••••••"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
               Iniciar sesión
             </button>
@@ -45,7 +45,7 @@ export default function AuthPage() {
 
           <div className="mt-6 text-center text-sm text-gray-500">
             ¿No tienes cuenta?{" "}
-            <Link href="#" className="text-emerald-600 font-semibold hover:text-emerald-700">
+            <Link href="#" className="text-blue-600 font-semibold hover:text-blue-700">
               Regístrate gratis
             </Link>
           </div>
