@@ -26,10 +26,7 @@ export default function Navbar() {
               {t("Escuela de Costos", "School of Costs")}
             </Link>
             <Link href="/costea" className="text-sm text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">
-              Costeapp
-            </Link>
-            <Link href="/escuela/novedades" className="text-sm text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">
-              {t("Novedades", "What's New")}
+              {t("Costea App", "Costea App")}
             </Link>
           </div>
 
