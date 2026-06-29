@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
+import SectionWave from "@/components/ui/SectionWave";
 import { useLang } from "@/contexts/LanguageContext";
 
 export default function HomePage() {
@@ -81,7 +82,14 @@ export default function HomePage() {
       <section className="bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-600 text-white py-32 px-4">
         <div className="max-w-5xl mx-auto text-center">
           <Reveal>
-            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
+            {/* Trust badge */}
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs font-semibold text-blue-200 tracking-wide mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+              {t("Más de 1,200 emprendedores ya aprenden aquí", "Over 1,200 entrepreneurs already learning here")}
+            </div>
+          </Reveal>
+          <Reveal delay={1}>
+            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-6">
               {lang === "es" ? (
                 <>Aprende a costear<br />y toma <span className="text-blue-300">decisiones inteligentes</span></>
               ) : (
@@ -89,7 +97,7 @@ export default function HomePage() {
               )}
             </h1>
           </Reveal>
-          <Reveal delay={1}>
+          <Reveal delay={2}>
             <p className="text-slate-300 text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
               {t(
                 "La Escuela de Costos de Costea te da los conocimientos y las herramientas para gestionar los costos de tu empresa con confianza.",
@@ -97,7 +105,7 @@ export default function HomePage() {
               )}
             </p>
           </Reveal>
-          <Reveal delay={2}>
+          <Reveal delay={3}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/escuela"
@@ -112,6 +120,10 @@ export default function HomePage() {
                 {t("Ir a la Costea App", "Go to Costea App")}
               </Link>
             </div>
+            {/* Micro-trust */}
+            <p className="mt-5 text-sm text-blue-300/70">
+              {t("Sin tarjeta de crédito · Primer curso gratis", "No credit card · First course free")}
+            </p>
           </Reveal>
         </div>
 
@@ -127,12 +139,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Wave: dark → white */}
-        <div className="w-full overflow-hidden leading-none mt-16">
-          <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
-            <path d="M0 56L1440 56L1440 20C1200 56 720 0 0 40L0 56Z" fill="white"/>
-          </svg>
-        </div>
+        <SectionWave fill="white" className="mt-16" />
       </section>
 
       {/* Platform cards */}
@@ -190,12 +197,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Wave: white → dark */}
-      <div className="w-full overflow-hidden leading-none bg-white">
-        <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
-          <path d="M0 56L1440 56L1440 16C1200 52 720 0 0 36L0 56Z" fill="#030712"/>
-        </svg>
-      </div>
+      <SectionWave fill="#030712" bgClass="bg-white" direction="up" />
 
       {/* CTA */}
       <section className="relative bg-gray-950 text-white py-28 px-4 overflow-hidden">

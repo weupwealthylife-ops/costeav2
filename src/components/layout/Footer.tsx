@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import SectionWave from "@/components/ui/SectionWave";
 import { useLang } from "@/contexts/LanguageContext";
 
 export default function Footer() {
   const { t } = useLang();
 
   return (
-    <footer className="relative bg-gradient-to-b from-gray-950 via-[#070f2b] to-gray-950 text-gray-400 overflow-hidden">
+    <footer className="relative bg-gray-950 text-gray-400 overflow-hidden">
       {/* Space glow accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-48 bg-blue-600/8 rounded-full blur-3xl" />
@@ -27,10 +28,10 @@ export default function Footer() {
                 <span className="text-white font-extrabold text-base tracking-tight">
                   {t("Escuela de Costos", "School of Costs")}
                 </span>
-                <span className="text-gray-600 text-xs">by Costea®</span>
+                <span className="text-slate-500 text-xs">by Costea®</span>
               </div>
             </div>
-            <p className="text-sm leading-relaxed text-gray-500 max-w-xs mb-6">
+            <p className="text-sm leading-relaxed text-slate-400 max-w-xs mb-6">
               {t(
                 "Aprende gestión de costos y toma mejores decisiones financieras para tu negocio.",
                 "Learn cost management and make better financial decisions for your business."
@@ -51,17 +52,17 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/escuela" className="text-gray-500 hover:text-white transition-colors duration-200">
+                <Link href="/escuela" className="text-slate-400 hover:text-white transition-colors duration-200">
                   {t("¿Qué es la Escuela?", "What is the School?")}
                 </Link>
               </li>
               <li>
-                <Link href="/escuela/cursos/fundamentos-de-costos" className="text-gray-500 hover:text-white transition-colors duration-200">
+                <Link href="/escuela/cursos/fundamentos-de-costos" className="text-slate-400 hover:text-white transition-colors duration-200">
                   {t("Todos los cursos", "All courses")}
                 </Link>
               </li>
               <li>
-                <Link href="/auth/signup" className="text-gray-500 hover:text-white transition-colors duration-200">
+                <Link href="/auth/signup" className="text-slate-400 hover:text-white transition-colors duration-200">
                   {t("Crear cuenta gratis", "Create free account")}
                 </Link>
               </li>
@@ -75,18 +76,18 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/costea" className="text-gray-500 hover:text-white transition-colors duration-200">
+                <Link href="/costea" className="text-slate-400 hover:text-white transition-colors duration-200">
                   {t("Herramientas", "Tools")}
                 </Link>
               </li>
               <li>
-                <Link href="/costea/calculadora" className="text-gray-500 hover:text-white transition-colors duration-200">
+                <Link href="/costea/calculadora" className="text-slate-400 hover:text-white transition-colors duration-200">
                   {t("Calculadora de Costos", "Cost Calculator")}
                 </Link>
               </li>
               <li>
-                <Link href="https://costea.com.co" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors duration-200">
-                  costea.com.co
+                <Link href="https://costea.com.co" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors duration-200">
+                  costea.com.co ↗
                 </Link>
               </li>
             </ul>
@@ -94,13 +95,13 @@ export default function Footer() {
         </div>
 
         {/* Divider + bottom bar */}
-        <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
           <span>© 2026 Costea® · {t("Todos los derechos reservados", "All rights reserved")} · Colombia</span>
           <div className="flex items-center gap-4">
-            <Link href="/auth/login" className="hover:text-gray-400 transition-colors">
+            <Link href="/auth/login" className="hover:text-slate-300 transition-colors">
               {t("Iniciar sesión", "Sign in")}
             </Link>
-            <Link href="/auth/signup" className="hover:text-gray-400 transition-colors">
+            <Link href="/auth/signup" className="hover:text-slate-300 transition-colors">
               {t("Registrarse", "Sign up")}
             </Link>
           </div>

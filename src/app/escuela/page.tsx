@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
+import SectionWave from "@/components/ui/SectionWave";
 import { useLang } from "@/contexts/LanguageContext";
 
 export default function EscuelaPage() {
@@ -250,12 +251,7 @@ export default function EscuelaPage() {
           </div>
         </div>
 
-        {/* Wave transition: dark → white */}
-        <div className="w-full overflow-hidden leading-none">
-          <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
-            <path d="M0 56L1440 56L1440 20C1200 56 720 0 0 40L0 56Z" fill="white"/>
-          </svg>
-        </div>
+        <SectionWave fill="white" />
       </section>
 
       {/* ─── Problem section ─── */}
@@ -306,12 +302,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* Wave: white → gray-50 */}
-      <div className="w-full overflow-hidden leading-none bg-white">
-        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
-          <path d="M0 0L1440 0L1440 40C1100 8 400 40 0 16L0 0Z" fill="#f9fafb"/>
-        </svg>
-      </div>
+      <SectionWave fill="#f9fafb" bgClass="bg-white" direction="down" size="sm" />
 
       {/* ─── Benefits ─── */}
       <section className="py-28 px-4 bg-gray-50">
@@ -351,12 +342,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* Wave: gray-50 → white */}
-      <div className="w-full overflow-hidden leading-none bg-gray-50">
-        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
-          <path d="M0 40L1440 40L1440 0C1100 32 400 0 0 24L0 40Z" fill="white"/>
-        </svg>
-      </div>
+      <SectionWave fill="white" bgClass="bg-gray-50" direction="up" size="sm" />
 
       {/* ─── How it works ─── */}
       <section className="py-28 px-4 bg-white">
@@ -418,12 +404,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* Wave: white → gray-50 */}
-      <div className="w-full overflow-hidden leading-none bg-white">
-        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
-          <path d="M0 0L1440 0L1440 40C1100 8 400 40 0 16L0 0Z" fill="#f9fafb"/>
-        </svg>
-      </div>
+      <SectionWave fill="#f9fafb" bgClass="bg-white" direction="down" size="sm" />
 
       {/* ─── Courses ─── */}
       <section id="cursos" className="py-28 px-4 bg-gray-50">
@@ -508,12 +489,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* Wave: gray-50 → slate-50 */}
-      <div className="w-full overflow-hidden leading-none bg-gray-50">
-        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
-          <path d="M0 40L1440 40L1440 0C1100 32 400 0 0 24L0 40Z" fill="#f8fafc"/>
-        </svg>
-      </div>
+      <SectionWave fill="#f8fafc" bgClass="bg-gray-50" direction="up" size="sm" />
 
       {/* ─── Testimonials — light section ─── */}
       <section className="py-20 px-4 bg-slate-50">
@@ -552,12 +528,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* Wave: slate-50 → white */}
-      <div className="w-full overflow-hidden leading-none bg-slate-50">
-        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
-          <path d="M0 40L1440 40L1440 0C1100 32 400 0 0 24L0 40Z" fill="white"/>
-        </svg>
-      </div>
+      <SectionWave fill="white" bgClass="bg-slate-50" direction="up" size="sm" />
 
       {/* ─── Final CTA ─── */}
       <section className="pt-16 pb-28 px-4 bg-white">
@@ -591,6 +562,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
+      <SectionWave fill="#030712" bgClass="bg-white" direction="up" />
       <Footer />
     </>
   );

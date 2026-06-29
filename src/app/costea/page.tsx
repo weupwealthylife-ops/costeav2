@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
+import SectionWave from "@/components/ui/SectionWave";
 import { useLang } from "@/contexts/LanguageContext";
 
 export default function CosteaAppPage() {
@@ -237,12 +238,7 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      {/* Wave: slate-50 → white */}
-      <div className="w-full overflow-hidden leading-none bg-slate-50">
-        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
-          <path d="M0 40L1440 40L1440 0C1100 32 400 0 0 24L0 40Z" fill="white"/>
-        </svg>
-      </div>
+      <SectionWave fill="white" bgClass="bg-slate-50" direction="up" size="sm" />
 
       {/* ─── Coming soon tools (compact) ─── */}
       <section className="py-16 px-4 bg-white">
@@ -272,12 +268,7 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      {/* Wave: white → gray-50 */}
-      <div className="w-full overflow-hidden leading-none bg-white">
-        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
-          <path d="M0 0L1440 0L1440 40C1100 8 400 40 0 16L0 0Z" fill="#f9fafb"/>
-        </svg>
-      </div>
+      <SectionWave fill="#f9fafb" bgClass="bg-white" direction="down" size="sm" />
 
       {/* ─── Roadmap ─── */}
       <section id="roadmap" className="py-28 px-4 bg-gray-50">
@@ -376,12 +367,7 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      {/* Wave: gray-50 → dark */}
-      <div className="w-full overflow-hidden leading-none bg-gray-50">
-        <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
-          <path d="M0 56L1440 56L1440 16C1200 52 720 0 0 36L0 56Z" fill="#030712"/>
-        </svg>
-      </div>
+      <SectionWave fill="#030712" bgClass="bg-gray-50" direction="up" />
 
       {/* ─── CTA ─── */}
       <section className="relative py-28 px-4 bg-gray-950 text-white overflow-hidden">
