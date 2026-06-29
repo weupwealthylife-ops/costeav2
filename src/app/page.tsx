@@ -16,36 +16,60 @@ export default function HomePage() {
     { value: "1,200+", label: t("Estudiantes activos", "Active students") },
   ];
 
-  const features = [
+  const platformCards = [
     {
-      step: "01",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      ),
+      iconBg: "bg-blue-50",
+      iconColor: "text-blue-600",
+      accentColor: "border-l-blue-600",
       title: t("Escuela de Costos", "School of Costs"),
       description: t(
-        "Aprende desde cero hasta avanzado con cursos prácticos sobre costeo de productos, punto de equilibrio, y análisis de márgenes.",
-        "Learn from beginner to advanced with practical courses on product costing, break-even analysis, and margin analysis."
+        "Cursos prácticos de costeo para emprendedores. Sin jerga contable. Con los números reales de tu negocio.",
+        "Practical costing courses for entrepreneurs. No accounting jargon. With your real business numbers."
       ),
       href: "/escuela",
-      cta: t("Ver cursos", "View courses"),
+      cta: t("Ver cursos →", "View courses →"),
+      active: true,
     },
     {
-      step: "02",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+      ),
+      iconBg: "bg-emerald-50",
+      iconColor: "text-emerald-600",
+      accentColor: "border-l-emerald-600",
       title: "Costea App",
       description: t(
-        "La herramienta que ya conoces, ahora mejorada. Calcula costos, analiza tu negocio y toma decisiones con datos.",
-        "The tool you already know, now improved. Calculate costs, analyze your business and make data-driven decisions."
+        "Calcula costos, analiza márgenes y toma decisiones con datos — sin hojas de cálculo.",
+        "Calculate costs, analyze margins and make data-driven decisions — no spreadsheets."
       ),
       href: "/costea",
-      cta: t("Abrir app", "Open app"),
+      cta: t("Abrir app →", "Open app →"),
+      active: true,
     },
     {
-      step: "03",
-      title: t("Análisis en tiempo real", "Real-time analysis"),
-      description: t(
-        "Visualiza el comportamiento de tus costos, ingresos y rentabilidad con gráficas e indicadores clave.",
-        "Visualize your costs, revenue and profitability behavior with charts and key indicators."
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
       ),
-      href: "/costea",
-      cta: t("Explorar", "Explore"),
+      iconBg: "bg-slate-50",
+      iconColor: "text-slate-400",
+      accentColor: "border-l-slate-200",
+      title: t("Reportes Exportables", "Exportable Reports"),
+      description: t(
+        "Exporta tu análisis de costos en PDF o Excel para compartir con tu equipo o contador.",
+        "Export your cost analysis in PDF or Excel to share with your team or accountant."
+      ),
+      href: "#",
+      cta: "",
+      active: false,
     },
   ];
 
@@ -111,7 +135,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Platform cards */}
       <section className="py-28 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <Reveal>
@@ -121,26 +145,44 @@ export default function HomePage() {
               </p>
               <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 max-w-lg leading-[1.1]">
                 {lang === "es" ? (
-                  <>Todo lo que necesitas<br />para gestionar tus costos</>
+                  <>Todo en un<br />solo lugar</>
                 ) : (
-                  <>Everything you need<br />to manage your costs</>
+                  <>Everything in<br />one place</>
                 )}
               </h2>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <Reveal key={f.step} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
-                <div className="border border-gray-100 rounded-2xl p-8 hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.15)] hover:border-blue-100 transition-all duration-300 ease-out group hover:-translate-y-0.5 h-full flex flex-col">
-                  <span className="text-xs font-bold text-blue-400 tracking-[0.15em] mb-5 block">{f.step}</span>
-                  <h3 className="text-xl font-extrabold tracking-tight text-gray-900 mb-2">{f.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">{f.description}</p>
-                  <Link
-                    href={f.href}
-                    className="text-blue-600 font-semibold text-sm hover:text-blue-700 transition-colors duration-200"
-                  >
-                    {f.cta} →
-                  </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {platformCards.map((card, i) => (
+              <Reveal key={card.title.toString()} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
+                <div className={`bg-white border border-slate-200 border-l-4 ${card.accentColor} rounded-2xl p-7 flex flex-col h-full transition-all duration-200 ease-out ${
+                  card.active
+                    ? "hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 cursor-pointer"
+                    : "opacity-70"
+                }`}>
+                  {/* Icon */}
+                  <div className={`w-12 h-12 rounded-xl ${card.iconBg} ${card.iconColor} flex items-center justify-center mb-5 shrink-0`}>
+                    {card.icon}
+                  </div>
+
+                  {/* Coming soon badge */}
+                  {!card.active && (
+                    <span className="inline-block mb-3 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-500">
+                      {t("Próximamente", "Coming soon")}
+                    </span>
+                  )}
+
+                  <h3 className="text-lg font-bold tracking-tight text-gray-900 mb-2">{card.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed flex-1">{card.description}</p>
+
+                  {card.active && (
+                    <Link
+                      href={card.href}
+                      className="mt-6 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+                    >
+                      {card.cta}
+                    </Link>
+                  )}
                 </div>
               </Reveal>
             ))}

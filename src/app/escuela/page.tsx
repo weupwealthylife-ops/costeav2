@@ -38,22 +38,54 @@ export default function EscuelaPage() {
 
   const benefits = [
     {
-      icon: "◎",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      ),
+      iconBg: "bg-blue-50",
+      iconColor: "text-blue-600",
+      num: "01",
+      numBg: "bg-blue-50 text-blue-700",
       title: t("Aprende haciendo", "Learn by doing"),
       desc: t("Cada lección usa los números reales de tu negocio, no ejemplos ficticios.", "Every lesson uses your real business numbers, not fictional examples."),
     },
     {
-      icon: "⟳",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      iconBg: "bg-emerald-50",
+      iconColor: "text-emerald-600",
+      num: "02",
+      numBg: "bg-emerald-50 text-emerald-700",
       title: t("Sin fecha límite", "No deadlines"),
       desc: t("Avanza a tu propio ritmo, desde cualquier dispositivo, cuando quieras.", "Go at your own pace, from any device, whenever you want."),
     },
     {
-      icon: "⚡",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+        </svg>
+      ),
+      iconBg: "bg-orange-50",
+      iconColor: "text-orange-600",
+      num: "03",
+      numBg: "bg-orange-50 text-orange-700",
       title: t("Conectado a Costea App", "Connected to Costea App"),
       desc: t("Aplica cada concepto directamente en la herramienta desde el primer módulo.", "Apply every concept directly in the tool from the first module."),
     },
     {
-      icon: "✦",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+        </svg>
+      ),
+      iconBg: "bg-purple-50",
+      iconColor: "text-purple-600",
+      num: "04",
+      numBg: "bg-purple-50 text-purple-700",
       title: t("Certificación por nivel", "Level certification"),
       desc: t("Obtén un certificado al completar cada curso y demuestra tu dominio.", "Earn a certificate on each course completion and prove your mastery."),
     },
@@ -111,6 +143,7 @@ export default function EscuelaPage() {
   const testimonials = [
     {
       name: "María Fernanda R.",
+      initials: "MF",
       role: t("Pastelería Dulce Arte", "Dulce Arte Bakery"),
       text: t(
         "Antes cobraba a ojo. Después de la Escuela de Costos, sé exactamente cuánto me cuesta cada torta y cuánto debo cobrar para ganar.",
@@ -119,6 +152,7 @@ export default function EscuelaPage() {
     },
     {
       name: "Carlos Andrés M.",
+      initials: "CA",
       role: t("Taller de Confección", "Clothing Workshop"),
       text: t(
         "El curso de punto de equilibrio me abrió los ojos. Estaba trabajando mucho pero ganando poco. Ahora sé exactamente por qué.",
@@ -127,6 +161,7 @@ export default function EscuelaPage() {
     },
     {
       name: "Lina Marcela G.",
+      initials: "LM",
       role: t("Restaurante Sabor Local", "Sabor Local Restaurant"),
       text: t(
         "Con la Escuela aprendí a costear cada plato del menú. Subí mis precios con confianza y mis clientes lo entendieron.",
@@ -295,16 +330,20 @@ export default function EscuelaPage() {
               </h2>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {benefits.map((b, i) => (
               <Reveal key={b.title.toString()} variant="scale" delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
-                <div className="bg-white rounded-2xl border border-gray-100 p-7 hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.12)] hover:border-blue-100 hover:-translate-y-0.5 transition-all duration-300 ease-out h-full flex flex-col">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 text-lg mb-5 shrink-0">
+                <div className="bg-white rounded-2xl border border-slate-200 p-7 hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-200 ease-out h-full flex flex-col">
+                  {/* Icon container */}
+                  <div className={`w-12 h-12 rounded-xl ${b.iconBg} ${b.iconColor} flex items-center justify-center mb-5 shrink-0`}>
                     {b.icon}
                   </div>
-                  <span className="text-xs font-bold text-blue-400 tracking-[0.15em] mb-1 block">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="font-extrabold tracking-tight text-gray-900 text-base mt-1 mb-2">{b.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed flex-1">{b.desc}</p>
+                  {/* Number badge */}
+                  <span className={`inline-block text-[11px] font-bold px-2 py-0.5 rounded-full mb-3 ${b.numBg}`}>
+                    {b.num}
+                  </span>
+                  <h3 className="font-bold tracking-tight text-gray-900 text-lg mb-2">{b.title}</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed flex-1">{b.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -408,11 +447,14 @@ export default function EscuelaPage() {
           <div className="space-y-3">
             {courses.map((course, i) => (
               <Reveal key={course.slug} variant="scale" delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
-                <div className="bg-white border border-gray-100 rounded-2xl px-6 py-5 hover:border-blue-100 hover:shadow-[0_4px_24px_-6px_rgba(37,99,235,0.12)] hover:-translate-y-px transition-all duration-300 ease-out">
+                <div className="bg-white border border-slate-200 rounded-2xl px-6 py-5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.07)] transition-all duration-200 ease-out relative">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                    {/* Step number */}
                     <div className="shrink-0 w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-sm font-bold text-blue-600">
                       {String(i + 1).padStart(2, "0")}
                     </div>
+
+                    {/* Content */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <h3 className="font-bold tracking-tight text-gray-900">{course.title}</h3>
@@ -420,31 +462,45 @@ export default function EscuelaPage() {
                           {course.level}
                         </span>
                         {course.free && (
-                          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100">
+                          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
                             {t("Gratis", "Free")}
                           </span>
                         )}
                       </div>
-                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-1">{course.description}</p>
+                      <p className="text-slate-500 text-sm leading-relaxed line-clamp-1">{course.description}</p>
+                      <p className="text-slate-400 text-xs mt-1">
+                        {course.lessons} {t("lecciones", "lessons")} · {course.duration}
+                      </p>
                     </div>
-                    <div className="flex items-center gap-4 shrink-0">
-                      <div className="hidden md:flex items-center gap-3 text-xs text-gray-400">
-                        <span>{course.lessons} {t("lecciones", "lessons")}</span>
-                        <span>·</span>
-                        <span>{course.duration}</span>
-                      </div>
+
+                    {/* Right side */}
+                    <div className="flex items-center gap-3 shrink-0">
+                      {!course.free && (
+                        <span className="hidden sm:block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-50 text-slate-500">
+                          {t("Requiere cuenta", "Requires account")}
+                        </span>
+                      )}
                       <Link
                         href={course.free ? `/escuela/cursos/${course.slug}` : "/auth/signup"}
-                        className={`text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-300 ease-out whitespace-nowrap ${
+                        className={`text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 ease-out whitespace-nowrap ${
                           course.free
                             ? "bg-blue-600 text-white hover:bg-blue-700 shadow-sm shadow-blue-200"
-                            : "border border-gray-200 text-gray-700 hover:border-blue-300 hover:text-blue-700"
+                            : "border-[1.5px] border-blue-600 text-blue-600 hover:bg-blue-50"
                         }`}
                       >
                         {course.free ? t("Comenzar gratis", "Start free") : t("Acceder", "Access")}
                       </Link>
                     </div>
                   </div>
+
+                  {/* Lock icon top-right for locked courses */}
+                  {!course.free && (
+                    <div className="absolute top-4 right-4 sm:hidden">
+                      <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    </div>
+                  )}
                 </div>
               </Reveal>
             ))}
@@ -452,43 +508,40 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* Wave: gray-50 → dark */}
+      {/* Wave: gray-50 → slate-50 */}
       <div className="w-full overflow-hidden leading-none bg-gray-50">
-        <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
-          <path d="M0 56L1440 56L1440 16C1200 52 720 0 0 36L0 56Z" fill="#030712"/>
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
+          <path d="M0 40L1440 40L1440 0C1100 32 400 0 0 24L0 40Z" fill="#f8fafc"/>
         </svg>
       </div>
 
-      {/* ─── Testimonials — dark section ─── */}
-      <section className="relative py-28 px-4 bg-gray-950 text-white overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 left-1/4 w-96 h-72 bg-blue-600/8 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-60 bg-blue-800/6 rounded-full blur-3xl" />
-        </div>
+      {/* ─── Testimonials — light section ─── */}
+      <section className="py-20 px-4 bg-slate-50">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <div className="mb-16 relative">
-              <p className="text-blue-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
+            <div className="mb-12">
+              <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                 {t("Testimonios", "Testimonials")}
               </p>
-              <h2 className="text-4xl font-extrabold tracking-tight text-white">
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
                 {t("Resultados que hablan por sí solos.", "Results that speak for themselves.")}
               </h2>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {testimonials.map((item, i) => (
               <Reveal key={item.name} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-8 h-full flex flex-col group hover:bg-white/8 transition-all duration-300">
+                <div className="bg-white border border-slate-200 rounded-2xl p-7 h-full flex flex-col">
                   {/* Quote mark */}
-                  <div className="text-blue-400 text-4xl font-serif leading-none mb-4 select-none">"</div>
-                  <p className="text-slate-300 text-sm leading-relaxed mb-8 flex-1">{item.text}</p>
-                  <div className="border-t border-white/10 pt-5 flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-blue-600/30 border border-blue-500/30 flex items-center justify-center text-blue-300 text-xs font-bold shrink-0">
-                      {item.name[0]}
+                  <span className="text-5xl text-blue-600 font-serif leading-none mb-3 select-none opacity-40" style={{ fontFamily: "Georgia, serif" }}>"</span>
+                  <p className="text-slate-600 text-sm leading-relaxed italic flex-1 mb-6">{item.text}</p>
+                  {/* Person row */}
+                  <div className="flex items-center gap-3 pt-5 border-t border-slate-100">
+                    <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 text-xs font-bold shrink-0">
+                      {item.initials}
                     </div>
                     <div>
-                      <div className="font-bold tracking-tight text-white text-sm">{item.name}</div>
+                      <div className="font-bold text-sm text-gray-900">{item.name}</div>
                       <div className="text-slate-500 text-xs mt-0.5">{item.role}</div>
                     </div>
                   </div>
@@ -497,14 +550,14 @@ export default function EscuelaPage() {
             ))}
           </div>
         </div>
-
-        {/* Wave: dark → white */}
-        <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
-          <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
-            <path d="M0 56L1440 56L1440 20C1200 56 720 0 0 40L0 56Z" fill="white"/>
-          </svg>
-        </div>
       </section>
+
+      {/* Wave: slate-50 → white */}
+      <div className="w-full overflow-hidden leading-none bg-slate-50">
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
+          <path d="M0 40L1440 40L1440 0C1100 32 400 0 0 24L0 40Z" fill="white"/>
+        </svg>
+      </div>
 
       {/* ─── Final CTA ─── */}
       <section className="pt-16 pb-28 px-4 bg-white">

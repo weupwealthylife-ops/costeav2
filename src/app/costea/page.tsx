@@ -9,57 +9,6 @@ import { useLang } from "@/contexts/LanguageContext";
 export default function CosteaAppPage() {
   const { t, lang } = useLang();
 
-  const tools = [
-    {
-      tag: t("Disponible ahora", "Available now"),
-      tagColor: "bg-blue-100 text-blue-700 border-blue-100",
-      title: t("Calculadora de Costos", "Cost Calculator"),
-      description: t(
-        "Ingresa tus insumos, mano de obra y gastos indirectos. Costea calcula el costo unitario y el precio mínimo de venta con el margen que tú defines.",
-        "Enter your inputs, labor and overhead. Costea calculates unit cost and minimum selling price with the margin you define."
-      ),
-      href: "/costea/calculadora",
-      cta: t("Abrir calculadora →", "Open calculator →"),
-      primary: true,
-    },
-    {
-      tag: t("Próximamente", "Coming soon"),
-      tagColor: "bg-amber-50 text-amber-700 border-amber-100",
-      title: t("Punto de Equilibrio", "Break-Even Analysis"),
-      description: t(
-        "Descubre cuántas unidades necesitas vender para cubrir todos tus costos fijos y comenzar a generar utilidad real.",
-        "Discover how many units you need to sell to cover all fixed costs and start generating real profit."
-      ),
-      href: "#roadmap",
-      cta: t("Ver hoja de ruta", "View roadmap"),
-      primary: false,
-    },
-    {
-      tag: t("Próximamente", "Coming soon"),
-      tagColor: "bg-amber-50 text-amber-700 border-amber-100",
-      title: t("Análisis de Rentabilidad", "Profitability Analysis"),
-      description: t(
-        "Compara todos tus productos en una sola vista. Descubre cuáles generan más margen y cuáles te están haciendo perder dinero.",
-        "Compare all your products in one view. Discover which generate the most margin and which are losing you money."
-      ),
-      href: "#roadmap",
-      cta: t("Ver hoja de ruta", "View roadmap"),
-      primary: false,
-    },
-    {
-      tag: t("Próximamente", "Coming soon"),
-      tagColor: "bg-amber-50 text-amber-700 border-amber-100",
-      title: t("Reportes Exportables", "Exportable Reports"),
-      description: t(
-        "Genera un PDF o Excel con el resumen de tus costos, precio sugerido y utilidad proyectada para compartir con tu equipo o contador.",
-        "Generate a PDF or Excel with your cost summary, suggested price and projected profit to share with your team or accountant."
-      ),
-      href: "#roadmap",
-      cta: t("Ver hoja de ruta", "View roadmap"),
-      primary: false,
-    },
-  ];
-
   const roadmap = [
     {
       status: "done",
@@ -122,13 +71,39 @@ export default function CosteaAppPage() {
 
   const doneCount = roadmap.filter(r => r.status === "done").length;
 
+  const comingSoon = [
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+      title: t("Punto de Equilibrio", "Break-Even Analysis"),
+    },
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      ),
+      title: t("Reportes Exportables", "Exportable Reports"),
+    },
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        </svg>
+      ),
+      title: t("Comparador de Escenarios", "Scenario Comparator"),
+    },
+  ];
+
   return (
     <>
       <Navbar />
 
-      {/* Hero */}
+      {/* ─── Hero ─── */}
       <section className="relative bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-700 text-white py-32 px-4 overflow-hidden">
-        {/* Space glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/8 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl" />
@@ -139,7 +114,7 @@ export default function CosteaAppPage() {
               <p className="text-blue-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
                 Costea App · {t("Plataforma de Costos", "Cost Platform")}
               </p>
-              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
+              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8 text-white">
                 {lang === "es" ? (
                   <>Gestiona los costos<br />de tu negocio.<br /><span className="text-blue-300">Sin complicaciones.</span></>
                 ) : (
@@ -148,7 +123,7 @@ export default function CosteaAppPage() {
               </h1>
             </Reveal>
             <Reveal delay={1}>
-              <p className="text-blue-100/70 text-xl leading-relaxed mb-10 max-w-xl">
+              <p className="text-slate-300 text-xl leading-relaxed mb-10 max-w-xl">
                 {t(
                   "Sin hojas de cálculo. Sin fórmulas manuales. Solo ingresa tus datos y Costea App hace los cálculos por ti en segundos.",
                   "No spreadsheets. No manual formulas. Just enter your data and Costea App does the calculations for you in seconds."
@@ -167,7 +142,7 @@ export default function CosteaAppPage() {
                 </Link>
                 <Link
                   href="/costea/calculadora"
-                  className="inline-flex items-center justify-center bg-white/12 hover:bg-white/20 border border-white/25 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
+                  className="inline-flex items-center justify-center bg-white/10 hover:bg-white/18 border border-white/25 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
                 >
                   {t("Usar la Calculadora gratis", "Use the Calculator free")}
                 </Link>
@@ -175,59 +150,121 @@ export default function CosteaAppPage() {
             </Reveal>
           </div>
         </div>
+
+        {/* Wave: dark → slate-50 */}
+        <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
+          <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
+            <path d="M0 56L1440 56L1440 20C1200 56 720 0 0 40L0 56Z" fill="#f8fafc"/>
+          </svg>
+        </div>
       </section>
 
-      {/* Tools grid */}
-      <section className="py-28 px-4 bg-white">
+      {/* ─── Calculadora feature section ─── */}
+      <section className="pt-8 pb-20 px-4 bg-slate-50">
         <div className="max-w-6xl mx-auto">
-          <Reveal>
-            <div className="mb-14">
-              <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
-                {t("Herramientas", "Tools")}
-              </p>
-              <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">
-                {t("Todo en un solo lugar", "Everything in one place")}
-              </h2>
-              <p className="text-gray-500 mt-3">
-                {t("Disponibles ahora y próximamente en Costea App.", "Available now and coming soon to Costea App.")}
-              </p>
-            </div>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {tools.map((tool, i) => (
-              <Reveal key={tool.title.toString()} variant="scale" delay={(i % 2) as 0 | 1 | 2 | 3 | 4}>
-                <div
-                  className={`rounded-2xl p-8 flex flex-col h-full transition-all duration-300 ease-out ${
-                    tool.primary
-                      ? "bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-[0_8px_40px_-8px_rgba(37,99,235,0.5)] hover:-translate-y-1"
-                      : "bg-white border border-gray-150 shadow-sm hover:shadow-md hover:border-gray-300 hover:-translate-y-0.5"
-                  }`}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            {/* Left: copy */}
+            <Reveal variant="left">
+              <div>
+                <p className="text-emerald-600 text-xs font-bold tracking-[0.15em] uppercase mb-5">
+                  {t("✓ Disponible ahora", "✓ Available now")}
+                </p>
+                <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 leading-[1.1] mb-5">
+                  {lang === "es" ? (
+                    <>Calcula el costo real de<br />cualquier producto<br />en minutos.</>
+                  ) : (
+                    <>Calculate the real cost of<br />any product<br />in minutes.</>
+                  )}
+                </h2>
+                <p className="text-slate-500 text-base leading-relaxed mb-8 max-w-md">
+                  {t(
+                    "Ingresa tus insumos, mano de obra y gastos indirectos. Costea calcula el costo unitario y el precio mínimo de venta con el margen que tú defines.",
+                    "Enter your inputs, labor and overhead. Costea calculates unit cost and minimum selling price with the margin you define."
+                  )}
+                </p>
+                <Link
+                  href="/costea/calculadora"
+                  className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-7 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 ease-out hover:-translate-y-0.5 shadow-lg shadow-blue-200"
                 >
-                  <div className="mb-5">
-                    <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full border ${
-                      tool.primary ? "bg-white/20 text-white border-white/20" : tool.tagColor
-                    }`}>
-                      {tool.primary && <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block" />}
-                      {!tool.primary && tool.tag === t("Próximamente", "Coming soon") && <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />}
-                      {tool.tag}
+                  {t("Abrir Calculadora gratis →", "Open Calculator free →")}
+                </Link>
+              </div>
+            </Reveal>
+
+            {/* Right: product mockup card */}
+            <Reveal variant="right">
+              <div className="bg-white border border-slate-200 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] p-6 max-w-sm mx-auto lg:mx-0 lg:ml-auto">
+                <div className="text-xs font-semibold text-slate-500 mb-4 pb-3 border-b border-slate-100">
+                  {t("Cálculo de costos · Torta de chocolate", "Cost calculation · Chocolate cake")}
+                </div>
+
+                {/* Cost rows */}
+                <div className="space-y-3 mb-4">
+                  {[
+                    { label: t("Materia prima", "Raw materials"), value: "$12,400" },
+                    { label: t("Mano de obra", "Labor"), value: "$3,800" },
+                    { label: t("Gastos indirectos", "Overhead"), value: "$2,300" },
+                  ].map((row) => (
+                    <div key={row.label} className="flex items-center justify-between">
+                      <span className="text-sm text-slate-600">{row.label}</span>
+                      <span className="text-sm font-semibold text-gray-900 font-mono">{row.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="border-t border-slate-100 pt-3 mb-5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold text-gray-900">{t("Costo total", "Total cost")}</span>
+                    <span className="text-xl font-extrabold text-gray-900 font-mono">$18,500</span>
+                  </div>
+                </div>
+
+                {/* Result chips */}
+                <div className="flex gap-2">
+                  <div className="flex-1 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-2.5 text-center">
+                    {t("Precio sugerido", "Suggested price")}<br />
+                    <span className="text-base font-extrabold">$28,000</span>
+                  </div>
+                  <div className="flex-1 rounded-xl bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-2.5 text-center">
+                    {t("Margen", "Margin")}<br />
+                    <span className="text-base font-extrabold">51%</span>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Wave: slate-50 → white */}
+      <div className="w-full overflow-hidden leading-none bg-slate-50">
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
+          <path d="M0 40L1440 40L1440 0C1100 32 400 0 0 24L0 40Z" fill="white"/>
+        </svg>
+      </div>
+
+      {/* ─── Coming soon tools (compact) ─── */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <Reveal>
+            <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-3">
+              {t("Próximamente en Costea App", "Coming soon to Costea App")}
+            </p>
+          </Reveal>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
+            {comingSoon.map((item) => (
+              <Reveal key={item.title.toString()} variant="scale">
+                <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3.5">
+                  <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-400 shrink-0">
+                    {item.icon}
+                  </div>
+                  <div className="text-left">
+                    <div className="text-sm font-semibold text-gray-800">{item.title}</div>
+                    <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
+                      {t("Próximamente", "Coming soon")}
                     </span>
                   </div>
-                  <h3 className={`text-lg font-bold tracking-tight mb-2 ${tool.primary ? "text-white" : "text-gray-900"}`}>
-                    {tool.title}
-                  </h3>
-                  <p className={`text-sm leading-relaxed mb-6 flex-1 ${tool.primary ? "text-blue-100" : "text-gray-500"}`}>
-                    {tool.description}
-                  </p>
-                  <Link
-                    href={tool.href}
-                    className={`text-center py-3 rounded-xl font-semibold text-sm transition-all duration-300 ease-out ${
-                      tool.primary
-                        ? "bg-white text-blue-700 hover:bg-blue-50 shadow-sm"
-                        : "bg-gray-900 text-white hover:bg-gray-800"
-                    }`}
-                  >
-                    {tool.cta}
-                  </Link>
                 </div>
               </Reveal>
             ))}
@@ -235,12 +272,19 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      {/* Roadmap */}
+      {/* Wave: white → gray-50 */}
+      <div className="w-full overflow-hidden leading-none bg-white">
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
+          <path d="M0 0L1440 0L1440 40C1100 8 400 40 0 16L0 0Z" fill="#f9fafb"/>
+        </svg>
+      </div>
+
+      {/* ─── Roadmap ─── */}
       <section id="roadmap" className="py-28 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-            {/* Left: sticky panel — Apple/Platzi inspired */}
+            {/* Left: sticky panel */}
             <Reveal variant="left" className="lg:sticky lg:top-28">
               <div>
                 <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
@@ -260,29 +304,39 @@ export default function CosteaAppPage() {
                   )}
                 </p>
 
-                {/* Progress block */}
+                {/* Visual progress track */}
                 <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm mb-8">
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center justify-between mb-4">
                     <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">{t("Progreso", "Progress")}</span>
                     <span className="text-sm font-bold text-blue-600">{doneCount}/{roadmap.length} {t("lanzadas", "shipped")}</span>
                   </div>
-                  <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-700"
-                      style={{ width: `${(doneCount / roadmap.length) * 100}%` }}
-                    />
-                  </div>
-                  <div className="flex gap-3 mt-4">
+
+                  {/* Circle track */}
+                  <div className="relative flex items-center mb-4">
+                    {/* Connecting line */}
+                    <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-0.5 bg-slate-200 mx-6" />
                     {roadmap.map((item, i) => (
-                      <div
-                        key={i}
-                        className={`flex-1 h-1 rounded-full ${
-                          item.status === "done" ? "bg-blue-500" :
-                          item.status === "soon" ? "bg-amber-300" : "bg-gray-200"
-                        }`}
-                      />
+                      <div key={i} className="relative z-10 flex-1 flex justify-center">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all ${
+                          item.status === "done"
+                            ? "bg-blue-600 border-blue-600 text-white shadow-sm shadow-blue-200"
+                            : "bg-white border-slate-200 text-slate-400"
+                        }`}>
+                          {item.status === "done" ? (
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                            </svg>
+                          ) : (
+                            i + 1
+                          )}
+                        </div>
+                      </div>
                     ))}
                   </div>
+
+                  <p className="text-slate-500 text-xs text-center">
+                    {doneCount} {t("de", "of")} {roadmap.length} {t("funciones lanzadas", "features launched")}
+                  </p>
                 </div>
 
                 <Link
@@ -322,17 +376,22 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative py-28 px-4 bg-gradient-to-b from-gray-950 via-[#0d1f5c] to-gray-950 text-white overflow-hidden">
-        {/* Space glow */}
+      {/* Wave: gray-50 → dark */}
+      <div className="w-full overflow-hidden leading-none bg-gray-50">
+        <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
+          <path d="M0 56L1440 56L1440 16C1200 52 720 0 0 36L0 56Z" fill="#030712"/>
+        </svg>
+      </div>
+
+      {/* ─── CTA ─── */}
+      <section className="relative py-28 px-4 bg-gray-950 text-white overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/10 rounded-full blur-3xl" />
           <div className="absolute top-0 right-1/4 w-64 h-64 bg-blue-500/6 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-blue-700/8 rounded-full blur-3xl" />
         </div>
         <div className="max-w-3xl mx-auto text-center relative">
           <Reveal>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-5">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-5 text-white">
               {lang === "es" ? (
                 <>Empieza a gestionar tus<br />costos hoy mismo.</>
               ) : (
@@ -341,7 +400,7 @@ export default function CosteaAppPage() {
             </h2>
           </Reveal>
           <Reveal delay={1}>
-            <p className="text-gray-400 mb-10 leading-relaxed">
+            <p className="text-slate-400 mb-10 leading-relaxed">
               {t(
                 "Inicia sesión en Costea App o usa la calculadora gratuita sin registro.",
                 "Sign in to Costea App or use the free calculator without registration."
