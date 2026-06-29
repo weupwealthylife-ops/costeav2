@@ -4,7 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
-import SectionWave from "@/components/ui/SectionWave";
+import { WaveDivider } from "@/components/ui/WaveDivider";
 import { useLang } from "@/contexts/LanguageContext";
 
 export default function EscuelaPage() {
@@ -251,8 +251,9 @@ export default function EscuelaPage() {
           </div>
         </div>
 
-        <SectionWave fill="white" />
       </section>
+
+      <WaveDivider fromColor="#1d4ed8" toColor="#ffffff" />
 
       {/* ─── Problem section ─── */}
       <section className="py-28 px-4 bg-white">
@@ -302,7 +303,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <SectionWave fill="#f9fafb" bgClass="bg-white" direction="down" size="sm" />
+      <WaveDivider fromColor="#ffffff" toColor="#f9fafb" />
 
       {/* ─── Benefits ─── */}
       <section className="py-28 px-4 bg-gray-50">
@@ -342,7 +343,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <SectionWave fill="white" bgClass="bg-gray-50" direction="up" size="sm" />
+      <WaveDivider fromColor="#f9fafb" toColor="#ffffff" flip={true} />
 
       {/* ─── How it works ─── */}
       <section className="py-28 px-4 bg-white">
@@ -404,7 +405,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <SectionWave fill="#f9fafb" bgClass="bg-white" direction="down" size="sm" />
+      <WaveDivider fromColor="#ffffff" toColor="#f9fafb" />
 
       {/* ─── Courses ─── */}
       <section id="cursos" className="py-28 px-4 bg-gray-50">
@@ -489,7 +490,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <SectionWave fill="#f8fafc" bgClass="bg-gray-50" direction="up" size="sm" />
+      <WaveDivider fromColor="#f9fafb" toColor="#f8fafc" flip={true} />
 
       {/* ─── Testimonials — light section ─── */}
       <section className="py-20 px-4 bg-slate-50">
@@ -528,7 +529,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <SectionWave fill="white" bgClass="bg-slate-50" direction="up" size="sm" />
+      <WaveDivider fromColor="#f8fafc" toColor="#ffffff" flip={true} />
 
       {/* ─── Final CTA ─── */}
       <section className="pt-16 pb-28 px-4 bg-white">
@@ -562,7 +563,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <SectionWave fill="#030712" bgClass="bg-white" direction="up" />
+      <WaveDivider fromColor="#ffffff" toColor="#030712" flip={true} />
       <Footer />
     </>
   );

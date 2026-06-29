@@ -4,7 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
-import SectionWave from "@/components/ui/SectionWave";
+import { WaveDivider } from "@/components/ui/WaveDivider";
 import { useLang } from "@/contexts/LanguageContext";
 
 export default function CosteaAppPage() {
@@ -152,16 +152,12 @@ export default function CosteaAppPage() {
           </div>
         </div>
 
-        {/* Wave: dark → slate-50 */}
-        <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
-          <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
-            <path d="M0 56L1440 56L1440 20C1200 56 720 0 0 40L0 56Z" fill="#f8fafc"/>
-          </svg>
-        </div>
       </section>
 
+      <WaveDivider fromColor="#1d4ed8" toColor="#f8fafc" />
+
       {/* ─── Calculadora feature section ─── */}
-      <section className="pt-8 pb-20 px-4 bg-slate-50">
+      <section className="pb-20 px-4 bg-slate-50">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -238,7 +234,7 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      <SectionWave fill="white" bgClass="bg-slate-50" direction="up" size="sm" />
+      <WaveDivider fromColor="#f8fafc" toColor="#ffffff" flip={true} />
 
       {/* ─── Coming soon tools (compact) ─── */}
       <section className="py-16 px-4 bg-white">
@@ -268,7 +264,7 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      <SectionWave fill="#f9fafb" bgClass="bg-white" direction="down" size="sm" />
+      <WaveDivider fromColor="#ffffff" toColor="#f9fafb" />
 
       {/* ─── Roadmap ─── */}
       <section id="roadmap" className="py-28 px-4 bg-gray-50">
@@ -367,7 +363,7 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      <SectionWave fill="#030712" bgClass="bg-gray-50" direction="up" />
+      <WaveDivider fromColor="#f9fafb" toColor="#030712" flip={true} />
 
       {/* ─── CTA ─── */}
       <section className="relative py-28 px-4 bg-gray-950 text-white overflow-hidden">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
-import SectionWave from "@/components/ui/SectionWave";
+import { WaveDivider } from "@/components/ui/WaveDivider";
 import { useLang } from "@/contexts/LanguageContext";
 
 export default function HomePage() {
@@ -128,7 +128,7 @@ export default function HomePage() {
         </div>
 
         {/* Stats — frosted cards */}
-        <div className="max-w-5xl mx-auto mt-16 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="max-w-5xl mx-auto mt-16 pt-10 pb-12 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
               <div className="bg-white/8 border border-white/12 rounded-2xl px-5 py-5 backdrop-blur-sm">
@@ -138,9 +138,9 @@ export default function HomePage() {
             </Reveal>
           ))}
         </div>
-
-        <SectionWave fill="white" className="mt-16" />
       </section>
+
+      <WaveDivider fromColor="#2563eb" toColor="#ffffff" />
 
       {/* Platform cards */}
       <section className="py-28 px-4 bg-white">
@@ -197,7 +197,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionWave fill="#030712" bgClass="bg-white" direction="up" />
+      <WaveDivider fromColor="#ffffff" toColor="#030712" flip={true} />
 
       {/* CTA */}
       <section className="relative bg-gray-950 text-white py-28 px-4 overflow-hidden">
