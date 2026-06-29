@@ -135,17 +135,16 @@ export default function SignupPage() {
               />
             </div>
 
-            {/* Teléfono — keeping as-is until Option A/B decision */}
+            {/* Teléfono — optional */}
             <div>
               <label className="text-slate-700 text-sm font-medium block mb-1.5">
-                Teléfono / WhatsApp
+                Teléfono / WhatsApp <span className="text-slate-400 font-normal">(opcional)</span>
               </label>
               <input
                 name="phone"
                 type="tel"
-                required
                 className={inputClass}
-                placeholder="+57 300 000 0000"
+                placeholder="Tu WhatsApp (opcional)"
               />
             </div>
 
