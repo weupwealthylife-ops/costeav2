@@ -12,6 +12,7 @@ export function WaveDivider({ fromColor, toColor, flip = false, height = 80 }: W
         background: fromColor,
         lineHeight: 0,
         marginBottom: -1,
+        marginTop: -1,
       }}
     >
       <svg

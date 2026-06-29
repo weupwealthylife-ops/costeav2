@@ -154,10 +154,10 @@ export default function CosteaAppPage() {
 
       </section>
 
-      <WaveDivider fromColor="#1d4ed8" toColor="#f8fafc" />
+      <WaveDivider fromColor="#1d4ed8" toColor="#f1f5f9" />
 
       {/* ─── Calculadora feature section ─── */}
-      <section className="pb-20 px-4 bg-slate-50">
+      <section className="pb-20 px-4 bg-[#f1f5f9]">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -234,7 +234,7 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#f8fafc" toColor="#ffffff" flip={true} />
+      <WaveDivider fromColor="#f1f5f9" toColor="#ffffff" flip={true} />
 
       {/* ─── Coming soon tools (compact) ─── */}
       <section className="py-16 px-4 bg-white">
@@ -264,10 +264,10 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#ffffff" toColor="#f9fafb" />
+      <WaveDivider fromColor="#ffffff" toColor="#f1f5f9" />
 
       {/* ─── Roadmap ─── */}
-      <section id="roadmap" className="py-28 px-4 bg-gray-50">
+      <section id="roadmap" className="py-28 px-4 bg-[#f1f5f9]">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
@@ -363,10 +363,10 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#f9fafb" toColor="#030712" flip={true} />
+      <WaveDivider fromColor="#f1f5f9" toColor="#0F172A" flip={true} />
 
       {/* ─── CTA ─── */}
-      <section className="relative py-28 px-4 bg-gray-950 text-white overflow-hidden">
+      <section className="relative py-28 px-4 bg-[#0F172A] text-white overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/10 rounded-full blur-3xl" />
           <div className="absolute top-0 right-1/4 w-64 h-64 bg-blue-500/6 rounded-full blur-3xl" />

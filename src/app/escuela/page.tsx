@@ -299,10 +299,10 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#ffffff" toColor="#f9fafb" />
+      <WaveDivider fromColor="#ffffff" toColor="#f1f5f9" />
 
       {/* ─── Benefits ─── */}
-      <section className="py-28 px-4 bg-gray-50">
+      <section className="py-28 px-4 bg-[#f1f5f9]">
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <div className="mb-16">
@@ -339,7 +339,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#f9fafb" toColor="#ffffff" flip={true} />
+      <WaveDivider fromColor="#f1f5f9" toColor="#ffffff" flip={true} />
 
       {/* ─── How it works ─── */}
       <section className="py-28 px-4 bg-white">
@@ -401,7 +401,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#ffffff" toColor="#f9fafb" />
+      <WaveDivider fromColor="#ffffff" toColor="#f1f5f9" />
 
       {/* ─── Courses ─── */}
       <section id="cursos" className="py-28 px-4 bg-gray-50">
@@ -486,10 +486,10 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#f9fafb" toColor="#f8fafc" flip={true} />
+      <WaveDivider fromColor="#f1f5f9" toColor="#f1f5f9" flip={true} />
 
       {/* ─── Testimonials — light section ─── */}
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-[#f1f5f9]">
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <div className="mb-12">
@@ -525,7 +525,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#f8fafc" toColor="#ffffff" flip={true} />
+      <WaveDivider fromColor="#f1f5f9" toColor="#ffffff" flip={true} />
 
       {/* ─── Final CTA ─── */}
       <section className="pt-16 pb-28 px-4 bg-white">
@@ -559,7 +559,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#ffffff" toColor="#030712" flip={true} />
+      <WaveDivider fromColor="#ffffff" toColor="#0F172A" flip={true} />
       <Footer />
     </>
   );
