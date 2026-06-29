@@ -44,7 +44,7 @@ export default function LoginPage() {
           <h2 className="text-4xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
             Aprende a dominar<br />los costos de tu<br />negocio.
           </h2>
-          <p className="text-blue-100/60 text-base leading-relaxed max-w-sm">
+          <p className="text-slate-300 text-base leading-relaxed max-w-sm">
             Cursos prácticos, herramientas reales y una comunidad de emprendedores que ya toman mejores decisiones.
           </p>
         </div>
@@ -57,8 +57,8 @@ export default function LoginPage() {
             { value: "40h+", label: "Contenido" },
           ].map((s) => (
             <div key={s.label}>
-              <div className="text-2xl font-extrabold text-white tracking-tight">{s.value}</div>
-              <div className="text-blue-300/50 text-xs mt-1">{s.label}</div>
+              <div className="text-[32px] font-extrabold text-white tracking-tight leading-none">{s.value}</div>
+              <div className="text-[#94A3B8] text-[13px] font-medium mt-1.5">{s.label}</div>
             </div>
           ))}
         </div>

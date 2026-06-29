@@ -90,7 +90,7 @@ export default function HomePage() {
             </h1>
           </Reveal>
           <Reveal delay={1}>
-            <p className="text-blue-100/70 text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
+            <p className="text-slate-300 text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
               {t(
                 "La Escuela de Costos de Costea te da los conocimientos y las herramientas para gestionar los costos de tu empresa con confianza.",
                 "Costea's School of Costs gives you the knowledge and tools to manage your company's costs with confidence."

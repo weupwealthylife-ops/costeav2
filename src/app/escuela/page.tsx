@@ -280,10 +280,10 @@ export default function EscuelaPage() {
               {problems.map((p, i) => (
                 <Reveal key={p.label} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
                   <div className="flex gap-6 py-8">
-                    <span className="text-xs font-bold text-blue-400 tracking-widest shrink-0 mt-1">{p.label}</span>
+                    <span className="text-xs font-bold text-blue-600 tracking-widest shrink-0 mt-1">{p.label}</span>
                     <div>
                       <h3 className="font-bold tracking-tight text-gray-900 text-lg mb-2">{p.title}</h3>
-                      <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
+                      <p className="text-slate-500 text-sm leading-relaxed">{p.desc}</p>
                     </div>
                   </div>
                 </Reveal>
