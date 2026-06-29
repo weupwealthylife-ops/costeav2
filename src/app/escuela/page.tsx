@@ -44,10 +44,9 @@ export default function EscuelaPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
         </svg>
       ),
-      iconBg: "bg-blue-50",
-      iconColor: "text-blue-600",
+      iconBg: "bg-[#EFF6FF]",
+      iconColor: "text-[#2563EB]",
       num: "01",
-      numBg: "bg-blue-50 text-blue-700",
       title: t("Aprende haciendo", "Learn by doing"),
       desc: t("Cada lección usa los números reales de tu negocio, no ejemplos ficticios.", "Every lesson uses your real business numbers, not fictional examples."),
     },
@@ -57,10 +56,9 @@ export default function EscuelaPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      iconBg: "bg-emerald-50",
-      iconColor: "text-emerald-600",
+      iconBg: "bg-[#F0FDF4]",
+      iconColor: "text-[#16A34A]",
       num: "02",
-      numBg: "bg-emerald-50 text-emerald-700",
       title: t("Sin fecha límite", "No deadlines"),
       desc: t("Avanza a tu propio ritmo, desde cualquier dispositivo, cuando quieras.", "Go at your own pace, from any device, whenever you want."),
     },
@@ -70,10 +68,9 @@ export default function EscuelaPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
         </svg>
       ),
-      iconBg: "bg-orange-50",
-      iconColor: "text-orange-600",
+      iconBg: "bg-[#FFF7ED]",
+      iconColor: "text-[#EA580C]",
       num: "03",
-      numBg: "bg-orange-50 text-orange-700",
       title: t("Conectado a Costea App", "Connected to Costea App"),
       desc: t("Aplica cada concepto directamente en la herramienta desde el primer módulo.", "Apply every concept directly in the tool from the first module."),
     },
@@ -83,10 +80,9 @@ export default function EscuelaPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
         </svg>
       ),
-      iconBg: "bg-purple-50",
-      iconColor: "text-purple-600",
+      iconBg: "bg-[#FDF4FF]",
+      iconColor: "text-[#9333EA]",
       num: "04",
-      numBg: "bg-purple-50 text-purple-700",
       title: t("Certificación por nivel", "Level certification"),
       desc: t("Obtén un certificado al completar cada curso y demuestra tu dominio.", "Earn a certificate on each course completion and prove your mastery."),
     },
@@ -172,12 +168,12 @@ export default function EscuelaPage() {
   ];
 
   const levelColor: Record<string, string> = {
-    Básico: "text-emerald-600 bg-emerald-50 border-emerald-100",
-    Intermedio: "text-amber-600 bg-amber-50 border-amber-100",
-    Avanzado: "text-red-600 bg-red-50 border-red-100",
-    Basic: "text-emerald-600 bg-emerald-50 border-emerald-100",
-    Intermediate: "text-amber-600 bg-amber-50 border-amber-100",
-    Advanced: "text-red-600 bg-red-50 border-red-100",
+    Básico:      "bg-[#EFF6FF] text-[#1D4ED8] border-blue-100",
+    Intermedio:  "bg-[#FFF7ED] text-[#C2410C] border-orange-100",
+    Avanzado:    "bg-[#FDF4FF] text-[#7E22CE] border-purple-100",
+    Basic:       "bg-[#EFF6FF] text-[#1D4ED8] border-blue-100",
+    Intermediate:"bg-[#FFF7ED] text-[#C2410C] border-orange-100",
+    Advanced:    "bg-[#FDF4FF] text-[#7E22CE] border-purple-100",
   };
 
   return (
@@ -325,17 +321,17 @@ export default function EscuelaPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {benefits.map((b, i) => (
               <Reveal key={b.title.toString()} variant="scale" delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
-                <div className="bg-white rounded-2xl border border-slate-200 p-7 hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-200 ease-out h-full flex flex-col">
-                  {/* Icon container */}
+                <div className="bg-white rounded-2xl border border-[#E2E8F0] p-7 hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200 ease-out h-full flex flex-col">
+                  {/* Icon container — 48×48, radius 12px */}
                   <div className={`w-12 h-12 rounded-xl ${b.iconBg} ${b.iconColor} flex items-center justify-center mb-5 shrink-0`}>
                     {b.icon}
                   </div>
-                  {/* Number badge */}
-                  <span className={`inline-block text-[11px] font-bold px-2 py-0.5 rounded-full mb-3 ${b.numBg}`}>
+                  {/* Number badge — uniform blue per spec */}
+                  <span className="inline-block text-[11px] font-bold px-2 py-[3px] rounded-full mb-[10px] bg-[#EFF6FF] text-[#2563EB]">
                     {b.num}
                   </span>
-                  <h3 className="font-bold tracking-tight text-gray-900 text-lg mb-2">{b.title}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed flex-1">{b.desc}</p>
+                  <h3 className="text-[18px] font-bold tracking-tight text-[#0F172A] mb-2">{b.title}</h3>
+                  <p className="text-[15px] text-[#475569] leading-[1.6] flex-1">{b.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -393,8 +389,8 @@ export default function EscuelaPage() {
                         {j.step}
                       </div>
                       <div className="pt-1.5 pb-4">
-                        <h3 className="font-bold text-gray-900 mb-1" style={{ fontSize: "17px" }}>{j.title}</h3>
-                        <p className="text-slate-500 leading-relaxed" style={{ fontSize: "15px" }}>{j.desc}</p>
+                        <h3 className="font-bold text-[#0F172A] mb-1" style={{ fontSize: "17px" }}>{j.title}</h3>
+                        <p className="text-[#475569] leading-relaxed" style={{ fontSize: "15px" }}>{j.desc}</p>
                       </div>
                     </div>
                   </Reveal>
@@ -429,7 +425,7 @@ export default function EscuelaPage() {
           <div className="space-y-3">
             {courses.map((course, i) => (
               <Reveal key={course.slug} variant="scale" delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
-                <div className="bg-white border border-slate-200 rounded-2xl px-6 py-5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.07)] transition-all duration-200 ease-out relative">
+                <div className="bg-white border border-[#E2E8F0] rounded-2xl p-6 hover:shadow-[0_4px_20px_rgba(0,0,0,0.07)] transition-all duration-200 ease-out relative">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                     {/* Step number */}
                     <div className="shrink-0 w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-sm font-bold text-blue-600">
@@ -450,7 +446,7 @@ export default function EscuelaPage() {
                         )}
                       </div>
                       <p className="text-slate-500 text-sm leading-relaxed line-clamp-1">{course.description}</p>
-                      <p className="text-slate-400 text-xs mt-1">
+                      <p className="text-[#64748B] text-[13px] mt-1">
                         {course.lessons} {t("lecciones", "lessons")} · {course.duration}
                       </p>
                     </div>
@@ -508,18 +504,18 @@ export default function EscuelaPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {testimonials.map((item, i) => (
               <Reveal key={item.name} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
-                <div className="bg-white border border-slate-200 rounded-2xl p-7 h-full flex flex-col">
-                  {/* Quote mark */}
-                  <span className="text-5xl text-blue-600 font-serif leading-none mb-3 select-none opacity-40" style={{ fontFamily: "Georgia, serif" }}>"</span>
-                  <p className="text-slate-600 text-sm leading-relaxed italic flex-1 mb-6">{item.text}</p>
+                <div className="bg-white border border-[#E2E8F0] rounded-2xl p-7 h-full flex flex-col">
+                  {/* Quote mark — Georgia, opacity 0.4 */}
+                  <span className="text-[48px] text-[#2563EB] leading-none mb-2 select-none opacity-40" style={{ fontFamily: "Georgia, serif", display: "block" }}>"</span>
+                  <p className="text-[15px] text-[#334155] leading-[1.7] italic flex-1 mb-6">{item.text}</p>
                   {/* Person row */}
                   <div className="flex items-center gap-3 pt-5 border-t border-slate-100">
-                    <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 text-xs font-bold shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-[#EFF6FF] flex items-center justify-center text-[#2563EB] text-[13px] font-bold shrink-0">
                       {item.initials}
                     </div>
                     <div>
-                      <div className="font-bold text-sm text-gray-900">{item.name}</div>
-                      <div className="text-slate-500 text-xs mt-0.5">{item.role}</div>
+                      <div className="text-[14px] font-bold text-[#0F172A]">{item.name}</div>
+                      <div className="text-[13px] text-[#64748B] mt-0.5">{item.role}</div>
                     </div>
                   </div>
                 </div>

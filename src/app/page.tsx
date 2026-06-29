@@ -42,9 +42,9 @@ export default function HomePage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
         </svg>
       ),
-      iconBg: "bg-emerald-50",
-      iconColor: "text-emerald-600",
-      accentColor: "border-l-emerald-600",
+      iconBg: "bg-[#F0FDF4]",
+      iconColor: "text-[#16A34A]",
+      accentColor: "border-l-[#16A34A]",
       title: "Costea App",
       description: t(
         "Calcula costos, analiza márgenes y toma decisiones con datos — sin hojas de cálculo.",
@@ -227,9 +227,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {platformCards.map((card, i) => (
               <Reveal key={card.title.toString()} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
-                <div className={`bg-white border border-slate-200 border-l-4 ${card.accentColor} rounded-2xl p-7 flex flex-col h-full transition-all duration-200 ease-out ${
+                <div className={`bg-white border border-[#E2E8F0] border-l-[3px] ${card.accentColor} rounded-2xl p-7 flex flex-col h-full transition-all duration-200 ease-out ${
                   card.active
-                    ? "hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 cursor-pointer"
+                    ? "hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] cursor-pointer"
                     : "opacity-70"
                 }`}>
                   {/* Icon */}

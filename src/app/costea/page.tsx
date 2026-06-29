@@ -164,7 +164,7 @@ export default function CosteaAppPage() {
             {/* Left: copy */}
             <Reveal variant="left">
               <div>
-                <p className="text-emerald-600 text-xs font-bold tracking-[0.15em] uppercase mb-5">
+                <p className="text-[#16A34A] text-[12px] font-bold tracking-[0.08em] uppercase mb-5">
                   {t("✓ Disponible ahora", "✓ Available now")}
                 </p>
                 <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 leading-[1.1] mb-5">
