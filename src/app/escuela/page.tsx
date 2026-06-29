@@ -38,31 +38,35 @@ export default function EscuelaPage() {
 
   const benefits = [
     {
+      icon: "◎",
       title: t("Aprende haciendo", "Learn by doing"),
       desc: t("Cada lección usa los números reales de tu negocio, no ejemplos ficticios.", "Every lesson uses your real business numbers, not fictional examples."),
     },
     {
+      icon: "⟳",
       title: t("Sin fecha límite", "No deadlines"),
       desc: t("Avanza a tu propio ritmo, desde cualquier dispositivo, cuando quieras.", "Go at your own pace, from any device, whenever you want."),
     },
     {
+      icon: "⚡",
       title: t("Conectado a Costea App", "Connected to Costea App"),
       desc: t("Aplica cada concepto directamente en la herramienta desde el primer módulo.", "Apply every concept directly in the tool from the first module."),
     },
     {
+      icon: "✦",
       title: t("Certificación por nivel", "Level certification"),
       desc: t("Obtén un certificado al completar cada curso y demuestra tu dominio.", "Earn a certificate on each course completion and prove your mastery."),
     },
   ];
 
   const journey = [
-    { step: "01", title: t("Crea tu cuenta", "Create your account"), desc: t("Regístrate gratis en menos de 2 minutos. Solo nombre, correo y teléfono.", "Sign up free in under 2 minutes. Just name, email and phone.") },
-    { step: "02", title: t("Explora el dashboard", "Explore the dashboard"), desc: t("Todos los cursos organizados por nivel. Empieza donde quieras.", "All courses organized by level. Start wherever you want.") },
-    { step: "03", title: t("Aprende a tu ritmo", "Learn at your own pace"), desc: t("Videos cortos y prácticos, con acceso a Costea App durante el aprendizaje.", "Short, practical videos with access to Costea App during learning.") },
-    { step: "04", title: t("Califica y mejora", "Rate and improve"), desc: t("Tu feedback al terminar cada módulo nos ayuda a mejorar el contenido.", "Your feedback at the end of each module helps us improve the content.") },
-    { step: "05", title: t("Certifícate", "Get certified"), desc: t("Supera el examen y obtén tu certificado para desbloquear el siguiente nivel.", "Pass the exam and earn your certificate to unlock the next level.") },
-    { step: "06", title: t("Accede a Costea App completo", "Access full Costea App"), desc: t("Al completar la ruta desbloqueas todas las herramientas de la plataforma.", "Completing the path unlocks all platform tools.") },
-    { step: "07", title: t("Asesoría 1 a 1", "1-on-1 advisory"), desc: t("Completa todos los exámenes y agenda una sesión personalizada con el equipo.", "Complete all exams and book a personalized session with the team.") },
+    { step: "01", title: t("Crea tu cuenta", "Create your account"), desc: t("Regístrate gratis en menos de 2 minutos. Solo nombre, correo y teléfono.", "Sign up free in under 2 minutes. Just name, email and phone."), done: false },
+    { step: "02", title: t("Explora el dashboard", "Explore the dashboard"), desc: t("Todos los cursos organizados por nivel. Empieza donde quieras.", "All courses organized by level. Start wherever you want."), done: false },
+    { step: "03", title: t("Aprende a tu ritmo", "Learn at your own pace"), desc: t("Videos cortos y prácticos, con acceso a Costea App durante el aprendizaje.", "Short, practical videos with access to Costea App during learning."), done: false },
+    { step: "04", title: t("Califica y mejora", "Rate and improve"), desc: t("Tu feedback al terminar cada módulo nos ayuda a mejorar el contenido.", "Your feedback at the end of each module helps us improve the content."), done: false },
+    { step: "05", title: t("Certifícate", "Get certified"), desc: t("Supera el examen y obtén tu certificado para desbloquear el siguiente nivel.", "Pass the exam and earn your certificate to unlock the next level."), done: false },
+    { step: "06", title: t("Accede a Costea App completo", "Access full Costea App"), desc: t("Al completar la ruta desbloqueas todas las herramientas de la plataforma.", "Completing the path unlocks all platform tools."), done: false },
+    { step: "07", title: t("Asesoría 1 a 1", "1-on-1 advisory"), desc: t("Completa todos los exámenes y agenda una sesión personalizada con el equipo.", "Complete all exams and book a personalized session with the team."), done: false },
   ];
 
   const courses = [
@@ -71,67 +75,43 @@ export default function EscuelaPage() {
       title: t("Fundamentos de Costos", "Cost Fundamentals"),
       description: t("Entiende qué son los costos, cómo clasificarlos y por qué son la base de cualquier decisión financiera sólida.", "Understand what costs are, how to classify them, and why they are the foundation of any solid financial decision."),
       level: t("Básico", "Basic"),
-      levelEn: "Basic",
       lessons: 6,
       duration: "3h",
       free: true,
-      topics: [
-        t("¿Qué son los costos?", "What are costs?"),
-        t("Costos fijos vs variables", "Fixed vs variable costs"),
-        t("Estructura de costos", "Cost structure"),
-      ],
     },
     {
       slug: "costeo-de-productos",
       title: t("Costeo de Productos y Servicios", "Product & Service Costing"),
       description: t("Calcula el costo real de lo que produces o vendes: materia prima, mano de obra y gastos indirectos.", "Calculate the real cost of what you produce or sell: raw materials, labor and overhead."),
       level: t("Intermedio", "Intermediate"),
-      levelEn: "Intermediate",
       lessons: 8,
       duration: "5h",
       free: false,
-      topics: [
-        t("Materia prima", "Raw materials"),
-        t("Mano de obra directa", "Direct labor"),
-        t("Gastos indirectos de fabricación", "Manufacturing overhead"),
-      ],
     },
     {
       slug: "punto-de-equilibrio",
       title: t("Punto de Equilibrio", "Break-Even Analysis"),
       description: t("Descubre exactamente cuánto necesitas vender para cubrir todos tus costos y empezar a generar utilidad.", "Discover exactly how much you need to sell to cover all your costs and start generating profit."),
       level: t("Intermedio", "Intermediate"),
-      levelEn: "Intermediate",
       lessons: 5,
       duration: "3h",
       free: false,
-      topics: [
-        t("Margen de contribución", "Contribution margin"),
-        t("Cálculo del punto de equilibrio", "Break-even calculation"),
-        t("Análisis de sensibilidad", "Sensitivity analysis"),
-      ],
     },
     {
       slug: "analisis-de-rentabilidad",
       title: t("Análisis de Rentabilidad", "Profitability Analysis"),
       description: t("Identifica qué productos, líneas o clientes generan más valor real — y cuáles te están costando dinero.", "Identify which products, lines or clients generate the most real value — and which ones are costing you money."),
       level: t("Avanzado", "Advanced"),
-      levelEn: "Advanced",
       lessons: 7,
       duration: "4h",
       free: false,
-      topics: [
-        t("Rentabilidad por producto", "Profitability by product"),
-        t("ABC de clientes", "Customer ABC analysis"),
-        t("Decisiones basadas en datos", "Data-driven decisions"),
-      ],
     },
   ];
 
   const testimonials = [
     {
       name: "María Fernanda R.",
-      company: t("Pastelería Dulce Arte", "Dulce Arte Bakery"),
+      role: t("Pastelería Dulce Arte", "Dulce Arte Bakery"),
       text: t(
         "Antes cobraba a ojo. Después de la Escuela de Costos, sé exactamente cuánto me cuesta cada torta y cuánto debo cobrar para ganar.",
         "I used to price by gut feeling. After the School of Costs, I know exactly how much each cake costs me and how much I need to charge to profit."
@@ -139,7 +119,7 @@ export default function EscuelaPage() {
     },
     {
       name: "Carlos Andrés M.",
-      company: t("Taller de Confección", "Clothing Workshop"),
+      role: t("Taller de Confección", "Clothing Workshop"),
       text: t(
         "El curso de punto de equilibrio me abrió los ojos. Estaba trabajando mucho pero ganando poco. Ahora sé exactamente por qué.",
         "The break-even course opened my eyes. I was working a lot but earning little. Now I know exactly why."
@@ -147,7 +127,7 @@ export default function EscuelaPage() {
     },
     {
       name: "Lina Marcela G.",
-      company: t("Restaurante Sabor Local", "Sabor Local Restaurant"),
+      role: t("Restaurante Sabor Local", "Sabor Local Restaurant"),
       text: t(
         "Con la Escuela aprendí a costear cada plato del menú. Subí mis precios con confianza y mis clientes lo entendieron.",
         "With the School I learned to cost every menu item. I raised my prices confidently and my clients understood."
@@ -168,18 +148,17 @@ export default function EscuelaPage() {
     <>
       <Navbar />
 
-      {/* Hero + Stats — one continuous dark-to-blue gradient */}
-      <section className="bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-600 text-white">
-        {/* Hero */}
+      {/* ─── Hero + Stats — continuous dark gradient ─── */}
+      <section className="bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-700 text-white">
         <div className="px-4 pt-32 pb-20 max-w-5xl mx-auto">
           <div className="max-w-3xl">
             <Reveal>
-              <p className="text-blue-300 text-xs font-semibold tracking-[0.2em] uppercase mb-6">
+              <p className="text-blue-400 text-xs font-semibold tracking-[0.2em] uppercase mb-6">
                 {t("Escuela de Costos · Costea", "School of Costs · Costea")}
               </p>
             </Reveal>
             <Reveal delay={1}>
-              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
+              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8 text-white">
                 {lang === "es" ? (
                   <>Domina los costos<br />de tu negocio.<br /><span className="text-blue-300">Toma el control.</span></>
                 ) : (
@@ -188,10 +167,10 @@ export default function EscuelaPage() {
               </h1>
             </Reveal>
             <Reveal delay={2}>
-              <p className="text-blue-100/70 text-xl leading-relaxed mb-10 max-w-xl">
+              <p className="text-slate-300 text-xl leading-relaxed mb-10 max-w-xl">
                 {t(
-                  "La primera Escuela de Costos para emprendedores colombianos. Aprende, practica y certifícate — sin necesidad de ser contador.",
-                  "The first School of Costs for Colombian entrepreneurs. Learn, practice and get certified — no accounting background needed."
+                  "La primera Escuela de Costos para emprendedores. Aprende, practica y certifícate — sin necesidad de ser contador.",
+                  "The first School of Costs for entrepreneurs. Learn, practice and get certified — no accounting background needed."
                 )}
               </p>
             </Reveal>
@@ -205,21 +184,21 @@ export default function EscuelaPage() {
                 </Link>
                 <Link
                   href="#cursos"
-                  className="inline-flex items-center justify-center bg-white/8 hover:bg-white/14 border border-white/15 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
+                  className="inline-flex items-center justify-center bg-white/10 hover:bg-white/18 border border-white/20 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
                 >
                   {t("Ver cursos", "View courses")}
                 </Link>
               </div>
-              <p className="mt-6 text-blue-200/60 text-sm">
+              <p className="mt-6 text-slate-400 text-sm">
                 {t("Sin tarjeta de crédito · Primer curso 100% gratis", "No credit card · First course 100% free")}
               </p>
             </Reveal>
           </div>
         </div>
 
-        {/* Stats — seamlessly below hero, same gradient */}
-        <div className="px-4 pb-16 border-t border-white/10">
-          <div className="max-w-5xl mx-auto pt-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        {/* Stats — frosted cards on the gradient */}
+        <div className="px-4 pb-0 border-t border-white/10">
+          <div className="max-w-5xl mx-auto pt-10 pb-16 grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { value: "1,200+", label: t("Estudiantes activos", "Active students") },
               { value: "4", label: t("Cursos disponibles", "Available courses") },
@@ -227,15 +206,24 @@ export default function EscuelaPage() {
               { value: "100%", label: t("Primer curso gratis", "First course free") },
             ].map((s, i) => (
               <Reveal key={s.label} delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
-                <div className="text-4xl font-extrabold tracking-tight text-white">{s.value}</div>
-                <div className="text-blue-200/70 text-sm mt-2">{s.label}</div>
+                <div className="bg-white/8 border border-white/12 rounded-2xl px-5 py-5 backdrop-blur-sm">
+                  <div className="text-3xl font-extrabold tracking-tight text-white">{s.value}</div>
+                  <div className="text-slate-400 text-xs mt-1.5">{s.label}</div>
+                </div>
               </Reveal>
             ))}
           </div>
         </div>
+
+        {/* Wave transition: dark → white */}
+        <div className="w-full overflow-hidden leading-none">
+          <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
+            <path d="M0 56L1440 56L1440 20C1200 56 720 0 0 40L0 56Z" fill="white"/>
+          </svg>
+        </div>
       </section>
 
-      {/* Problem section */}
+      {/* ─── Problem section ─── */}
       <section className="py-28 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -283,11 +271,18 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* Wave: white → gray-50 */}
+      <div className="w-full overflow-hidden leading-none bg-white">
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
+          <path d="M0 0L1440 0L1440 40C1100 8 400 40 0 16L0 0Z" fill="#f9fafb"/>
+        </svg>
+      </div>
+
+      {/* ─── Benefits ─── */}
       <section className="py-28 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <div className="mb-20">
+            <div className="mb-16">
               <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                 {t("Por qué Costea", "Why Costea")}
               </p>
@@ -300,13 +295,16 @@ export default function EscuelaPage() {
               </h2>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((b, i) => (
-              <Reveal key={b.title.toString()} delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
-                <div className="border-t-2 border-blue-600 pt-6">
-                  <span className="text-xs font-bold text-blue-400 tracking-[0.15em]">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="font-extrabold tracking-tight text-gray-900 text-lg mt-4 mb-2">{b.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{b.desc}</p>
+              <Reveal key={b.title.toString()} variant="scale" delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
+                <div className="bg-white rounded-2xl border border-gray-100 p-7 hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.12)] hover:border-blue-100 hover:-translate-y-0.5 transition-all duration-300 ease-out h-full flex flex-col">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 text-lg mb-5 shrink-0">
+                    {b.icon}
+                  </div>
+                  <span className="text-xs font-bold text-blue-400 tracking-[0.15em] mb-1 block">{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="font-extrabold tracking-tight text-gray-900 text-base mt-1 mb-2">{b.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed flex-1">{b.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -314,7 +312,14 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* How it works */}
+      {/* Wave: gray-50 → white */}
+      <div className="w-full overflow-hidden leading-none bg-gray-50">
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
+          <path d="M0 40L1440 40L1440 0C1100 32 400 0 0 24L0 40Z" fill="white"/>
+        </svg>
+      </div>
+
+      {/* ─── How it works ─── */}
       <section className="py-28 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-20 items-start">
@@ -344,24 +349,44 @@ export default function EscuelaPage() {
                 </Link>
               </div>
             </Reveal>
-            <div className="divide-y divide-gray-100">
-              {journey.map((j, i) => (
-                <Reveal key={j.step} delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
-                  <div className="flex gap-6 py-6">
-                    <span className="text-xs font-bold text-blue-500 tracking-widest shrink-0 mt-1 w-7">{j.step}</span>
-                    <div>
-                      <h3 className="font-bold tracking-tight text-gray-900 mb-1">{j.title}</h3>
-                      <p className="text-gray-500 text-sm leading-relaxed">{j.desc}</p>
+
+            {/* Steps with vertical connector line */}
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-[18px] top-6 bottom-6 w-px bg-gray-100" />
+              <div className="space-y-0">
+                {journey.map((j, i) => (
+                  <Reveal key={j.step} delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
+                    <div className="flex gap-6 py-5 relative">
+                      {/* Circle badge */}
+                      <div className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0 z-10 border-2 ${
+                        i === 0
+                          ? "bg-blue-600 border-blue-600 text-white"
+                          : "bg-white border-gray-200 text-gray-400"
+                      }`}>
+                        {j.step}
+                      </div>
+                      <div className="pt-1.5 pb-4">
+                        <h3 className="font-bold tracking-tight text-gray-900 mb-1">{j.title}</h3>
+                        <p className="text-gray-500 text-sm leading-relaxed">{j.desc}</p>
+                      </div>
                     </div>
-                  </div>
-                </Reveal>
-              ))}
+                  </Reveal>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Courses — compact list */}
+      {/* Wave: white → gray-50 */}
+      <div className="w-full overflow-hidden leading-none bg-white">
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10" preserveAspectRatio="none">
+          <path d="M0 0L1440 0L1440 40C1100 8 400 40 0 16L0 0Z" fill="#f9fafb"/>
+        </svg>
+      </div>
+
+      {/* ─── Courses ─── */}
       <section id="cursos" className="py-28 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <Reveal>
@@ -380,18 +405,14 @@ export default function EscuelaPage() {
             </div>
           </Reveal>
 
-          {/* Compact course rows */}
           <div className="space-y-3">
             {courses.map((course, i) => (
               <Reveal key={course.slug} variant="scale" delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
                 <div className="bg-white border border-gray-100 rounded-2xl px-6 py-5 hover:border-blue-100 hover:shadow-[0_4px_24px_-6px_rgba(37,99,235,0.12)] hover:-translate-y-px transition-all duration-300 ease-out">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                    {/* Step number */}
                     <div className="shrink-0 w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-sm font-bold text-blue-600">
                       {String(i + 1).padStart(2, "0")}
                     </div>
-
-                    {/* Title + topics */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <h3 className="font-bold tracking-tight text-gray-900">{course.title}</h3>
@@ -406,8 +427,6 @@ export default function EscuelaPage() {
                       </div>
                       <p className="text-gray-500 text-sm leading-relaxed line-clamp-1">{course.description}</p>
                     </div>
-
-                    {/* Meta + CTA */}
                     <div className="flex items-center gap-4 shrink-0">
                       <div className="hidden md:flex items-center gap-3 text-xs text-gray-400">
                         <span>{course.lessons} {t("lecciones", "lessons")}</span>
@@ -433,8 +452,15 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="relative py-28 px-4 bg-gradient-to-b from-gray-950 via-[#070f2b] to-gray-950 text-white overflow-hidden">
+      {/* Wave: gray-50 → dark */}
+      <div className="w-full overflow-hidden leading-none bg-gray-50">
+        <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
+          <path d="M0 56L1440 56L1440 16C1200 52 720 0 0 36L0 56Z" fill="#030712"/>
+        </svg>
+      </div>
+
+      {/* ─── Testimonials — dark section ─── */}
+      <section className="relative py-28 px-4 bg-gray-950 text-white overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/3 left-1/4 w-96 h-72 bg-blue-600/8 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-80 h-60 bg-blue-800/6 rounded-full blur-3xl" />
@@ -445,7 +471,7 @@ export default function EscuelaPage() {
               <p className="text-blue-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                 {t("Testimonios", "Testimonials")}
               </p>
-              <h2 className="text-4xl font-extrabold tracking-tight">
+              <h2 className="text-4xl font-extrabold tracking-tight text-white">
                 {t("Resultados que hablan por sí solos.", "Results that speak for themselves.")}
               </h2>
             </div>
@@ -453,21 +479,35 @@ export default function EscuelaPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((item, i) => (
               <Reveal key={item.name} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
-                <div className="bg-white/5 border border-white/8 rounded-2xl p-8 h-full flex flex-col">
-                  <p className="text-gray-300 text-sm leading-relaxed mb-8 flex-1">"{item.text}"</p>
-                  <div className="border-t border-white/10 pt-5">
-                    <div className="font-bold tracking-tight text-white">{item.name}</div>
-                    <div className="text-gray-500 text-xs mt-0.5">{item.company}</div>
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-8 h-full flex flex-col group hover:bg-white/8 transition-all duration-300">
+                  {/* Quote mark */}
+                  <div className="text-blue-400 text-4xl font-serif leading-none mb-4 select-none">"</div>
+                  <p className="text-slate-300 text-sm leading-relaxed mb-8 flex-1">{item.text}</p>
+                  <div className="border-t border-white/10 pt-5 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-blue-600/30 border border-blue-500/30 flex items-center justify-center text-blue-300 text-xs font-bold shrink-0">
+                      {item.name[0]}
+                    </div>
+                    <div>
+                      <div className="font-bold tracking-tight text-white text-sm">{item.name}</div>
+                      <div className="text-slate-500 text-xs mt-0.5">{item.role}</div>
+                    </div>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
         </div>
+
+        {/* Wave: dark → white */}
+        <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
+          <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
+            <path d="M0 56L1440 56L1440 20C1200 56 720 0 0 40L0 56Z" fill="white"/>
+          </svg>
+        </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-28 px-4 bg-white">
+      {/* ─── Final CTA ─── */}
+      <section className="pt-16 pb-28 px-4 bg-white">
         <div className="max-w-3xl mx-auto text-center">
           <Reveal>
             <h2 className="text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.05] mb-6">

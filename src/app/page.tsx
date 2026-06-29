@@ -91,14 +91,23 @@ export default function HomePage() {
           </Reveal>
         </div>
 
-        {/* Stats seamlessly below */}
-        <div className="max-w-5xl mx-auto mt-20 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        {/* Stats — frosted cards */}
+        <div className="max-w-5xl mx-auto mt-16 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
-              <div className="text-4xl font-extrabold tracking-tight text-white">{s.value}</div>
-              <div className="text-blue-200/60 text-sm mt-2">{s.label}</div>
+              <div className="bg-white/8 border border-white/12 rounded-2xl px-5 py-5 backdrop-blur-sm">
+                <div className="text-3xl font-extrabold tracking-tight text-white">{s.value}</div>
+                <div className="text-slate-400 text-xs mt-1.5">{s.label}</div>
+              </div>
             </Reveal>
           ))}
+        </div>
+
+        {/* Wave: dark → white */}
+        <div className="w-full overflow-hidden leading-none mt-16">
+          <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
+            <path d="M0 56L1440 56L1440 20C1200 56 720 0 0 40L0 56Z" fill="white"/>
+          </svg>
         </div>
       </section>
 
@@ -139,8 +148,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Wave: white → dark */}
+      <div className="w-full overflow-hidden leading-none bg-white">
+        <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-14" preserveAspectRatio="none">
+          <path d="M0 56L1440 56L1440 16C1200 52 720 0 0 36L0 56Z" fill="#030712"/>
+        </svg>
+      </div>
+
       {/* CTA */}
-      <section className="relative bg-gradient-to-b from-gray-950 via-[#0d1f5c] to-gray-950 text-white py-28 px-4 overflow-hidden">
+      <section className="relative bg-gray-950 text-white py-28 px-4 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/10 rounded-full blur-3xl" />
         </div>
@@ -155,7 +171,7 @@ export default function HomePage() {
             </h2>
           </Reveal>
           <Reveal delay={1}>
-            <p className="text-gray-400 mb-10 leading-relaxed">
+            <p className="text-slate-400 mb-10 leading-relaxed">
               {t(
                 "Regístrate gratis y accede a los primeros módulos de la Escuela de Costos.",
                 "Sign up free and access the first modules of the School of Costs."
