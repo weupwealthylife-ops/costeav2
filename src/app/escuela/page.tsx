@@ -391,23 +391,23 @@ export default function EscuelaPage() {
 
             {/* Steps with vertical connector line */}
             <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-[18px] top-6 bottom-6 w-px bg-gray-100" />
+              {/* Vertical connector line — stops before last step */}
+              <div className="absolute left-[19px] top-6 w-0.5 bg-slate-200" style={{ height: "calc(100% - 56px)" }} />
               <div className="space-y-0">
                 {journey.map((j, i) => (
                   <Reveal key={j.step} delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
-                    <div className="flex gap-6 py-5 relative">
-                      {/* Circle badge */}
-                      <div className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0 z-10 border-2 ${
+                    <div className="flex gap-5 pb-8 relative">
+                      {/* Circle badge — 40px */}
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-extrabold shrink-0 z-10 ${
                         i === 0
-                          ? "bg-blue-600 border-blue-600 text-white"
-                          : "bg-white border-gray-200 text-gray-400"
+                          ? "bg-blue-600 text-white shadow-sm shadow-blue-200"
+                          : "bg-slate-100 text-blue-600 hover:bg-blue-50 transition-colors"
                       }`}>
                         {j.step}
                       </div>
                       <div className="pt-1.5 pb-4">
-                        <h3 className="font-bold tracking-tight text-gray-900 mb-1">{j.title}</h3>
-                        <p className="text-gray-500 text-sm leading-relaxed">{j.desc}</p>
+                        <h3 className="font-bold text-gray-900 mb-1" style={{ fontSize: "17px" }}>{j.title}</h3>
+                        <p className="text-slate-500 leading-relaxed" style={{ fontSize: "15px" }}>{j.desc}</p>
                       </div>
                     </div>
                   </Reveal>
