@@ -83,7 +83,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
 
           {/* 2-col layout: copy left, proof card right */}
-          <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 items-center pb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 items-start pb-16">
 
             {/* LEFT — copy */}
             <div>
@@ -133,124 +133,130 @@ export default function HomePage() {
             </div>
 
             {/* RIGHT — iPhone mockup (hidden on mobile) */}
-            <div className="hidden lg:flex justify-center items-center">
+            <div className="hidden lg:flex justify-center items-start pt-4">
               <Reveal delay={2} variant="scale">
-                {/* iPhone shell */}
+                {/* iPhone 14 Pro proportions: 430×932 → at 240px wide = 520px tall */}
                 <div
-                  className="relative"
-                  style={{ width: 220, filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.6))" }}
+                  className="relative shrink-0"
+                  style={{ width: 240, filter: "drop-shadow(0 32px 64px rgba(0,0,0,0.7))" }}
                 >
-                  {/* Phone body */}
+                  {/* Phone body — fixed height matching real iPhone ratio */}
                   <div
-                    className="relative rounded-[38px] overflow-hidden"
+                    className="relative rounded-[46px] flex flex-col overflow-hidden"
                     style={{
+                      width: 240,
+                      height: 520,
                       background: "#0F172A",
-                      border: "7px solid #1E293B",
-                      outline: "1px solid rgba(255,255,255,0.12)",
-                      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06)",
+                      border: "8px solid #1E293B",
+                      outline: "1px solid rgba(255,255,255,0.1)",
+                      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.05)",
                     }}
                   >
                     {/* Dynamic island */}
-                    <div className="flex justify-center pt-2.5 pb-1">
-                      <div className="w-16 h-5 rounded-full" style={{ background: "#000" }} />
+                    <div className="flex justify-center pt-3 shrink-0">
+                      <div className="w-[70px] h-[22px] rounded-full" style={{ background: "#000" }} />
                     </div>
 
-                    {/* Screen content */}
-                    <div className="px-0 pb-2" style={{ background: "#0F172A" }}>
-                      {/* App header */}
-                      <div className="flex items-center justify-between px-3 py-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-4 h-4 rounded bg-blue-600 flex items-center justify-center shrink-0">
-                            <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
-                            </svg>
+                    {/* App header */}
+                    <div className="flex items-center justify-between px-4 py-3 shrink-0" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                      <div className="flex items-center gap-2">
+                        <div className="w-[18px] h-[18px] rounded-md bg-blue-600 flex items-center justify-center shrink-0">
+                          <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
+                          </svg>
+                        </div>
+                        <span className="text-white text-[11px] font-semibold">Escuela de Costos</span>
+                      </div>
+                      <div className="w-[22px] h-[22px] rounded-full bg-blue-600 flex items-center justify-center text-[9px] font-bold text-white shrink-0">C</div>
+                    </div>
+
+                    {/* Course progress */}
+                    <div className="px-4 py-3 shrink-0">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[10px] text-slate-400">Fundamentos de Costos</span>
+                        <span className="text-[10px] font-bold text-blue-400">40%</span>
+                      </div>
+                      <div className="h-[4px] rounded-full" style={{ background: "rgba(255,255,255,0.08)" }}>
+                        <div className="h-full w-2/5 rounded-full bg-blue-500" />
+                      </div>
+                    </div>
+
+                    {/* Video thumbnail */}
+                    <div className="relative mx-3 rounded-2xl overflow-hidden shrink-0" style={{ height: 118 }}>
+                      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #1e3a5f 0%, #0d2562 50%, #1d4ed8 100%)" }} />
+                      <div className="absolute inset-0 opacity-10" style={{
+                        backgroundImage: "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
+                        backgroundSize: "22px 22px",
+                      }} />
+                      {/* Caption overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 px-3 pb-2 pt-6" style={{ background: "linear-gradient(transparent, rgba(0,0,0,0.8))" }}>
+                        <p className="text-white text-[9px] font-semibold leading-tight">Lección 3: Costos fijos vs. variables</p>
+                      </div>
+                      {/* Play button */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.18)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.3)" }}>
+                          <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      </div>
+                      {/* Scrubber */}
+                      <div className="absolute bottom-0 left-0 right-0 h-[3px]" style={{ background: "rgba(255,255,255,0.12)" }}>
+                        <div className="h-full w-2/5 bg-blue-500" />
+                      </div>
+                    </div>
+
+                    {/* Lesson list — flex-1 so it fills remaining space */}
+                    <div className="flex-1 flex flex-col justify-center px-3 py-2 gap-1">
+                      {[
+                        { n: "01", title: "¿Qué es un costo?", done: true },
+                        { n: "02", title: "Materiales directos", done: true },
+                        { n: "03", title: "Costos fijos vs. variables", active: true },
+                        { n: "04", title: "Punto de equilibrio", done: false },
+                        { n: "05", title: "Margen de contribución", done: false },
+                      ].map((l) => (
+                        <div
+                          key={l.n}
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl"
+                          style={{
+                            background: l.active ? "rgba(37,99,235,0.2)" : "transparent",
+                            border: l.active ? "1px solid rgba(37,99,235,0.35)" : "1px solid transparent",
+                          }}
+                        >
+                          <div
+                            className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                            style={{ background: l.done ? "rgba(34,197,94,0.2)" : l.active ? "rgba(37,99,235,0.45)" : "rgba(255,255,255,0.06)" }}
+                          >
+                            {l.done ? (
+                              <svg className="w-3 h-3 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            ) : (
+                              <span className="text-[7px] font-bold" style={{ color: l.active ? "#93C5FD" : "#475569" }}>{l.n}</span>
+                            )}
                           </div>
-                          <span className="text-white text-[10px] font-semibold">Escuela de Costos</span>
-                        </div>
-                        <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[8px] font-bold text-white">C</div>
-                      </div>
-
-                      {/* Course progress bar */}
-                      <div className="px-3 py-2">
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-[9px] text-slate-400">Fundamentos de Costos</span>
-                          <span className="text-[9px] font-semibold text-blue-400">40%</span>
-                        </div>
-                        <div className="h-1 rounded-full" style={{ background: "rgba(255,255,255,0.08)" }}>
-                          <div className="h-full w-2/5 rounded-full bg-blue-500" />
-                        </div>
-                      </div>
-
-                      {/* Video thumbnail */}
-                      <div className="relative mx-2.5 rounded-xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
-                        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #1e3a5f 0%, #0d2562 50%, #1d4ed8 100%)" }} />
-                        <div className="absolute inset-0 opacity-10" style={{
-                          backgroundImage: "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
-                          backgroundSize: "20px 20px",
-                        }} />
-                        {/* Caption */}
-                        <div className="absolute bottom-0 left-0 right-0 px-2.5 pb-1.5 pt-4" style={{ background: "linear-gradient(transparent, rgba(0,0,0,0.75))" }}>
-                          <p className="text-white text-[8px] font-semibold leading-tight">Lección 3: Costos fijos vs. variables</p>
-                        </div>
-                        {/* Play */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.3)" }}>
-                            <svg className="w-3.5 h-3.5 text-white ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <span className="text-[10px] truncate flex-1 font-medium" style={{ color: l.active ? "#E2E8F0" : l.done ? "#64748B" : "#475569" }}>{l.title}</span>
+                          {l.active && (
+                            <svg className="w-2.5 h-2.5 text-blue-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                             </svg>
-                          </div>
+                          )}
                         </div>
-                        {/* Scrubber */}
-                        <div className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: "rgba(255,255,255,0.15)" }}>
-                          <div className="h-full w-2/5 bg-blue-500" />
-                        </div>
-                      </div>
-
-                      {/* Lesson list */}
-                      <div className="px-2.5 pt-1.5 space-y-0.5">
-                        {[
-                          { n: "01", title: "¿Qué es un costo?", done: true },
-                          { n: "02", title: "Materiales directos", done: true },
-                          { n: "03", title: "Costos fijos vs. variables", active: true },
-                          { n: "04", title: "Punto de equilibrio", done: false },
-                        ].map((l) => (
-                          <div
-                            key={l.n}
-                            className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg"
-                            style={{
-                              background: l.active ? "rgba(37,99,235,0.2)" : "transparent",
-                              border: l.active ? "1px solid rgba(37,99,235,0.3)" : "1px solid transparent",
-                            }}
-                          >
-                            <div
-                              className="w-4 h-4 rounded-full flex items-center justify-center shrink-0"
-                              style={{ background: l.done ? "rgba(34,197,94,0.2)" : l.active ? "rgba(37,99,235,0.4)" : "rgba(255,255,255,0.06)" }}
-                            >
-                              {l.done ? (
-                                <svg className="w-2.5 h-2.5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
-                              ) : (
-                                <span className="text-[6px] font-bold" style={{ color: l.active ? "#93C5FD" : "#475569" }}>{l.n}</span>
-                              )}
-                            </div>
-                            <span className="text-[9px] truncate flex-1" style={{ color: l.active ? "#E2E8F0" : l.done ? "#64748B" : "#475569" }}>{l.title}</span>
-                            {l.active && <span className="text-[7px] font-bold text-blue-400 shrink-0">▶</span>}
-                          </div>
-                        ))}
-                      </div>
+                      ))}
                     </div>
 
                     {/* Home indicator */}
-                    <div className="flex justify-center py-2">
-                      <div className="w-20 h-1 rounded-full" style={{ background: "rgba(255,255,255,0.25)" }} />
+                    <div className="flex justify-center pb-3 pt-1 shrink-0">
+                      <div className="w-24 h-[4px] rounded-full" style={{ background: "rgba(255,255,255,0.22)" }} />
                     </div>
                   </div>
 
-                  {/* Side buttons */}
-                  <div className="absolute -left-[9px] top-20 w-[4px] h-7 rounded-l-sm" style={{ background: "#1E293B" }} />
-                  <div className="absolute -left-[9px] top-32 w-[4px] h-7 rounded-l-sm" style={{ background: "#1E293B" }} />
-                  <div className="absolute -right-[9px] top-24 w-[4px] h-10 rounded-r-sm" style={{ background: "#1E293B" }} />
+                  {/* Side buttons — left: mute + volume */}
+                  <div className="absolute rounded-l-sm" style={{ left: -9, top: 88, width: 4, height: 28, background: "#2D3F55" }} />
+                  <div className="absolute rounded-l-sm" style={{ left: -9, top: 128, width: 4, height: 44, background: "#2D3F55" }} />
+                  <div className="absolute rounded-l-sm" style={{ left: -9, top: 184, width: 4, height: 44, background: "#2D3F55" }} />
+                  {/* Right: power */}
+                  <div className="absolute rounded-r-sm" style={{ right: -9, top: 144, width: 4, height: 60, background: "#2D3F55" }} />
                 </div>
               </Reveal>
             </div>
