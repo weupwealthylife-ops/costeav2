@@ -234,8 +234,6 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#f1f5f9" toColor="#ffffff" flip={true} />
-
       {/* ─── Coming soon tools (compact) ─── */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
@@ -263,8 +261,6 @@ export default function CosteaAppPage() {
           </div>
         </div>
       </section>
-
-      <WaveDivider fromColor="#ffffff" toColor="#f1f5f9" />
 
       {/* ─── Roadmap ─── */}
       <section id="roadmap" className="py-28 px-4 bg-[#f1f5f9]">

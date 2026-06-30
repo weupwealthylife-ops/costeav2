@@ -299,8 +299,6 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#ffffff" toColor="#f1f5f9" />
-
       {/* ─── Benefits ─── */}
       <section className="py-28 px-4 bg-[#f1f5f9]">
         <div className="max-w-6xl mx-auto">
@@ -338,8 +336,6 @@ export default function EscuelaPage() {
           </div>
         </div>
       </section>
-
-      <WaveDivider fromColor="#f1f5f9" toColor="#ffffff" flip={true} />
 
       {/* ─── How it works ─── */}
       <section className="py-28 px-4 bg-white">
@@ -401,10 +397,8 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#ffffff" toColor="#f1f5f9" />
-
       {/* ─── Courses ─── */}
-      <section id="cursos" className="py-28 px-4 bg-gray-50">
+      <section id="cursos" className="py-28 px-4 bg-[#f1f5f9]">
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <div className="mb-14">
@@ -486,10 +480,8 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#f1f5f9" toColor="#f1f5f9" flip={true} />
-
       {/* ─── Testimonials — light section ─── */}
-      <section className="py-20 px-4 bg-[#f1f5f9]">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <div className="mb-12">
@@ -524,8 +516,6 @@ export default function EscuelaPage() {
           </div>
         </div>
       </section>
-
-      <WaveDivider fromColor="#f1f5f9" toColor="#ffffff" flip={true} />
 
       {/* ─── Final CTA ─── */}
       <section className="pt-16 pb-28 px-4 bg-white">
