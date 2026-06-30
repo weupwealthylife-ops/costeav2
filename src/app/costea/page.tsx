@@ -65,9 +65,9 @@ export default function CosteaAppPage() {
   };
 
   const statusTagStyle: Record<string, string> = {
-    done: "bg-blue-50 text-blue-700 border border-blue-100",
-    soon: "bg-amber-50 text-amber-700 border border-amber-100",
-    planned: "bg-gray-100 text-gray-500 border border-gray-200",
+    done:    "bg-[#F0FDF4] text-[#15803D]",
+    soon:    "bg-[#FFF7ED] text-[#C2410C]",
+    planned: "bg-[#F8FAFC] text-[#64748B]",
   };
 
   const doneCount = roadmap.filter(r => r.status === "done").length;
@@ -154,27 +154,30 @@ export default function CosteaAppPage() {
 
       </section>
 
-      <WaveDivider fromColor="#1d4ed8" toColor="#f1f5f9" />
+      <WaveDivider fromColor="#1d4ed8" toColor="#F8FAFC" />
 
-      {/* ─── Calculadora feature section ─── */}
-      <section className="pb-20 px-4 bg-[#f1f5f9]">
+      {/* ─── Calculadora feature spotlight ─── */}
+      <section className="py-20 px-4 bg-[#F8FAFC]">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
             {/* Left: copy */}
             <Reveal variant="left">
               <div>
-                <p className="text-[#16A34A] text-[12px] font-bold tracking-[0.08em] uppercase mb-5">
-                  {t("✓ Disponible ahora", "✓ Available now")}
+                <p className="mb-5 text-[12px] font-bold tracking-[0.08em] uppercase" style={{ color: "#16A34A" }}>
+                  {t("DISPONIBLE AHORA", "AVAILABLE NOW")}
                 </p>
-                <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 leading-[1.1] mb-5">
+                <h2
+                  className="font-extrabold tracking-tight leading-[1.1] mb-5"
+                  style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#0F172A" }}
+                >
                   {lang === "es" ? (
                     <>Calcula el costo real de<br />cualquier producto<br />en minutos.</>
                   ) : (
                     <>Calculate the real cost of<br />any product<br />in minutes.</>
                   )}
                 </h2>
-                <p className="text-slate-500 text-base leading-relaxed mb-8 max-w-md">
+                <p className="text-base leading-relaxed mb-8 max-w-md" style={{ color: "#475569" }}>
                   {t(
                     "Ingresa tus insumos, mano de obra y gastos indirectos. Costea calcula el costo unitario y el precio mínimo de venta con el margen que tú defines.",
                     "Enter your inputs, labor and overhead. Costea calculates unit cost and minimum selling price with the margin you define."
@@ -182,7 +185,8 @@ export default function CosteaAppPage() {
                 </p>
                 <Link
                   href="/costea/calculadora"
-                  className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-7 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 ease-out hover:-translate-y-0.5 shadow-lg shadow-blue-200"
+                  className="inline-flex items-center justify-center text-white font-semibold transition-all duration-300 ease-out hover:-translate-y-0.5 shadow-lg shadow-blue-200 hover:bg-blue-700"
+                  style={{ background: "#2563EB", borderRadius: 10, padding: "14px 28px" }}
                 >
                   {t("Abrir Calculadora gratis →", "Open Calculator free →")}
                 </Link>
@@ -191,10 +195,21 @@ export default function CosteaAppPage() {
 
             {/* Right: product mockup card */}
             <Reveal variant="right">
-              <div className="bg-white border border-slate-200 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] p-6 max-w-sm mx-auto lg:mx-0 lg:ml-auto">
-                <div className="text-xs font-semibold text-slate-500 mb-4 pb-3 border-b border-slate-100">
+              <div
+                className="bg-white"
+                style={{
+                  border: "1px solid #E2E8F0",
+                  borderRadius: 16,
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
+                  padding: 24,
+                  maxWidth: 420,
+                  marginLeft: "auto",
+                }}
+              >
+                {/* Card header */}
+                <p className="pb-3 mb-4" style={{ fontSize: 12, fontWeight: 500, color: "#64748B", borderBottom: "1px solid #E2E8F0" }}>
                   {t("Cálculo de costos · Torta de chocolate", "Cost calculation · Chocolate cake")}
-                </div>
+                </p>
 
                 {/* Cost rows */}
                 <div className="space-y-3 mb-4">
@@ -204,29 +219,26 @@ export default function CosteaAppPage() {
                     { label: t("Gastos indirectos", "Overhead"), value: "$2,300" },
                   ].map((row) => (
                     <div key={row.label} className="flex items-center justify-between">
-                      <span className="text-sm text-slate-600">{row.label}</span>
-                      <span className="text-sm font-semibold text-gray-900 font-mono">{row.value}</span>
+                      <span style={{ fontSize: 14, color: "#475569" }}>{row.label}</span>
+                      <span style={{ fontSize: 14, fontWeight: 600, color: "#0F172A" }}>{row.value}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="border-t border-slate-100 pt-3 mb-5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-gray-900">{t("Costo total", "Total cost")}</span>
-                    <span className="text-xl font-extrabold text-gray-900 font-mono">$18,500</span>
-                  </div>
+                {/* Total row */}
+                <div className="flex items-center justify-between py-3 mb-4" style={{ borderTop: "1px solid #E2E8F0" }}>
+                  <span style={{ fontSize: 18, fontWeight: 800, color: "#0F172A" }}>{t("Costo total", "Total cost")}</span>
+                  <span style={{ fontSize: 18, fontWeight: 800, color: "#0F172A" }}>$18,500</span>
                 </div>
 
                 {/* Result chips */}
-                <div className="flex gap-2">
-                  <div className="flex-1 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-2.5 text-center">
-                    {t("Precio sugerido", "Suggested price")}<br />
-                    <span className="text-base font-extrabold">$28,000</span>
-                  </div>
-                  <div className="flex-1 rounded-xl bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-2.5 text-center">
-                    {t("Margen", "Margin")}<br />
-                    <span className="text-base font-extrabold">51%</span>
-                  </div>
+                <div className="flex gap-2 flex-wrap">
+                  <span style={{ background: "#F0FDF4", color: "#15803D", borderRadius: 20, fontSize: 13, fontWeight: 600, padding: "6px 14px" }}>
+                    {t("Precio sugerido: $28,000", "Suggested price: $28,000")}
+                  </span>
+                  <span style={{ background: "#EFF6FF", color: "#1D4ED8", borderRadius: 20, fontSize: 13, fontWeight: 600, padding: "6px 14px" }}>
+                    {t("Margen: 51%", "Margin: 51%")}
+                  </span>
                 </div>
               </div>
             </Reveal>
@@ -234,24 +246,27 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      {/* ─── Coming soon tools (compact) ─── */}
-      <section className="py-16 px-4 bg-white">
+      {/* ─── Coming soon — compact strip ─── */}
+      <section className="py-12 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-3">
+            <h3 className="mb-8" style={{ fontSize: 20, fontWeight: 700, color: "#0F172A" }}>
               {t("Próximamente en Costea App", "Coming soon to Costea App")}
-            </p>
+            </h3>
           </Reveal>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             {comingSoon.map((item) => (
               <Reveal key={item.title.toString()} variant="scale">
-                <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-400 shrink-0">
+                <div className="flex items-center gap-3 rounded-2xl px-4 py-3" style={{ background: "#F8FAFC", border: "1px solid #E2E8F0" }}>
+                  <div
+                    className="flex items-center justify-center shrink-0"
+                    style={{ width: 40, height: 40, borderRadius: 10, background: "#F8FAFC", color: "#94A3B8" }}
+                  >
                     {item.icon}
                   </div>
                   <div className="text-left">
-                    <div className="text-sm font-semibold text-gray-800">{item.title}</div>
-                    <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
+                    <div style={{ fontSize: 14, fontWeight: 600, color: "#334155" }}>{item.title}</div>
+                    <span style={{ fontSize: 11, color: "#64748B", background: "#F1F5F9", borderRadius: 20, padding: "2px 8px", display: "inline-block", marginTop: 2 }}>
                       {t("Próximamente", "Coming soon")}
                     </span>
                   </div>
@@ -294,19 +309,26 @@ export default function CosteaAppPage() {
                     <span className="text-sm font-bold text-blue-600">{doneCount}/{roadmap.length} {t("lanzadas", "shipped")}</span>
                   </div>
 
-                  {/* Circle track */}
+                  {/* Circle progress track */}
                   <div className="relative flex items-center mb-4">
-                    {/* Connecting line */}
-                    <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-0.5 bg-slate-200 mx-6" />
+                    {/* Connecting line behind circles */}
+                    <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 h-0.5" style={{ background: "#E2E8F0" }} />
                     {roadmap.map((item, i) => (
                       <div key={i} className="relative z-10 flex-1 flex justify-center">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all ${
-                          item.status === "done"
-                            ? "bg-blue-600 border-blue-600 text-white shadow-sm shadow-blue-200"
-                            : "bg-white border-slate-200 text-slate-400"
-                        }`}>
+                        <div
+                          className="flex items-center justify-center text-xs font-bold"
+                          style={{
+                            width: 32,
+                            height: 32,
+                            borderRadius: "50%",
+                            background: item.status === "done" ? "#2563EB" : "#FFFFFF",
+                            border: item.status === "done" ? "none" : "2px solid #E2E8F0",
+                            color: item.status === "done" ? "#FFFFFF" : "#94A3B8",
+                            boxShadow: item.status === "done" ? "0 1px 4px rgba(37,99,235,0.25)" : "none",
+                          }}
+                        >
                           {item.status === "done" ? (
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                             </svg>
                           ) : (
