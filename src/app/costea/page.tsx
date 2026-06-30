@@ -359,7 +359,7 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#f1f5f9" toColor="#0F172A" flip={true} />
+      <WaveDivider fromColor="#f1f5f9" toColor="#0F172A" />
 
       {/* ─── CTA ─── */}
       <section className="relative py-28 px-4 bg-[#0F172A] text-white overflow-hidden">

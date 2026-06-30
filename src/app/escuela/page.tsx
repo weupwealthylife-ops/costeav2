@@ -549,7 +549,7 @@ export default function EscuelaPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#ffffff" toColor="#0F172A" flip={true} />
+      <WaveDivider fromColor="#ffffff" toColor="#0F172A" />
       <Footer />
     </>
   );
