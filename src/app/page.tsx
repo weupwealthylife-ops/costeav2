@@ -83,7 +83,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
 
           {/* 2-col layout: copy left, proof card right */}
-          <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 items-center pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 items-center pb-24">
 
             {/* LEFT — copy */}
             <div>
@@ -138,27 +138,27 @@ export default function HomePage() {
                 {/* iPhone shell */}
                 <div
                   className="relative"
-                  style={{ width: 260, filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.6))" }}
+                  style={{ width: 220, filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.6))" }}
                 >
                   {/* Phone body */}
                   <div
-                    className="relative rounded-[44px] overflow-hidden"
+                    className="relative rounded-[38px] overflow-hidden"
                     style={{
                       background: "#0F172A",
-                      border: "8px solid #1E293B",
+                      border: "7px solid #1E293B",
                       outline: "1px solid rgba(255,255,255,0.12)",
                       boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06)",
                     }}
                   >
                     {/* Dynamic island */}
-                    <div className="flex justify-center pt-3 pb-1">
-                      <div className="w-20 h-6 rounded-full" style={{ background: "#000" }} />
+                    <div className="flex justify-center pt-2.5 pb-1">
+                      <div className="w-16 h-5 rounded-full" style={{ background: "#000" }} />
                     </div>
 
                     {/* Screen content */}
-                    <div className="px-0 pb-4" style={{ background: "#0F172A" }}>
+                    <div className="px-0 pb-2" style={{ background: "#0F172A" }}>
                       {/* App header */}
-                      <div className="flex items-center justify-between px-4 py-2.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                      <div className="flex items-center justify-between px-3 py-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                         <div className="flex items-center gap-1.5">
                           <div className="w-4 h-4 rounded bg-blue-600 flex items-center justify-center shrink-0">
                             <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -171,7 +171,7 @@ export default function HomePage() {
                       </div>
 
                       {/* Course progress bar */}
-                      <div className="px-4 py-2.5">
+                      <div className="px-3 py-2">
                         <div className="flex items-center justify-between mb-1.5">
                           <span className="text-[9px] text-slate-400">Fundamentos de Costos</span>
                           <span className="text-[9px] font-semibold text-blue-400">40%</span>
@@ -182,7 +182,7 @@ export default function HomePage() {
                       </div>
 
                       {/* Video thumbnail */}
-                      <div className="relative mx-3 rounded-xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                      <div className="relative mx-2.5 rounded-xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
                         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #1e3a5f 0%, #0d2562 50%, #1d4ed8 100%)" }} />
                         <div className="absolute inset-0 opacity-10" style={{
                           backgroundImage: "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
@@ -207,7 +207,7 @@ export default function HomePage() {
                       </div>
 
                       {/* Lesson list */}
-                      <div className="px-3 pt-2 space-y-0.5">
+                      <div className="px-2.5 pt-1.5 space-y-0.5">
                         {[
                           { n: "01", title: "¿Qué es un costo?", done: true },
                           { n: "02", title: "Materiales directos", done: true },
@@ -248,9 +248,9 @@ export default function HomePage() {
                   </div>
 
                   {/* Side buttons */}
-                  <div className="absolute -left-[10px] top-24 w-[4px] h-8 rounded-l-sm" style={{ background: "#1E293B" }} />
-                  <div className="absolute -left-[10px] top-36 w-[4px] h-8 rounded-l-sm" style={{ background: "#1E293B" }} />
-                  <div className="absolute -right-[10px] top-28 w-[4px] h-12 rounded-r-sm" style={{ background: "#1E293B" }} />
+                  <div className="absolute -left-[9px] top-20 w-[4px] h-7 rounded-l-sm" style={{ background: "#1E293B" }} />
+                  <div className="absolute -left-[9px] top-32 w-[4px] h-7 rounded-l-sm" style={{ background: "#1E293B" }} />
+                  <div className="absolute -right-[9px] top-24 w-[4px] h-10 rounded-r-sm" style={{ background: "#1E293B" }} />
                 </div>
               </Reveal>
             </div>
