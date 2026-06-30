@@ -184,17 +184,12 @@ export default function EscuelaPage() {
       <section className="bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-700 text-white">
         <div className="px-4 pt-32 pb-20 max-w-5xl mx-auto">
           <div className="max-w-3xl">
-            <Reveal>
-              <p className="text-blue-400 text-xs font-semibold tracking-[0.2em] uppercase mb-6">
-                {t("Escuela de Costos · Costea", "School of Costs · Costea")}
-              </p>
-            </Reveal>
             <Reveal delay={1}>
               <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8 text-white">
                 {lang === "es" ? (
-                  <>Domina los costos<br />de tu negocio.<br /><span className="text-blue-300">Toma el control.</span></>
+                  <>Domina los costos<br />de tu negocio.</>
                 ) : (
-                  <>Master the costs<br />of your business.<br /><span className="text-blue-300">Take control.</span></>
+                  <>Master the costs<br />of your business.</>
                 )}
               </h1>
             </Reveal>
@@ -239,8 +234,8 @@ export default function EscuelaPage() {
             ].map((s, i) => (
               <Reveal key={s.label} delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
                 <div className="bg-white/8 border border-white/12 rounded-2xl px-5 py-5 backdrop-blur-sm">
-                  <div className="text-3xl font-extrabold tracking-tight text-white">{s.value}</div>
-                  <div className="text-slate-400 text-xs mt-1.5">{s.label}</div>
+                  <div className="text-3xl font-extrabold tracking-tight" style={{ color: "#FFFFFF", fontWeight: 800 }}>{s.value}</div>
+                  <div className="text-xs mt-1.5" style={{ color: "#94A3B8" }}>{s.label}</div>
                 </div>
               </Reveal>
             ))}
@@ -269,15 +264,19 @@ export default function EscuelaPage() {
                 </h2>
               </div>
             </Reveal>
-            <div className="space-y-0 divide-y divide-gray-100">
+            <div className="space-y-4">
               {problems.map((p, i) => (
                 <Reveal key={p.label} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
-                  <div className="flex gap-6 py-8">
-                    <span className="text-xs font-bold text-blue-600 tracking-widest shrink-0 mt-1">{p.label}</span>
-                    <div>
-                      <h3 className="font-bold tracking-tight text-gray-900 text-lg mb-2">{p.title}</h3>
-                      <p className="text-slate-500 text-sm leading-relaxed">{p.desc}</p>
-                    </div>
+                  <div
+                    className="bg-white p-6"
+                    style={{
+                      borderLeft: "3px solid #2563EB",
+                      borderRadius: "0 12px 12px 0",
+                    }}
+                  >
+                    <span className="block text-[13px] font-bold mb-2" style={{ color: "#2563EB" }}>{p.label}</span>
+                    <h3 className="font-bold tracking-tight text-gray-900 mb-2" style={{ fontSize: "17px" }}>{p.title}</h3>
+                    <p className="leading-relaxed" style={{ fontSize: "15px", lineHeight: 1.6, color: "#475569" }}>{p.desc}</p>
                   </div>
                 </Reveal>
               ))}
@@ -340,7 +339,7 @@ export default function EscuelaPage() {
       {/* ─── How it works ─── */}
       <section className="py-28 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-20 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-20 items-center">
             <Reveal className="lg:sticky lg:top-28">
               <div>
                 <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
@@ -434,7 +433,7 @@ export default function EscuelaPage() {
                           {course.level}
                         </span>
                         {course.free && (
-                          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+                          <span className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full" style={{ background: "#F0FDF4", color: "#15803D" }}>
                             {t("Gratis", "Free")}
                           </span>
                         )}
@@ -448,7 +447,7 @@ export default function EscuelaPage() {
                     {/* Right side */}
                     <div className="flex items-center gap-3 shrink-0">
                       {!course.free && (
-                        <span className="hidden sm:block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-50 text-slate-500">
+                        <span className="text-[11px] font-semibold px-2 py-[3px] rounded-full" style={{ background: "#F8FAFC", color: "#64748B" }}>
                           {t("Requiere cuenta", "Requires account")}
                         </span>
                       )}
@@ -465,10 +464,10 @@ export default function EscuelaPage() {
                     </div>
                   </div>
 
-                  {/* Lock icon top-right for locked courses */}
+                  {/* Lock icon top-right for locked courses — always visible */}
                   {!course.free && (
-                    <div className="absolute top-4 right-4 sm:hidden">
-                      <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="absolute top-4 right-4">
+                      <svg className="w-4 h-4" style={{ color: "#94A3B8" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                       </svg>
                     </div>
@@ -481,7 +480,7 @@ export default function EscuelaPage() {
       </section>
 
       {/* ─── Testimonials — light section ─── */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 bg-[#F8FAFC]">
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <div className="mb-12">
