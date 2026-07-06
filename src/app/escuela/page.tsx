@@ -461,7 +461,12 @@ export default function EscuelaPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((item, i) => (
               <Reveal key={item.name} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
-                <div className="bg-white/5 border border-white/8 rounded-2xl p-8 h-full flex flex-col">
+                <div className={`bg-white/5 border border-white/8 rounded-2xl p-8 h-full flex flex-col ${i === 2 ? "hidden md:flex" : ""}`}>
+                  <div className="flex gap-0.5 mb-5">
+                    {[...Array(5)].map((_, s) => (
+                      <span key={s} className="text-amber-400 text-sm">★</span>
+                    ))}
+                  </div>
                   <p className="text-gray-300 text-sm leading-relaxed mb-8 flex-1">"{item.text}"</p>
                   <div className="border-t border-white/10 pt-5">
                     <div className="font-bold tracking-tight text-white">{item.name}</div>

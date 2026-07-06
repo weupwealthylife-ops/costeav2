@@ -91,6 +91,32 @@ export default function HomePage() {
           </Reveal>
         </div>
 
+        {/* Mobile preview card — hidden on desktop where the iPhone mockup lives */}
+        <div className="lg:hidden max-w-sm mx-auto mt-10 bg-white/10 border border-white/15 rounded-2xl p-5 backdrop-blur-sm text-left">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white text-xs font-bold">E</div>
+            <div>
+              <div className="text-white text-sm font-bold">Escuela de Costos</div>
+              <div className="text-blue-300/60 text-xs">Fundamentos de Costos · 40%</div>
+            </div>
+          </div>
+          <div className="space-y-2">
+            {[
+              { label: "¿Qué es un costo?", done: true },
+              { label: "Materiales directos", done: true },
+              { label: "Costos fijos vs. variables", active: true },
+              { label: "Punto de equilibrio", done: false },
+            ].map((l) => (
+              <div key={l.label} className={`flex items-center gap-3 rounded-lg px-3 py-2 text-xs ${l.active ? "bg-white/15 text-white font-semibold" : "text-blue-200/60"}`}>
+                <span className={`w-4 h-4 rounded-full shrink-0 flex items-center justify-center text-[10px] ${l.done ? "bg-green-500 text-white" : l.active ? "bg-blue-400 text-white" : "bg-white/10"}`}>
+                  {l.done ? "✓" : ""}
+                </span>
+                {l.label}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Stats seamlessly below */}
         <div className="max-w-5xl mx-auto mt-20 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
