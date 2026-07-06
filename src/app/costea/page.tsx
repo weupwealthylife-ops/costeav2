@@ -135,7 +135,7 @@ export default function CosteaAppPage() {
         </div>
         <div className="max-w-5xl mx-auto relative">
           <div className="max-w-3xl">
-            <Reveal>
+            <Reveal variant="blur">
               <p className="text-blue-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
                 Costea App · {t("Plataforma de Costos", "Cost Platform")}
               </p>
@@ -195,7 +195,7 @@ export default function CosteaAppPage() {
           </Reveal>
 
           {/* Featured primary tool */}
-          <Reveal>
+          <Reveal variant="scale">
             <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-[#1d4ed8] rounded-3xl p-8 md:p-10 mb-5 shadow-[0_16px_56px_-8px_rgba(37,99,235,0.45)] flex flex-col md:flex-row gap-8 md:gap-16 items-start relative overflow-hidden">
               <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
               <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-blue-500/20 rounded-full translate-y-1/2 pointer-events-none" />
@@ -247,7 +247,7 @@ export default function CosteaAppPage() {
           {/* Secondary tools */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {tools.slice(1).map((tool, i) => (
-              <Reveal key={tool.title.toString()} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
+              <Reveal key={tool.title.toString()} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
                 <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col h-full shadow-sm hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.12)] hover:border-blue-100 hover:-translate-y-0.5 transition-all duration-300 ease-out group">
                   <div className="mb-4">
                     <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full border ${tool.tagColor}`}>
@@ -331,7 +331,7 @@ export default function CosteaAppPage() {
               <div className="absolute left-1.5 top-2 bottom-2 w-0.5 bg-gray-200" />
               <div className="space-y-0">
                 {roadmap.map((item, i) => (
-                  <Reveal key={item.title.toString()} delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
+                  <Reveal key={item.title.toString()} variant="left" delay={(i % 5) as 0 | 1 | 2 | 3 | 4}>
                     <div className="flex gap-6 pb-8">
                       <div className={`w-3.5 h-3.5 rounded-full mt-1.5 shrink-0 z-10 ring-4 ring-gray-50 ${statusStyle[item.status]}`} />
                       <div className="flex-1 bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:border-gray-200 transition-colors">

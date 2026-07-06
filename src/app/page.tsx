@@ -56,7 +56,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-600 text-white py-32 px-4">
         <div className="max-w-5xl mx-auto text-center">
-          <Reveal>
+          <Reveal variant="blur">
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
               {lang === "es" ? (
                 <>Aprende a costear<br />y toma <span className="text-blue-300">decisiones inteligentes</span></>
@@ -120,7 +120,7 @@ export default function HomePage() {
         {/* Stats seamlessly below */}
         <div className="max-w-5xl mx-auto mt-20 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
+            <Reveal key={s.label} variant="fade" delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
               <div className="text-4xl font-extrabold tracking-tight text-white">{s.value}</div>
               <div className="text-blue-200/60 text-sm mt-2">{s.label}</div>
             </Reveal>
@@ -150,7 +150,7 @@ export default function HomePage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {features.map((f, i) => (
-              <Reveal key={f.step} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
+              <Reveal key={f.step} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
                 <div className={`rounded-2xl p-8 transition-all duration-300 ease-out group hover:-translate-y-1 h-full flex flex-col ${
                   i === 0
                     ? "bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-[0_8px_40px_-8px_rgba(37,99,235,0.5)]"
@@ -190,7 +190,7 @@ export default function HomePage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/10 rounded-full blur-3xl" />
         </div>
         <div className="max-w-3xl mx-auto text-center relative">
-          <Reveal>
+          <Reveal variant="blur">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-5">
               {lang === "es" ? (
                 <>¿Listo para empezar?</>

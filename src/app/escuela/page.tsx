@@ -180,7 +180,7 @@ export default function EscuelaPage() {
                   {t("Escuela de Costos · Costea", "School of Costs · Costea")}
                 </p>
               </Reveal>
-              <Reveal delay={1}>
+              <Reveal variant="blur" delay={1}>
                 <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
                   {lang === "es" ? (
                     <>Domina los costos<br />de tu negocio.<br /><span className="text-blue-300">Toma el control.</span></>
@@ -319,7 +319,7 @@ export default function EscuelaPage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
             {problems.map((p, i) => (
-              <Reveal key={p.label} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
+              <Reveal key={p.label} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
                 <div className="relative bg-white border border-gray-100 rounded-2xl p-8 shadow-[0_2px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_32px_rgba(37,99,235,0.1)] hover:border-blue-100 transition-all duration-300 group h-full flex flex-col">
                   <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
                     <span className="text-blue-600 font-extrabold text-xs tracking-widest">{p.label}</span>
@@ -366,7 +366,7 @@ export default function EscuelaPage() {
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {benefits.map((b, i) => (
-              <Reveal key={b.title.toString()} delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
+              <Reveal key={b.title.toString()} variant="fade" delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
                 <div className="border-t-2 border-blue-600 pt-6">
                   <span className="text-xs font-bold text-blue-400 tracking-[0.15em]">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="font-extrabold tracking-tight text-gray-900 text-lg mt-4 mb-2">{b.title}</h3>
@@ -412,7 +412,7 @@ export default function EscuelaPage() {
               <div className="absolute left-[15px] top-3 bottom-3 w-px bg-gray-100" />
               <div className="space-y-3">
                 {journey.map((j, i) => (
-                  <Reveal key={j.step} delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
+                  <Reveal key={j.step} variant="left" delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
                     <div className="flex gap-5 group">
                       <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-extrabold z-10 mt-2.5 border-2 transition-all duration-300 ${
                         i === 0
@@ -456,7 +456,7 @@ export default function EscuelaPage() {
           {/* Compact course rows */}
           <div className="space-y-3">
             {courses.map((course, i) => (
-              <Reveal key={course.slug} delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
+              <Reveal key={course.slug} variant="left" delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
                 <div className="bg-white border border-gray-100 rounded-2xl px-6 py-5 hover:border-blue-100 hover:shadow-[0_4px_24px_-6px_rgba(37,99,235,0.12)] hover:-translate-y-px transition-all duration-300 ease-out">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                     {/* Step number */}
@@ -525,7 +525,7 @@ export default function EscuelaPage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((item, i) => (
-              <Reveal key={item.name} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
+              <Reveal key={item.name} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
                 <div className={`bg-white/5 border border-white/8 rounded-2xl p-8 h-full flex flex-col ${i === 2 ? "hidden md:flex" : ""}`}>
                   <div className="flex gap-0.5 mb-5">
                     {[...Array(5)].map((_, s) => (
