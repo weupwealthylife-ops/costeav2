@@ -353,16 +353,13 @@ export default function CosteaAppPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-28 px-4 bg-gradient-to-b from-gray-950 via-[#0d1f5c] to-gray-950 text-white overflow-hidden">
-        {/* Space glow */}
+      <section className="relative py-28 px-4 bg-[#F8FAFC] overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/10 rounded-full blur-3xl" />
-          <div className="absolute top-0 right-1/4 w-64 h-64 bg-blue-500/6 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-blue-700/8 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-100/60 rounded-full blur-3xl" />
         </div>
         <div className="max-w-3xl mx-auto text-center relative">
           <Reveal>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-5">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 mb-5">
               {lang === "es" ? (
                 <>Empieza a gestionar tus<br />costos hoy mismo.</>
               ) : (
@@ -371,7 +368,7 @@ export default function CosteaAppPage() {
             </h2>
           </Reveal>
           <Reveal delay={1}>
-            <p className="text-gray-400 mb-10 leading-relaxed">
+            <p className="text-gray-500 mb-10 leading-relaxed">
               {t(
                 "Inicia sesión en Costea App o usa la calculadora gratuita sin registro.",
                 "Sign in to Costea App or use the free calculator without registration."
@@ -382,13 +379,13 @@ export default function CosteaAppPage() {
                 href="https://app.costea.com.co/login"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-base font-bold transition-all duration-300 ease-out shadow-lg shadow-blue-900/40 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-base font-bold transition-all duration-300 ease-out shadow-lg shadow-blue-200 hover:-translate-y-0.5"
               >
                 {t("Entrar a Costea App →", "Go to Costea App →")}
               </Link>
               <Link
                 href="/costea/calculadora"
-                className="inline-flex items-center justify-center bg-white/10 hover:bg-white/18 border border-white/20 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
+                className="inline-flex items-center justify-center bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 hover:border-blue-200 hover:text-blue-700 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
               >
                 {t("Usar la Calculadora gratis", "Use the Calculator free")}
               </Link>

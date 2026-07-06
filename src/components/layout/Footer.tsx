@@ -8,7 +8,7 @@ export default function Footer() {
   const { t } = useLang();
 
   return (
-    <footer className="relative bg-gradient-to-b from-[#0F172A] to-[#1E3A5F] overflow-hidden">
+    <footer className="relative bg-gradient-to-b from-[#0a0f1e] via-[#0d1b3e] to-[#1a3a6b] overflow-hidden">
       {/* Subtle glow accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-48 bg-blue-600/8 rounded-full blur-3xl" />
@@ -32,7 +32,7 @@ export default function Footer() {
               />
               <div className="flex flex-col leading-tight">
                 <span className="text-white font-semibold text-base tracking-tight">
-                  {t("Escuela de Costos", "School of Costs")}
+                  {t("Escuela De Costos", "School of Costs")}
                 </span>
                 <span className="text-slate-400 text-xs">by Costea®</span>
               </div>

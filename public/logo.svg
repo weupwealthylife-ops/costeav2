@@ -1,12 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Mortarboard flat top -->
-  <polygon points="32,10 58,22 32,34 6,22" stroke="#2563EB" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
-  <!-- Body / bowl of cap -->
-  <path d="M14,26 L14,42 C14,42 32,52 50,42 L50,26" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Mortarboard flat top — filled -->
+  <polygon points="32,8 60,22 32,36 4,22" fill="#2563EB"/>
+  <!-- Cap body / bowl — filled -->
+  <path d="M16,27 L16,43 C16,49 32,55 32,55 C32,55 48,49 48,43 L48,27" fill="#2563EB"/>
+  <!-- Cap body shadow for depth -->
+  <path d="M16,27 L16,43 C16,49 32,55 32,55 L32,36 L16,27Z" fill="#1D4ED8"/>
   <!-- Tassel cord -->
-  <line x1="58" y1="22" x2="58" y2="38" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/>
-  <!-- Tassel knot -->
-  <circle cx="58" cy="42" r="4" fill="#2563EB"/>
-  <!-- Center dot on cap -->
-  <circle cx="32" cy="22" r="3" fill="#2563EB"/>
+  <line x1="60" y1="22" x2="60" y2="40" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Tassel ball -->
+  <circle cx="60" cy="44" r="4" fill="#2563EB"/>
+  <!-- Highlight on top face -->
+  <polygon points="32,8 60,22 32,36 4,22" fill="url(#shine)" opacity="0.12"/>
+  <defs>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="white"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
 </svg>
