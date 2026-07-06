@@ -2,8 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { signup } from "../actions";
+import BrandLogo from "@/components/ui/BrandLogo";
+
+const benefits = [
+  { icon: "📚", text: "Acceso al primer curso completo — 100% gratis" },
+  { icon: "🧮", text: "Calculadora de costos sin límite de productos" },
+  { icon: "📊", text: "Dashboard con tus costos y márgenes en tiempo real" },
+  { icon: "🎓", text: "Certificado al completar cada nivel" },
+];
 
 export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
@@ -19,138 +26,98 @@ export default function SignupPage() {
     }
   }
 
-  /* Shared input class — explicit white bg + dark text so it's always visible */
-  const inputClass =
-    "w-full bg-white text-slate-900 border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10 placeholder:text-slate-400 transition-shadow";
-
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-row-reverse">
+      {/* Right panel — brand + benefits */}
+      <div className="hidden lg:flex lg:w-[52%] bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-700 text-white flex-col justify-between p-12 relative overflow-hidden">
+        <div className="absolute top-1/3 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-blue-400/8 rounded-full blur-3xl pointer-events-none" />
 
-      {/* ── Left — brand panel ── */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-700 flex-col justify-between p-12 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-blue-400/8 rounded-full blur-3xl" />
-        </div>
-
-        {/* Logo */}
-        <Link href="/" className="relative flex items-center gap-3">
-          <Image src="/logo.svg" alt="Escuela de Costos" width={36} height={36} />
-          <div className="flex flex-col leading-tight">
-            <span className="text-white font-extrabold text-base tracking-tight">Escuela de Costos</span>
-            <span className="text-blue-300/60 text-xs">by Costea®</span>
-          </div>
-        </Link>
-
-        {/* Headline + benefits */}
         <div className="relative">
-          <p className="text-blue-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">Únete gratis hoy</p>
-          <h2 className="text-4xl font-bold text-white tracking-tight leading-[1.1] mb-6">
-            Tu negocio merece<br />decisiones basadas<br />en datos reales.
-          </h2>
-          <ul className="space-y-3">
-            {[
-              "Primer curso 100% gratis, sin tarjeta",
-              "Aprende a tu ritmo, desde cualquier dispositivo",
-              "Herramientas de costos incluidas con tu cuenta",
-              "Certificación al completar cada nivel",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2.5">
-                {/* Checkmark: #60A5FA = text-blue-400 */}
-                <span className="text-blue-400 font-bold mt-px shrink-0">✓</span>
-                <span className="text-slate-200 text-[15px] leading-snug">{item}</span>
-              </li>
-            ))}
-          </ul>
+          <BrandLogo theme="dark" />
         </div>
 
-        {/* Stats */}
-        <div className="relative border-t border-white/10 pt-8 grid grid-cols-3 gap-6">
-          {[
-            { value: "1,200+", label: "Estudiantes activos" },
-            { value: "12", label: "Cursos disponibles" },
-            { value: "40h+", label: "Contenido" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="text-[32px] font-extrabold text-white tracking-tight leading-none">{s.value}</div>
-              <div className="text-slate-400 text-[13px] font-medium mt-1.5">{s.label}</div>
-            </div>
-          ))}
+        <div className="relative max-w-md">
+          <p className="text-blue-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
+            Empieza gratis hoy
+          </p>
+          <h2 className="text-4xl font-extrabold tracking-tight leading-[1.1] mb-6">
+            Todo lo que necesitas<br />para dominar los<br />costos de tu negocio.
+          </h2>
+          <p className="text-blue-100/70 leading-relaxed mb-10">
+            Sin tarjeta de crédito. Sin jerga contable. Con los números reales de tu negocio.
+          </p>
+          <div className="space-y-4">
+            {benefits.map((b) => (
+              <div key={b.text} className="flex items-start gap-3">
+                <span className="text-xl shrink-0 mt-0.5">{b.icon}</span>
+                <span className="text-blue-100/80 text-sm leading-relaxed">{b.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative text-blue-300/40 text-xs">
+          © {new Date().getFullYear()} Costea®. Todos los derechos reservados.
         </div>
       </div>
 
-      {/* ── Right — form panel ── */}
-      <div className="flex-1 flex items-center justify-center px-6 py-16 bg-white">
+      {/* Left panel — form */}
+      <div className="flex-1 min-h-screen flex flex-col items-center justify-center px-6 py-12 bg-white">
+        {/* Mobile logo */}
+        <div className="lg:hidden mb-8">
+          <BrandLogo theme="light" />
+        </div>
+
         <div className="w-full max-w-sm">
-
-          {/* Mobile logo */}
-          <Link href="/" className="lg:hidden flex items-center gap-2.5 mb-10 justify-center">
-            <Image src="/logo.svg" alt="Escuela de Costos" width={30} height={30} />
-            <div className="flex flex-col leading-tight">
-              <span className="text-sm font-extrabold tracking-tight text-gray-900">Escuela de Costos</span>
-              <span className="text-[9px] text-gray-400">by Costea®</span>
-            </div>
-          </Link>
-
-          <div className="mb-8">
-            <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-1">Crea tu cuenta gratuita</h1>
-            <p className="text-slate-500 text-sm">Sin tarjeta de crédito · Primer curso gratis</p>
-          </div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-1">Crea tu cuenta gratuita</h1>
+          <p className="text-gray-500 text-sm mb-8">Accede a la Escuela de Costos y a la Costea App</p>
 
           {error && (
-            <div className="mb-5 p-3.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
+            <div className="mb-5 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
               {error}
             </div>
           )}
 
           <form action={handleSubmit} className="space-y-4">
-
-            {/* Nombre */}
             <div>
-              <label className="text-slate-700 text-sm font-medium block mb-1.5">
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 Nombre completo
               </label>
               <input
                 name="name"
                 type="text"
                 required
-                autoComplete="name"
-                className={inputClass}
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="Tu nombre completo"
               />
             </div>
-
-            {/* Correo */}
             <div>
-              <label className="text-slate-700 text-sm font-medium block mb-1.5">
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 Correo electrónico
               </label>
               <input
                 name="email"
                 type="email"
                 required
-                autoComplete="email"
-                className={inputClass}
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="tu@correo.com"
               />
             </div>
-
-            {/* Teléfono — optional */}
             <div>
-              <label className="text-slate-700 text-sm font-medium block mb-1.5">
-                Teléfono / WhatsApp <span className="text-slate-400 font-normal">(opcional)</span>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                Teléfono / WhatsApp
               </label>
               <input
                 name="phone"
                 type="tel"
-                className={inputClass}
-                placeholder="Tu WhatsApp (opcional)"
+                required
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
+                placeholder="+57 300 000 0000"
               />
             </div>
-
-            {/* Contraseña */}
             <div>
-              <label className="text-slate-700 text-sm font-medium block mb-1.5">
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 Contraseña
               </label>
               <input
@@ -158,30 +125,26 @@ export default function SignupPage() {
                 type="password"
                 required
                 minLength={6}
-                autoComplete="new-password"
-                className={inputClass}
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="Mínimo 6 caracteres"
               />
             </div>
-
-            {/* Submit button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 rounded-xl font-semibold text-base transition-all duration-200 hover:-translate-y-px shadow-lg shadow-blue-200 disabled:opacity-60 disabled:translate-y-0 mt-2 cursor-pointer"
+              className="w-full bg-blue-600 text-white py-3.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition-colors disabled:opacity-60 shadow-lg shadow-blue-200 mt-2"
             >
               {loading ? "Creando cuenta..." : "Crear cuenta gratuita →"}
             </button>
-
-            {/* Micro-trust line */}
-            <p className="text-center text-xs text-slate-500 mt-2.5">
-              🔒 Sin tarjeta de crédito · Sin spam · Cancela cuando quieras
-            </p>
           </form>
 
-          <p className="mt-6 text-center text-sm text-gray-500">
+          <p className="mt-4 text-xs text-gray-400 text-center">
+            Sin tarjeta de crédito · Primer curso 100% gratis
+          </p>
+
+          <p className="mt-4 text-center text-sm text-gray-500">
             ¿Ya tienes cuenta?{" "}
-            <Link href="/auth/login" className="text-blue-600 font-bold hover:text-blue-700">
+            <Link href="/auth/login" className="text-blue-600 font-semibold hover:text-blue-700">
               Inicia sesión
             </Link>
           </p>

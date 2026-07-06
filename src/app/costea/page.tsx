@@ -4,11 +4,61 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
-import { WaveDivider } from "@/components/ui/WaveDivider";
 import { useLang } from "@/contexts/LanguageContext";
 
 export default function CosteaAppPage() {
   const { t, lang } = useLang();
+
+  const tools = [
+    {
+      tag: t("Disponible ahora", "Available now"),
+      tagColor: "bg-blue-100 text-blue-700 border-blue-100",
+      title: t("Calculadora de Costos", "Cost Calculator"),
+      description: t(
+        "Ingresa tus insumos, mano de obra y gastos indirectos. Costea calcula el costo unitario y el precio mínimo de venta con el margen que tú defines.",
+        "Enter your inputs, labor and overhead. Costea calculates unit cost and minimum selling price with the margin you define."
+      ),
+      href: "/costea/calculadora",
+      cta: t("Abrir calculadora →", "Open calculator →"),
+      primary: true,
+    },
+    {
+      tag: t("Próximamente", "Coming soon"),
+      tagColor: "bg-amber-50 text-amber-700 border-amber-100",
+      title: t("Punto de Equilibrio", "Break-Even Analysis"),
+      description: t(
+        "Descubre cuántas unidades necesitas vender para cubrir todos tus costos fijos y comenzar a generar utilidad real.",
+        "Discover how many units you need to sell to cover all fixed costs and start generating real profit."
+      ),
+      href: "#roadmap",
+      cta: t("Ver hoja de ruta", "View roadmap"),
+      primary: false,
+    },
+    {
+      tag: t("Próximamente", "Coming soon"),
+      tagColor: "bg-amber-50 text-amber-700 border-amber-100",
+      title: t("Análisis de Rentabilidad", "Profitability Analysis"),
+      description: t(
+        "Compara todos tus productos en una sola vista. Descubre cuáles generan más margen y cuáles te están haciendo perder dinero.",
+        "Compare all your products in one view. Discover which generate the most margin and which are losing you money."
+      ),
+      href: "#roadmap",
+      cta: t("Ver hoja de ruta", "View roadmap"),
+      primary: false,
+    },
+    {
+      tag: t("Próximamente", "Coming soon"),
+      tagColor: "bg-amber-50 text-amber-700 border-amber-100",
+      title: t("Reportes Exportables", "Exportable Reports"),
+      description: t(
+        "Genera un PDF o Excel con el resumen de tus costos, precio sugerido y utilidad proyectada para compartir con tu equipo o contador.",
+        "Generate a PDF or Excel with your cost summary, suggested price and projected profit to share with your team or accountant."
+      ),
+      href: "#roadmap",
+      cta: t("Ver hoja de ruta", "View roadmap"),
+      primary: false,
+    },
+  ];
 
   const roadmap = [
     {
@@ -65,46 +115,20 @@ export default function CosteaAppPage() {
   };
 
   const statusTagStyle: Record<string, string> = {
-    done:    "bg-[#F0FDF4] text-[#15803D]",
-    soon:    "bg-[#FFF7ED] text-[#C2410C]",
-    planned: "bg-[#F8FAFC] text-[#64748B]",
+    done: "bg-blue-50 text-blue-700 border border-blue-100",
+    soon: "bg-amber-50 text-amber-700 border border-amber-100",
+    planned: "bg-gray-100 text-gray-500 border border-gray-200",
   };
 
   const doneCount = roadmap.filter(r => r.status === "done").length;
-
-  const comingSoon = [
-    {
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-        </svg>
-      ),
-      title: t("Punto de Equilibrio", "Break-Even Analysis"),
-    },
-    {
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-      ),
-      title: t("Reportes Exportables", "Exportable Reports"),
-    },
-    {
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-        </svg>
-      ),
-      title: t("Comparador de Escenarios", "Scenario Comparator"),
-    },
-  ];
 
   return (
     <>
       <Navbar />
 
-      {/* ─── Hero ─── */}
+      {/* Hero */}
       <section className="relative bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-700 text-white py-32 px-4 overflow-hidden">
+        {/* Space glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/8 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl" />
@@ -115,7 +139,7 @@ export default function CosteaAppPage() {
               <p className="text-blue-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
                 Costea App · {t("Plataforma de Costos", "Cost Platform")}
               </p>
-              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8 text-white">
+              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
                 {lang === "es" ? (
                   <>Gestiona los costos<br />de tu negocio.<br /><span className="text-blue-300">Sin complicaciones.</span></>
                 ) : (
@@ -124,7 +148,7 @@ export default function CosteaAppPage() {
               </h1>
             </Reveal>
             <Reveal delay={1}>
-              <p className="text-slate-300 text-xl leading-relaxed mb-10 max-w-xl">
+              <p className="text-blue-100/70 text-xl leading-relaxed mb-10 max-w-xl">
                 {t(
                   "Sin hojas de cálculo. Sin fórmulas manuales. Solo ingresa tus datos y Costea App hace los cálculos por ti en segundos.",
                   "No spreadsheets. No manual formulas. Just enter your data and Costea App does the calculations for you in seconds."
@@ -143,7 +167,7 @@ export default function CosteaAppPage() {
                 </Link>
                 <Link
                   href="/costea/calculadora"
-                  className="inline-flex items-center justify-center bg-white/10 hover:bg-white/18 border border-white/25 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
+                  className="inline-flex items-center justify-center bg-white/12 hover:bg-white/20 border border-white/25 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
                 >
                   {t("Usar la Calculadora gratis", "Use the Calculator free")}
                 </Link>
@@ -151,33 +175,39 @@ export default function CosteaAppPage() {
             </Reveal>
           </div>
         </div>
-
       </section>
 
-      <WaveDivider fromColor="#1d4ed8" toColor="#F8FAFC" />
-
-      {/* ─── Calculadora feature spotlight ─── */}
-      <section className="py-20 px-4 bg-[#F8FAFC]">
+      {/* Tools grid */}
+      <section className="py-28 px-4 bg-[#F8FAFC]">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <Reveal>
+            <div className="mb-14 text-center">
+              <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
+                {t("Herramientas", "Tools")}
+              </p>
+              <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">
+                {t("Todo en un solo lugar", "Everything in one place")}
+              </h2>
+              <p className="text-gray-500 mt-3 text-sm">
+                {t("Disponibles ahora y próximamente en Costea App.", "Available now and coming soon to Costea App.")}
+              </p>
+            </div>
+          </Reveal>
 
-            {/* Left: copy */}
-            <Reveal variant="left">
-              <div>
-                <p className="mb-5 text-[12px] font-bold tracking-[0.08em] uppercase" style={{ color: "#16A34A" }}>
-                  {t("DISPONIBLE AHORA", "AVAILABLE NOW")}
-                </p>
-                <h2
-                  className="font-extrabold tracking-tight leading-[1.1] mb-5"
-                  style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#0F172A" }}
-                >
-                  {lang === "es" ? (
-                    <>Calcula el costo real de<br />cualquier producto<br />en minutos.</>
-                  ) : (
-                    <>Calculate the real cost of<br />any product<br />in minutes.</>
-                  )}
-                </h2>
-                <p className="text-base leading-relaxed mb-8 max-w-md" style={{ color: "#475569" }}>
+          {/* Featured primary tool */}
+          <Reveal>
+            <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-[#1d4ed8] rounded-3xl p-8 md:p-10 mb-5 shadow-[0_16px_56px_-8px_rgba(37,99,235,0.45)] flex flex-col md:flex-row gap-8 md:gap-16 items-start relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+              <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-blue-500/20 rounded-full translate-y-1/2 pointer-events-none" />
+              <div className="flex-1 relative">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-white/20 text-white border border-white/20 mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse" />
+                  {t("Disponible ahora", "Available now")}
+                </span>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-3">
+                  {t("Calculadora de Costos", "Cost Calculator")}
+                </h3>
+                <p className="text-blue-100/80 leading-relaxed mb-8 max-w-md">
                   {t(
                     "Ingresa tus insumos, mano de obra y gastos indirectos. Costea calcula el costo unitario y el precio mínimo de venta con el margen que tú defines.",
                     "Enter your inputs, labor and overhead. Costea calculates unit cost and minimum selling price with the margin you define."
@@ -185,91 +215,49 @@ export default function CosteaAppPage() {
                 </p>
                 <Link
                   href="/costea/calculadora"
-                  className="inline-flex items-center justify-center text-white font-semibold transition-all duration-300 ease-out hover:-translate-y-0.5 shadow-lg shadow-blue-200 hover:bg-blue-700"
-                  style={{ background: "#2563EB", borderRadius: 10, padding: "14px 28px" }}
+                  className="inline-flex items-center justify-center bg-white text-blue-700 px-8 py-3.5 rounded-xl text-sm font-bold hover:bg-blue-50 transition-all duration-300 ease-out shadow-lg shadow-blue-900/20 hover:-translate-y-0.5"
                 >
-                  {t("Abrir Calculadora gratis →", "Open Calculator free →")}
+                  {t("Abrir calculadora →", "Open calculator →")}
                 </Link>
               </div>
-            </Reveal>
-
-            {/* Right: product mockup card */}
-            <Reveal variant="right">
-              <div
-                className="bg-white"
-                style={{
-                  border: "1px solid #E2E8F0",
-                  borderRadius: 16,
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
-                  padding: 24,
-                  maxWidth: 420,
-                  marginLeft: "auto",
-                }}
-              >
-                {/* Card header */}
-                <p className="pb-3 mb-4" style={{ fontSize: 12, fontWeight: 500, color: "#64748B", borderBottom: "1px solid #E2E8F0" }}>
-                  {t("Cálculo de costos · Torta de chocolate", "Cost calculation · Chocolate cake")}
-                </p>
-
-                {/* Cost rows */}
-                <div className="space-y-3 mb-4">
-                  {[
-                    { label: t("Materia prima", "Raw materials"), value: "$12,400" },
-                    { label: t("Mano de obra", "Labor"), value: "$3,800" },
-                    { label: t("Gastos indirectos", "Overhead"), value: "$2,300" },
-                  ].map((row) => (
-                    <div key={row.label} className="flex items-center justify-between">
-                      <span style={{ fontSize: 14, color: "#475569" }}>{row.label}</span>
-                      <span style={{ fontSize: 14, fontWeight: 600, color: "#0F172A" }}>{row.value}</span>
-                    </div>
-                  ))}
+              <div className="shrink-0 w-full md:w-72 bg-white/10 border border-white/20 rounded-2xl p-5 backdrop-blur-sm relative">
+                <p className="text-blue-200/70 text-xs font-semibold uppercase tracking-widest mb-4">{t("Vista previa", "Preview")}</p>
+                {[
+                  { label: t("Materia prima", "Raw materials"), value: "$12,400" },
+                  { label: t("Mano de obra", "Labor"), value: "$3,800" },
+                  { label: t("Gastos indirectos", "Overhead"), value: "$2,300" },
+                ].map((row) => (
+                  <div key={row.label} className="flex justify-between text-sm py-2 border-b border-white/10">
+                    <span className="text-blue-100/70">{row.label}</span>
+                    <span className="text-white font-semibold">{row.value}</span>
+                  </div>
+                ))}
+                <div className="flex justify-between text-base font-extrabold text-white pt-3 mt-1">
+                  <span>{t("Costo total", "Total cost")}</span>
+                  <span>$18,500</span>
                 </div>
-
-                {/* Total row */}
-                <div className="flex items-center justify-between py-3 mb-4" style={{ borderTop: "1px solid #E2E8F0" }}>
-                  <span style={{ fontSize: 18, fontWeight: 800, color: "#0F172A" }}>{t("Costo total", "Total cost")}</span>
-                  <span style={{ fontSize: 18, fontWeight: 800, color: "#0F172A" }}>$18,500</span>
-                </div>
-
-                {/* Result chips */}
-                <div className="flex gap-2 flex-wrap">
-                  <span style={{ background: "#F0FDF4", color: "#15803D", borderRadius: 20, fontSize: 13, fontWeight: 600, padding: "6px 14px" }}>
-                    {t("Precio sugerido: $28,000", "Suggested price: $28,000")}
-                  </span>
-                  <span style={{ background: "#EFF6FF", color: "#1D4ED8", borderRadius: 20, fontSize: 13, fontWeight: 600, padding: "6px 14px" }}>
-                    {t("Margen: 51%", "Margin: 51%")}
-                  </span>
+                <div className="flex gap-2 mt-4">
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-green-400/20 text-green-300 border border-green-400/20">{t("Precio sugerido: $28,000", "Suggested price: $28,000")}</span>
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white/15 text-white border border-white/15">{t("Margen: 51%", "Margin: 51%")}</span>
                 </div>
               </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Coming soon — compact strip ─── */}
-      <section className="py-12 px-4 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <Reveal>
-            <h3 className="mb-8" style={{ fontSize: 20, fontWeight: 700, color: "#0F172A" }}>
-              {t("Próximamente en Costea App", "Coming soon to Costea App")}
-            </h3>
+            </div>
           </Reveal>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            {comingSoon.map((item) => (
-              <Reveal key={item.title.toString()} variant="scale">
-                <div className="flex items-center gap-3 rounded-2xl px-4 py-3" style={{ background: "#F8FAFC", border: "1px solid #E2E8F0" }}>
-                  <div
-                    className="flex items-center justify-center shrink-0"
-                    style={{ width: 40, height: 40, borderRadius: 10, background: "#F8FAFC", color: "#94A3B8" }}
-                  >
-                    {item.icon}
-                  </div>
-                  <div className="text-left">
-                    <div style={{ fontSize: 14, fontWeight: 600, color: "#334155" }}>{item.title}</div>
-                    <span style={{ fontSize: 11, color: "#64748B", background: "#F1F5F9", borderRadius: 20, padding: "2px 8px", display: "inline-block", marginTop: 2 }}>
-                      {t("Próximamente", "Coming soon")}
+
+          {/* Secondary tools */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {tools.slice(1).map((tool, i) => (
+              <Reveal key={tool.title.toString()} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
+                <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col h-full shadow-sm hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.12)] hover:border-blue-100 hover:-translate-y-0.5 transition-all duration-300 ease-out group">
+                  <div className="mb-4">
+                    <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full border ${tool.tagColor}`}>
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />
+                      {tool.tag}
                     </span>
                   </div>
+                  <h3 className="font-extrabold text-gray-900 tracking-tight mb-2">{tool.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-6">{tool.description}</p>
+                  <div className="h-0.5 w-8 bg-blue-200 group-hover:w-12 group-hover:bg-blue-400 transition-all duration-300 rounded-full" />
                 </div>
               </Reveal>
             ))}
@@ -277,13 +265,13 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      {/* ─── Roadmap ─── */}
-      <section id="roadmap" className="py-28 px-4 bg-[#f1f5f9]">
+      {/* Roadmap */}
+      <section id="roadmap" className="py-28 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-            {/* Left: sticky panel */}
-            <Reveal variant="left" className="lg:sticky lg:top-28">
+            {/* Left: sticky panel — Apple/Platzi inspired */}
+            <Reveal className="lg:sticky lg:top-28">
               <div>
                 <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                   {t("Hoja de ruta", "Roadmap")}
@@ -302,46 +290,29 @@ export default function CosteaAppPage() {
                   )}
                 </p>
 
-                {/* Visual progress track */}
+                {/* Progress block */}
                 <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm mb-8">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-3">
                     <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">{t("Progreso", "Progress")}</span>
                     <span className="text-sm font-bold text-blue-600">{doneCount}/{roadmap.length} {t("lanzadas", "shipped")}</span>
                   </div>
-
-                  {/* Circle progress track */}
-                  <div className="relative flex items-center mb-4">
-                    {/* Connecting line behind circles */}
-                    <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 h-0.5" style={{ background: "#E2E8F0" }} />
+                  <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-700"
+                      style={{ width: `${(doneCount / roadmap.length) * 100}%` }}
+                    />
+                  </div>
+                  <div className="flex gap-3 mt-4">
                     {roadmap.map((item, i) => (
-                      <div key={i} className="relative z-10 flex-1 flex justify-center">
-                        <div
-                          className="flex items-center justify-center text-xs font-bold"
-                          style={{
-                            width: 32,
-                            height: 32,
-                            borderRadius: "50%",
-                            background: item.status === "done" ? "#2563EB" : "#FFFFFF",
-                            border: item.status === "done" ? "none" : "2px solid #E2E8F0",
-                            color: item.status === "done" ? "#FFFFFF" : "#94A3B8",
-                            boxShadow: item.status === "done" ? "0 1px 4px rgba(37,99,235,0.25)" : "none",
-                          }}
-                        >
-                          {item.status === "done" ? (
-                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                            </svg>
-                          ) : (
-                            i + 1
-                          )}
-                        </div>
-                      </div>
+                      <div
+                        key={i}
+                        className={`flex-1 h-1 rounded-full ${
+                          item.status === "done" ? "bg-blue-500" :
+                          item.status === "soon" ? "bg-amber-300" : "bg-gray-200"
+                        }`}
+                      />
                     ))}
                   </div>
-
-                  <p className="text-slate-500 text-xs text-center">
-                    {doneCount} {t("de", "of")} {roadmap.length} {t("funciones lanzadas", "features launched")}
-                  </p>
                 </div>
 
                 <Link
@@ -381,17 +352,17 @@ export default function CosteaAppPage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="#f1f5f9" toColor="#0F172A" />
-
-      {/* ─── CTA ─── */}
-      <section className="relative py-28 px-4 bg-[#0F172A] text-white overflow-hidden">
+      {/* CTA */}
+      <section className="relative py-28 px-4 bg-gradient-to-b from-gray-950 via-[#0d1f5c] to-gray-950 text-white overflow-hidden">
+        {/* Space glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/10 rounded-full blur-3xl" />
           <div className="absolute top-0 right-1/4 w-64 h-64 bg-blue-500/6 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-blue-700/8 rounded-full blur-3xl" />
         </div>
         <div className="max-w-3xl mx-auto text-center relative">
           <Reveal>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-5 text-white">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-5">
               {lang === "es" ? (
                 <>Empieza a gestionar tus<br />costos hoy mismo.</>
               ) : (
@@ -400,7 +371,7 @@ export default function CosteaAppPage() {
             </h2>
           </Reveal>
           <Reveal delay={1}>
-            <p className="text-slate-400 mb-10 leading-relaxed">
+            <p className="text-gray-400 mb-10 leading-relaxed">
               {t(
                 "Inicia sesión en Costea App o usa la calculadora gratuita sin registro.",
                 "Sign in to Costea App or use the free calculator without registration."
