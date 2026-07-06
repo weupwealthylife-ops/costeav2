@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import "./globals.css";
 
-const inter = Inter({
+const nunito = Nunito({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-nunito",
   display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -20,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-[family-name:var(--font-inter)]">
+    <html lang="es" className={`${nunito.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-[family-name:var(--font-nunito)]">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

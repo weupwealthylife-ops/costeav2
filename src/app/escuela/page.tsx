@@ -171,48 +171,113 @@ export default function EscuelaPage() {
       {/* Hero + Stats — one continuous dark-to-blue gradient */}
       <section className="bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-600 text-white">
         {/* Hero */}
-        <div className="px-4 pt-32 pb-20 max-w-5xl mx-auto">
-          <div className="max-w-3xl">
-            <Reveal>
-              <p className="text-blue-300 text-xs font-semibold tracking-[0.2em] uppercase mb-6">
-                {t("Escuela de Costos · Costea", "School of Costs · Costea")}
-              </p>
-            </Reveal>
-            <Reveal delay={1}>
-              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
-                {lang === "es" ? (
-                  <>Domina los costos<br />de tu negocio.<br /><span className="text-blue-300">Toma el control.</span></>
-                ) : (
-                  <>Master the costs<br />of your business.<br /><span className="text-blue-300">Take control.</span></>
-                )}
-              </h1>
-            </Reveal>
-            <Reveal delay={2}>
-              <p className="text-blue-100/70 text-xl leading-relaxed mb-10 max-w-xl">
-                {t(
-                  "La primera Escuela de Costos para emprendedores colombianos. Aprende, practica y certifícate — sin necesidad de ser contador.",
-                  "The first School of Costs for Colombian entrepreneurs. Learn, practice and get certified — no accounting background needed."
-                )}
-              </p>
-            </Reveal>
-            <Reveal delay={3}>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/auth/signup"
-                  className="inline-flex items-center justify-center bg-white text-blue-700 px-8 py-4 rounded-xl text-base font-bold hover:bg-blue-50 transition-all duration-300 ease-out shadow-xl shadow-black/20 hover:-translate-y-0.5"
-                >
-                  {t("Comenzar gratis", "Get started free")}
-                </Link>
-                <Link
-                  href="#cursos"
-                  className="inline-flex items-center justify-center bg-white/8 hover:bg-white/14 border border-white/15 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
-                >
-                  {t("Ver cursos", "View courses")}
-                </Link>
+        <div className="px-4 pt-32 pb-20 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 items-center">
+            {/* Left: copy */}
+            <div>
+              <Reveal>
+                <p className="text-blue-300 text-xs font-semibold tracking-[0.2em] uppercase mb-6">
+                  {t("Escuela de Costos · Costea", "School of Costs · Costea")}
+                </p>
+              </Reveal>
+              <Reveal delay={1}>
+                <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
+                  {lang === "es" ? (
+                    <>Domina los costos<br />de tu negocio.<br /><span className="text-blue-300">Toma el control.</span></>
+                  ) : (
+                    <>Master the costs<br />of your business.<br /><span className="text-blue-300">Take control.</span></>
+                  )}
+                </h1>
+              </Reveal>
+              <Reveal delay={2}>
+                <p className="text-blue-100/70 text-xl leading-relaxed mb-10 max-w-xl">
+                  {t(
+                    "La primera Escuela de Costos para emprendedores colombianos. Aprende, practica y certifícate — sin necesidad de ser contador.",
+                    "The first School of Costs for Colombian entrepreneurs. Learn, practice and get certified — no accounting background needed."
+                  )}
+                </p>
+              </Reveal>
+              <Reveal delay={3}>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    href="/auth/signup"
+                    className="inline-flex items-center justify-center bg-white text-blue-700 px-8 py-4 rounded-xl text-base font-bold hover:bg-blue-50 transition-all duration-300 ease-out shadow-xl shadow-black/20 hover:-translate-y-0.5"
+                  >
+                    {t("Comenzar gratis", "Get started free")}
+                  </Link>
+                  <Link
+                    href="#cursos"
+                    className="inline-flex items-center justify-center bg-white/8 hover:bg-white/14 border border-white/15 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
+                  >
+                    {t("Ver cursos", "View courses")}
+                  </Link>
+                </div>
+                <p className="mt-6 text-blue-200/60 text-sm">
+                  {t("Sin tarjeta de crédito · Primer curso 100% gratis", "No credit card · First course 100% free")}
+                </p>
+              </Reveal>
+            </div>
+
+            {/* Right: iPhone mockup — hidden on mobile */}
+            <Reveal variant="right" delay={2} className="hidden lg:flex justify-center">
+              <div className="relative" style={{ width: 240, height: 520 }}>
+                {/* iPhone shell */}
+                <div className="absolute inset-0 rounded-[44px] bg-gray-900 shadow-[0_40px_80px_rgba(0,0,0,0.5)] border border-white/10" />
+                {/* Screen */}
+                <div className="absolute inset-[3px] rounded-[41px] bg-[#0f172a] overflow-hidden flex flex-col">
+                  {/* Dynamic island */}
+                  <div className="flex justify-center pt-3 pb-1 shrink-0">
+                    <div className="w-24 h-6 bg-black rounded-full" />
+                  </div>
+                  {/* App header */}
+                  <div className="px-4 pt-2 pb-3 shrink-0 border-b border-white/5">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-white text-[11px] font-bold">Escuela de Costos</span>
+                      <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white text-[8px] font-bold">C</div>
+                    </div>
+                    <div className="text-blue-300/70 text-[9px]">Fundamentos de Costos</div>
+                    <div className="mt-2 h-1 bg-white/10 rounded-full overflow-hidden">
+                      <div className="h-full w-[40%] bg-blue-500 rounded-full" />
+                    </div>
+                  </div>
+                  {/* Video player area */}
+                  <div className="mx-3 mt-3 rounded-xl bg-gradient-to-br from-blue-900 to-blue-700 h-28 flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 mx-3 px-2 pb-1">
+                      <div className="text-white/60 text-[8px]">Lección 3: Costos fijos vs. variables</div>
+                    </div>
+                  </div>
+                  {/* Lessons list */}
+                  <div className="flex-1 px-3 pt-3 overflow-hidden">
+                    {[
+                      { label: "¿Qué es un costo?", done: true },
+                      { label: "Materiales directos", done: true },
+                      { label: "Costos fijos vs. variables", active: true },
+                      { label: "Punto de equilibrio", done: false },
+                      { label: "Margen de contribución", done: false },
+                    ].map((lesson, i) => (
+                      <div key={i} className={`flex items-center gap-2.5 py-2 px-2 rounded-lg mb-1 ${lesson.active ? "bg-blue-600/30 border border-blue-500/30" : ""}`}>
+                        <div className={`w-4 h-4 rounded-full shrink-0 flex items-center justify-center text-[8px] font-bold ${
+                          lesson.done ? "bg-green-500 text-white" : lesson.active ? "bg-blue-500 text-white" : "bg-white/10 text-white/30"
+                        }`}>
+                          {lesson.done ? "✓" : ""}
+                        </div>
+                        <span className={`text-[10px] ${lesson.active ? "text-white font-semibold" : lesson.done ? "text-white/60" : "text-white/30"}`}>
+                          {lesson.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Bottom bar */}
+                  <div className="shrink-0 pb-4 flex justify-center">
+                    <div className="w-24 h-1 bg-white/20 rounded-full" />
+                  </div>
+                </div>
               </div>
-              <p className="mt-6 text-blue-200/60 text-sm">
-                {t("Sin tarjeta de crédito · Primer curso 100% gratis", "No credit card · First course 100% free")}
-              </p>
             </Reveal>
           </div>
         </div>
@@ -442,10 +507,10 @@ export default function EscuelaPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="relative py-28 px-4 bg-gradient-to-b from-gray-950 via-[#070f2b] to-gray-950 text-white overflow-hidden">
+      <section className="relative py-28 px-4 bg-gradient-to-b from-[#0c1a3a] via-[#0e2048] to-[#0c1a3a] text-white overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 left-1/4 w-96 h-72 bg-blue-600/8 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-60 bg-blue-800/6 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 left-1/4 w-96 h-72 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-60 bg-blue-600/8 rounded-full blur-3xl" />
         </div>
         <div className="max-w-6xl mx-auto">
           <Reveal>

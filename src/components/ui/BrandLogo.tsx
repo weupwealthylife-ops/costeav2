@@ -7,17 +7,23 @@ interface BrandLogoProps {
 }
 
 export default function BrandLogo({ theme = "light", href = "/" }: BrandLogoProps) {
-  const nameColor = theme === "dark" ? "text-white" : "text-gray-900";
-  const tagColor = theme === "dark" ? "text-blue-300" : "text-gray-400";
+  const nameColor = theme === "dark" ? "text-white" : "text-[#2563EB]";
+  const tagColor = theme === "dark" ? "text-blue-300/60" : "text-gray-400";
 
   return (
-    <Link href={href} className="inline-flex flex-col items-center gap-2">
-      <Image src="/logo.svg" alt="Escuela de Costos logo" width={48} height={48} />
-      <div className="flex flex-col items-center leading-tight">
-        <span className={`text-xl font-extrabold tracking-tight ${nameColor}`}>
+    <Link href={href} className="inline-flex items-center gap-3">
+      <Image
+        src="/logo.svg"
+        alt="Escuela de Costos"
+        width={40}
+        height={40}
+        className={theme === "dark" ? "brightness-0 invert" : ""}
+      />
+      <div className="flex flex-col leading-tight">
+        <span className={`text-lg font-extrabold tracking-tight leading-none ${nameColor}`}>
           Escuela de Costos
         </span>
-        <span className={`text-xs font-medium ${tagColor}`}>by Costea®</span>
+        <span className={`text-[11px] font-semibold ${tagColor}`}>by Costea®</span>
       </div>
     </Link>
   );
