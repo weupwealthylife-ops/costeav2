@@ -106,29 +106,48 @@ export default function HomePage() {
       <section className="py-28 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <div className="mb-16">
+            <div className="mb-16 text-center">
               <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                 {t("La plataforma", "The platform")}
               </p>
-              <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 max-w-lg leading-[1.1]">
+              <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 leading-[1.1]">
                 {lang === "es" ? (
-                  <>Todo lo que necesitas<br />para gestionar tus costos</>
+                  <>Todo en un solo lugar</>
                 ) : (
-                  <>Everything you need<br />to manage your costs</>
+                  <>Everything in one place</>
                 )}
               </h2>
+              <p className="text-gray-500 mt-3 text-sm">
+                {t("Aprende, practica y gestiona los costos de tu negocio con una sola plataforma.", "Learn, practice and manage your business costs with a single platform.")}
+              </p>
             </div>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {features.map((f, i) => (
               <Reveal key={f.step} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
-                <div className="border border-gray-100 rounded-2xl p-8 hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.15)] hover:border-blue-100 transition-all duration-300 ease-out group hover:-translate-y-0.5 h-full flex flex-col">
-                  <span className="text-xs font-bold text-blue-400 tracking-[0.15em] mb-5 block">{f.step}</span>
-                  <h3 className="text-xl font-extrabold tracking-tight text-gray-900 mb-2">{f.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">{f.description}</p>
+                <div className={`rounded-2xl p-8 transition-all duration-300 ease-out group hover:-translate-y-1 h-full flex flex-col ${
+                  i === 0
+                    ? "bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-[0_8px_40px_-8px_rgba(37,99,235,0.5)]"
+                    : i === 1
+                    ? "bg-white border border-gray-100 shadow-sm hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.15)] hover:border-blue-100"
+                    : "bg-[#F8FAFC] border border-gray-100 hover:border-gray-200"
+                }`}>
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-lg font-bold ${
+                    i === 0 ? "bg-white/20 text-white" : "bg-blue-50 text-blue-600"
+                  }`}>
+                    {i === 0 ? "📚" : i === 1 ? "📊" : "📄"}
+                  </div>
+                  <h3 className={`text-xl font-extrabold tracking-tight mb-2 ${i === 0 ? "text-white" : "text-gray-900"}`}>
+                    {f.title}
+                  </h3>
+                  <p className={`text-sm leading-relaxed mb-8 flex-1 ${i === 0 ? "text-blue-100" : "text-gray-500"}`}>
+                    {f.description}
+                  </p>
                   <Link
                     href={f.href}
-                    className="text-blue-600 font-semibold text-sm hover:text-blue-700 transition-colors duration-200"
+                    className={`inline-flex items-center text-sm font-bold transition-colors duration-200 ${
+                      i === 0 ? "text-white/90 hover:text-white" : "text-blue-600 hover:text-blue-700"
+                    }`}
                   >
                     {f.cta} →
                   </Link>

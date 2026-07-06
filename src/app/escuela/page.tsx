@@ -238,48 +238,47 @@ export default function EscuelaPage() {
       {/* Problem section */}
       <section className="py-28 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <Reveal>
-              <div>
-                <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
-                  {t("El problema", "The problem")}
-                </p>
-                <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.05]">
-                  {lang === "es" ? (
-                    <>¿Cuánto te<br />cuesta no saber<br />tus costos?</>
-                  ) : (
-                    <>How much does<br />not knowing your<br />costs cost you?</>
-                  )}
-                </h2>
-              </div>
-            </Reveal>
-            <div className="space-y-0 divide-y divide-gray-100">
-              {problems.map((p, i) => (
-                <Reveal key={p.label} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
-                  <div className="flex gap-6 py-8">
-                    <span className="text-xs font-bold text-blue-400 tracking-widest shrink-0 mt-1">{p.label}</span>
-                    <div>
-                      <h3 className="font-bold tracking-tight text-gray-900 text-lg mb-2">{p.title}</h3>
-                      <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
-                    </div>
+          <Reveal>
+            <div className="text-center mb-16 max-w-2xl mx-auto">
+              <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
+                {t("El problema", "The problem")}
+              </p>
+              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.05]">
+                {lang === "es" ? (
+                  <>¿Cuánto te cuesta<br />no saber tus costos?</>
+                ) : (
+                  <>How much does not knowing<br />your costs cost you?</>
+                )}
+              </h2>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+            {problems.map((p, i) => (
+              <Reveal key={p.label} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
+                <div className="relative bg-white border border-gray-100 rounded-2xl p-8 shadow-[0_2px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_32px_rgba(37,99,235,0.1)] hover:border-blue-100 transition-all duration-300 group h-full flex flex-col">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
+                    <span className="text-blue-600 font-extrabold text-xs tracking-widest">{p.label}</span>
                   </div>
-                </Reveal>
-              ))}
-              <Reveal delay={4}>
-                <div className="pt-8 pb-2">
-                  <p className="text-blue-700 font-bold text-lg leading-snug">
-                    {t(
-                      "La Escuela de Costos de Costea existe para que nunca más tengas que adivinar.",
-                      "Costea School of Costs exists so you never have to guess again."
-                    )}
-                  </p>
-                  <p className="text-gray-400 text-sm mt-2">
-                    {t("Sin jerga contable. Con los números reales de tu negocio.", "No accounting jargon. With the real numbers of your business.")}
-                  </p>
+                  <h3 className="font-extrabold tracking-tight text-gray-900 text-base mb-3 leading-snug">{p.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed flex-1">{p.desc}</p>
+                  <div className="mt-6 h-0.5 w-8 bg-blue-200 group-hover:w-16 group-hover:bg-blue-500 transition-all duration-300 rounded-full" />
                 </div>
               </Reveal>
-            </div>
+            ))}
           </div>
+          <Reveal delay={4}>
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white text-center shadow-xl shadow-blue-200">
+              <p className="font-bold text-lg leading-snug mb-2">
+                {t(
+                  "La Escuela de Costos de Costea existe para que nunca más tengas que adivinar.",
+                  "Costea School of Costs exists so you never have to guess again."
+                )}
+              </p>
+              <p className="text-blue-100/70 text-sm">
+                {t("Sin jerga contable. Con los números reales de tu negocio.", "No accounting jargon. With the real numbers of your business.")}
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -344,18 +343,27 @@ export default function EscuelaPage() {
                 </Link>
               </div>
             </Reveal>
-            <div className="divide-y divide-gray-100">
-              {journey.map((j, i) => (
-                <Reveal key={j.step} delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
-                  <div className="flex gap-6 py-6">
-                    <span className="text-xs font-bold text-blue-500 tracking-widest shrink-0 mt-1 w-7">{j.step}</span>
-                    <div>
-                      <h3 className="font-bold tracking-tight text-gray-900 mb-1">{j.title}</h3>
-                      <p className="text-gray-500 text-sm leading-relaxed">{j.desc}</p>
+            <div className="relative">
+              <div className="absolute left-[15px] top-3 bottom-3 w-px bg-gray-100" />
+              <div className="space-y-3">
+                {journey.map((j, i) => (
+                  <Reveal key={j.step} delay={(i % 3) as 0 | 1 | 2 | 3 | 4}>
+                    <div className="flex gap-5 group">
+                      <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-extrabold z-10 mt-2.5 border-2 transition-all duration-300 ${
+                        i === 0
+                          ? "bg-blue-600 border-blue-600 text-white"
+                          : "bg-white border-gray-200 text-blue-500 group-hover:border-blue-300"
+                      }`}>
+                        {i + 1}
+                      </div>
+                      <div className="flex-1 bg-white border border-gray-100 rounded-xl px-5 py-4 hover:border-blue-100 hover:shadow-[0_4px_20px_-4px_rgba(37,99,235,0.1)] transition-all duration-300">
+                        <h3 className="font-bold tracking-tight text-gray-900 text-sm mb-1">{j.title}</h3>
+                        <p className="text-gray-500 text-xs leading-relaxed">{j.desc}</p>
+                      </div>
                     </div>
-                  </div>
-                </Reveal>
-              ))}
+                  </Reveal>
+                ))}
+              </div>
             </div>
           </div>
         </div>

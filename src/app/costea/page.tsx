@@ -178,56 +178,86 @@ export default function CosteaAppPage() {
       </section>
 
       {/* Tools grid */}
-      <section className="py-28 px-4 bg-white">
+      <section className="py-28 px-4 bg-[#F8FAFC]">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <div className="mb-14">
+            <div className="mb-14 text-center">
               <p className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">
                 {t("Herramientas", "Tools")}
               </p>
               <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">
                 {t("Todo en un solo lugar", "Everything in one place")}
               </h2>
-              <p className="text-gray-500 mt-3">
+              <p className="text-gray-500 mt-3 text-sm">
                 {t("Disponibles ahora y próximamente en Costea App.", "Available now and coming soon to Costea App.")}
               </p>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {tools.map((tool, i) => (
-              <Reveal key={tool.title.toString()} delay={(i % 2) as 0 | 1 | 2 | 3 | 4}>
-                <div
-                  className={`rounded-2xl p-8 flex flex-col h-full transition-all duration-300 ease-out ${
-                    tool.primary
-                      ? "bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-[0_8px_40px_-8px_rgba(37,99,235,0.5)] hover:-translate-y-1"
-                      : "bg-white border border-gray-150 shadow-sm hover:shadow-md hover:border-gray-300 hover:-translate-y-0.5"
-                  }`}
+
+          {/* Featured primary tool */}
+          <Reveal>
+            <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-[#1d4ed8] rounded-3xl p-8 md:p-10 mb-5 shadow-[0_16px_56px_-8px_rgba(37,99,235,0.45)] flex flex-col md:flex-row gap-8 md:gap-16 items-start relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+              <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-blue-500/20 rounded-full translate-y-1/2 pointer-events-none" />
+              <div className="flex-1 relative">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-white/20 text-white border border-white/20 mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse" />
+                  {t("Disponible ahora", "Available now")}
+                </span>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-3">
+                  {t("Calculadora de Costos", "Cost Calculator")}
+                </h3>
+                <p className="text-blue-100/80 leading-relaxed mb-8 max-w-md">
+                  {t(
+                    "Ingresa tus insumos, mano de obra y gastos indirectos. Costea calcula el costo unitario y el precio mínimo de venta con el margen que tú defines.",
+                    "Enter your inputs, labor and overhead. Costea calculates unit cost and minimum selling price with the margin you define."
+                  )}
+                </p>
+                <Link
+                  href="/costea/calculadora"
+                  className="inline-flex items-center justify-center bg-white text-blue-700 px-8 py-3.5 rounded-xl text-sm font-bold hover:bg-blue-50 transition-all duration-300 ease-out shadow-lg shadow-blue-900/20 hover:-translate-y-0.5"
                 >
-                  <div className="mb-5">
-                    <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full border ${
-                      tool.primary ? "bg-white/20 text-white border-white/20" : tool.tagColor
-                    }`}>
-                      {tool.primary && <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block" />}
-                      {!tool.primary && tool.tag === t("Próximamente", "Coming soon") && <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />}
+                  {t("Abrir calculadora →", "Open calculator →")}
+                </Link>
+              </div>
+              <div className="shrink-0 w-full md:w-72 bg-white/10 border border-white/20 rounded-2xl p-5 backdrop-blur-sm relative">
+                <p className="text-blue-200/70 text-xs font-semibold uppercase tracking-widest mb-4">{t("Vista previa", "Preview")}</p>
+                {[
+                  { label: t("Materia prima", "Raw materials"), value: "$12,400" },
+                  { label: t("Mano de obra", "Labor"), value: "$3,800" },
+                  { label: t("Gastos indirectos", "Overhead"), value: "$2,300" },
+                ].map((row) => (
+                  <div key={row.label} className="flex justify-between text-sm py-2 border-b border-white/10">
+                    <span className="text-blue-100/70">{row.label}</span>
+                    <span className="text-white font-semibold">{row.value}</span>
+                  </div>
+                ))}
+                <div className="flex justify-between text-base font-extrabold text-white pt-3 mt-1">
+                  <span>{t("Costo total", "Total cost")}</span>
+                  <span>$18,500</span>
+                </div>
+                <div className="flex gap-2 mt-4">
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-green-400/20 text-green-300 border border-green-400/20">{t("Precio sugerido: $28,000", "Suggested price: $28,000")}</span>
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white/15 text-white border border-white/15">{t("Margen: 51%", "Margin: 51%")}</span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Secondary tools */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {tools.slice(1).map((tool, i) => (
+              <Reveal key={tool.title.toString()} delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
+                <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col h-full shadow-sm hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.12)] hover:border-blue-100 hover:-translate-y-0.5 transition-all duration-300 ease-out group">
+                  <div className="mb-4">
+                    <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full border ${tool.tagColor}`}>
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />
                       {tool.tag}
                     </span>
                   </div>
-                  <h3 className={`text-lg font-bold tracking-tight mb-2 ${tool.primary ? "text-white" : "text-gray-900"}`}>
-                    {tool.title}
-                  </h3>
-                  <p className={`text-sm leading-relaxed mb-6 flex-1 ${tool.primary ? "text-blue-100" : "text-gray-500"}`}>
-                    {tool.description}
-                  </p>
-                  <Link
-                    href={tool.href}
-                    className={`text-center py-3 rounded-xl font-semibold text-sm transition-all duration-300 ease-out ${
-                      tool.primary
-                        ? "bg-white text-blue-700 hover:bg-blue-50 shadow-sm"
-                        : "bg-gray-900 text-white hover:bg-gray-800"
-                    }`}
-                  >
-                    {tool.cta}
-                  </Link>
+                  <h3 className="font-extrabold text-gray-900 tracking-tight mb-2">{tool.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-6">{tool.description}</p>
+                  <div className="h-0.5 w-8 bg-blue-200 group-hover:w-12 group-hover:bg-blue-400 transition-all duration-300 rounded-full" />
                 </div>
               </Reveal>
             ))}
