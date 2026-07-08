@@ -22,10 +22,10 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Brand */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0" onClick={() => setMobileOpen(false)}>
-            <Image src="/logo.svg" alt="Escuela de Costos" width={30} height={30} />
+            <Image src="/logo.svg" alt="Escuela De Costos" width={30} height={30} />
             <div className="flex flex-col leading-tight">
               <span className="text-sm font-extrabold tracking-tight text-gray-900 whitespace-nowrap">
-                {t("Escuela de Costos", "School of Costs")}
+                {t("Escuela De Costos", "School of Costs")}
               </span>
               <span className="text-[9px] text-gray-400 font-medium hidden sm:block">by Costea®</span>
             </div>
