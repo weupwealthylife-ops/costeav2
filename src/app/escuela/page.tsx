@@ -190,7 +190,7 @@ export default function EscuelaPage() {
                 </h1>
               </Reveal>
               <Reveal delay={2}>
-                <p className="text-blue-100/70 text-xl leading-relaxed mb-10 max-w-xl">
+                <p className="text-blue-100/70 text-base sm:text-xl leading-relaxed mb-10 max-w-xl">
                   {t(
                     "La primera Escuela de Costos para emprendedores colombianos. Aprende, practica y certifícate — sin necesidad de ser contador.",
                     "The first School of Costs for Colombian entrepreneurs. Learn, practice and get certified — no accounting background needed."
@@ -220,7 +220,7 @@ export default function EscuelaPage() {
 
             {/* Right: iPhone mockup — hidden on mobile */}
             <Reveal variant="right" delay={2} className="hidden lg:flex justify-center">
-              <div className="relative" style={{ width: 240, height: 520 }}>
+              <div className="relative w-60 h-[520px]">
                 {/* iPhone shell */}
                 <div className="absolute inset-0 rounded-[44px] bg-gray-900 shadow-[0_40px_80px_rgba(0,0,0,0.5)] border border-white/10" />
                 {/* Screen */}
@@ -443,7 +443,7 @@ export default function EscuelaPage() {
                 {t("Cursos", "Courses")}
               </p>
               <div className="flex items-end justify-between gap-4 flex-wrap">
-                <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">
+                <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
                   {t("Ruta de aprendizaje", "Learning path")}
                 </h2>
                 <p className="text-gray-500 text-sm">
@@ -548,7 +548,7 @@ export default function EscuelaPage() {
       <section className="py-28 px-4 bg-white">
         <div className="max-w-3xl mx-auto text-center">
           <Reveal>
-            <h2 className="text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.05] mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.05] mb-6">
               {lang === "es" ? (
                 <>¿Listo para saber<br />exactamente cuánto<br />cuesta tu negocio?</>
               ) : (

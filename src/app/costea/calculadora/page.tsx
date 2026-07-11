@@ -85,14 +85,14 @@ export default function CalculadoraPage() {
                   placeholder={t("Ej: Torta de cumpleaños 20 porciones", "e.g. Birthday cake 20 servings")}
                   className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
-                <div className="mt-4 flex items-center gap-4">
-                  <label className="text-sm text-gray-600 whitespace-nowrap">{t("Unidades por lote:", "Units per batch:")}</label>
+                <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  <label className="text-sm text-gray-600">{t("Unidades por lote:", "Units per batch:")}</label>
                   <input
                     type="number"
                     min={1}
                     value={unidadesPorLote}
                     onChange={(e) => setUnidadesPorLote(Number(e.target.value))}
-                    className="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full sm:w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
@@ -105,7 +105,8 @@ export default function CalculadoraPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <div className="grid grid-cols-12 gap-2 text-xs text-gray-400 font-medium px-1">
+                  {/* Column headers — desktop only */}
+                  <div className="hidden sm:grid grid-cols-12 gap-2 text-xs text-gray-400 font-medium px-1">
                     <span className="col-span-4">{t("Insumo", "Input")}</span>
                     <span className="col-span-2">{t("Cantidad", "Qty")}</span>
                     <span className="col-span-2">{t("Unidad", "Unit")}</span>
@@ -113,48 +114,50 @@ export default function CalculadoraPage() {
                     <span className="col-span-1" />
                   </div>
                   {insumos.map((insumo) => (
-                    <div key={insumo.id} className="grid grid-cols-12 gap-2 items-center">
+                    <div key={insumo.id} className="flex flex-col sm:grid sm:grid-cols-12 gap-2 sm:items-center bg-gray-50 sm:bg-transparent rounded-xl sm:rounded-none p-3 sm:p-0">
                       <input
                         type="text"
                         value={insumo.nombre}
                         onChange={(e) => updateInsumo(insumo.id, "nombre", e.target.value)}
-                        placeholder="Ej: Harina"
-                        className="col-span-4 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder={t("Ej: Harina", "e.g. Flour")}
+                        className="sm:col-span-4 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                       />
-                      <input
-                        type="number"
-                        min={0}
-                        value={insumo.cantidad}
-                        onChange={(e) => updateInsumo(insumo.id, "cantidad", Number(e.target.value))}
-                        className="col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                      <select
-                        value={insumo.unidad}
-                        onChange={(e) => updateInsumo(insumo.id, "unidad", e.target.value)}
-                        className="col-span-2 border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      >
-                        <option>und</option>
-                        <option>kg</option>
-                        <option>g</option>
-                        <option>lt</option>
-                        <option>ml</option>
-                        <option>m</option>
-                        <option>cm</option>
-                        <option>hora</option>
-                      </select>
-                      <input
-                        type="number"
-                        min={0}
-                        value={insumo.costoUnitario}
-                        onChange={(e) => updateInsumo(insumo.id, "costoUnitario", Number(e.target.value))}
-                        className="col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                      <button
-                        onClick={() => removeInsumo(insumo.id)}
-                        className="col-span-1 text-gray-300 hover:text-red-400 transition-colors text-lg font-bold text-center"
-                      >
-                        ×
-                      </button>
+                      <div className="flex gap-2 sm:contents">
+                        <input
+                          type="number"
+                          min={0}
+                          value={insumo.cantidad}
+                          onChange={(e) => updateInsumo(insumo.id, "cantidad", Number(e.target.value))}
+                          className="flex-1 sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                        />
+                        <select
+                          value={insumo.unidad}
+                          onChange={(e) => updateInsumo(insumo.id, "unidad", e.target.value)}
+                          className="flex-1 sm:col-span-2 border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                        >
+                          <option>und</option>
+                          <option>kg</option>
+                          <option>g</option>
+                          <option>lt</option>
+                          <option>ml</option>
+                          <option>m</option>
+                          <option>cm</option>
+                          <option>hora</option>
+                        </select>
+                        <input
+                          type="number"
+                          min={0}
+                          value={insumo.costoUnitario}
+                          onChange={(e) => updateInsumo(insumo.id, "costoUnitario", Number(e.target.value))}
+                          className="flex-1 sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                        />
+                        <button
+                          onClick={() => removeInsumo(insumo.id)}
+                          className="sm:col-span-1 text-gray-300 hover:text-red-400 transition-colors text-lg font-bold text-center px-1"
+                        >
+                          ×
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -170,8 +173,8 @@ export default function CalculadoraPage() {
               {/* Mano de obra */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
                 <h2 className="font-bold text-gray-900 mb-4">{t("Mano de obra", "Labor")}</h2>
-                <div className="flex items-center gap-4">
-                  <label className="text-sm text-gray-600 whitespace-nowrap">{t("Costo total por lote ($):", "Total batch cost ($):")}</label>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  <label className="text-sm text-gray-600 sm:whitespace-nowrap">{t("Costo total por lote ($):", "Total batch cost ($):")}</label>
                   <input
                     type="number"
                     min={0}
@@ -189,8 +192,8 @@ export default function CalculadoraPage() {
               {/* Gastos indirectos */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
                 <h2 className="font-bold text-gray-900 mb-4">{t("Gastos indirectos", "Overhead costs")}</h2>
-                <div className="flex items-center gap-4">
-                  <label className="text-sm text-gray-600 whitespace-nowrap">{t("Costo por lote ($):", "Batch cost ($):")}</label>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  <label className="text-sm text-gray-600 sm:whitespace-nowrap">{t("Costo por lote ($):", "Batch cost ($):")}</label>
                   <input
                     type="number"
                     min={0}

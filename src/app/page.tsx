@@ -118,10 +118,10 @@ export default function HomePage() {
         </div>
 
         {/* Stats seamlessly below */}
-        <div className="max-w-5xl mx-auto mt-20 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-5xl mx-auto mt-20 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
           {stats.map((s, i) => (
             <Reveal key={s.label} variant="fade" delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
-              <div className="text-4xl font-extrabold tracking-tight text-white">{s.value}</div>
+              <div className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">{s.value}</div>
               <div className="text-blue-200/60 text-sm mt-2">{s.label}</div>
             </Reveal>
           ))}
@@ -148,7 +148,7 @@ export default function HomePage() {
               </p>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {features.map((f, i) => (
               <Reveal key={f.step} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
                 <div className={`rounded-2xl p-8 transition-all duration-300 ease-out group hover:-translate-y-1 h-full flex flex-col ${
