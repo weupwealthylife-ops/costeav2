@@ -44,7 +44,7 @@ export default function LoginPage() {
           <div className="flex gap-10 pt-6 border-t border-white/10">
             {[
               { value: "1,200+", label: "Estudiantes activos" },
-              { value: "12", label: "Cursos disponibles" },
+              { value: "4", label: "Cursos disponibles" },
               { value: "40h+", label: "Contenido" },
             ].map((s) => (
               <div key={s.label}>

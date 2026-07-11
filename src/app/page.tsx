@@ -10,10 +10,10 @@ export default function HomePage() {
   const { t, lang } = useLang();
 
   const stats = [
-    { value: "500+", label: t("Empresas que usan Costea", "Businesses using Costea") },
-    { value: "12", label: t("Cursos disponibles", "Available courses") },
-    { value: "40+", label: t("Horas de contenido", "Hours of content") },
     { value: "1,200+", label: t("Estudiantes activos", "Active students") },
+    { value: "4", label: t("Cursos disponibles", "Available courses") },
+    { value: "40+", label: t("Horas de contenido", "Hours of content") },
+    { value: "500+", label: t("Empresas que usan Costea", "Businesses using Costea") },
   ];
 
   const features = [

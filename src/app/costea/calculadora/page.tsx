@@ -101,7 +101,7 @@ export default function CalculadoraPage() {
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="font-bold text-gray-900">{t("Materia prima e insumos", "Raw materials & inputs")}</h2>
-                  <span className="text-sm text-blue-600 font-semibold">{fmt(costoMateriaPrima)}</span>
+                  <span className="text-sm text-blue-600 font-semibold tabular-nums">{fmt(costoMateriaPrima)}</span>
                 </div>
 
                 <div className="space-y-3">
@@ -209,7 +209,7 @@ export default function CalculadoraPage() {
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
                 <div className="flex items-center justify-between mb-2">
                   <h2 className="font-bold text-gray-900">{t("Margen de utilidad deseado", "Desired profit margin")}</h2>
-                  <span className="text-2xl font-extrabold text-blue-600">{margenUtilidad}%</span>
+                  <span className="text-2xl font-extrabold text-blue-600 tabular-nums">{margenUtilidad}%</span>
                 </div>
                 <input
                   type="range"
@@ -236,19 +236,19 @@ export default function CalculadoraPage() {
                 <div className="space-y-4">
                   <div className="flex justify-between text-sm">
                     <span className="text-blue-100">{t("Materia prima", "Raw materials")}</span>
-                    <span className="font-semibold">{fmt(costoMateriaPrima)}</span>
+                    <span className="font-semibold tabular-nums">{fmt(costoMateriaPrima)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-blue-100">{t("Mano de obra", "Labor")}</span>
-                    <span className="font-semibold">{fmt(manoDeObra)}</span>
+                    <span className="font-semibold tabular-nums">{fmt(manoDeObra)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-blue-100">{t("Gastos indirectos", "Overhead")}</span>
-                    <span className="font-semibold">{fmt(gastosIndirectos)}</span>
+                    <span className="font-semibold tabular-nums">{fmt(gastosIndirectos)}</span>
                   </div>
                   <div className="border-t border-blue-500 pt-3 flex justify-between text-sm">
                     <span className="text-blue-100">{t("Costo total del lote", "Total batch cost")}</span>
-                    <span className="font-bold">{fmt(costoTotalLote)}</span>
+                    <span className="font-bold tabular-nums">{fmt(costoTotalLote)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-blue-100">{t("Unidades en el lote", "Units in batch")}</span>
@@ -259,15 +259,15 @@ export default function CalculadoraPage() {
                 <div className="mt-6 bg-white/15 rounded-xl p-4 space-y-3">
                   <div>
                     <div className="text-blue-200 text-xs mb-1">{t("Costo unitario", "Unit cost")}</div>
-                    <div className="text-2xl font-extrabold">{fmt(costoUnitario)}</div>
+                    <div className="text-2xl font-extrabold tabular-nums">{fmt(costoUnitario)}</div>
                   </div>
                   <div>
                     <div className="text-blue-200 text-xs mb-1">{t(`Precio mínimo de venta (${margenUtilidad}% utilidad)`, `Minimum selling price (${margenUtilidad}% margin)`)}</div>
-                    <div className="text-3xl font-extrabold">{fmt(precioMinimo)}</div>
+                    <div className="text-3xl font-extrabold tabular-nums">{fmt(precioMinimo)}</div>
                   </div>
                   <div>
                     <div className="text-blue-200 text-xs mb-1">{t("Utilidad por unidad", "Profit per unit")}</div>
-                    <div className="text-xl font-bold">{fmt(utilidadUnidad)}</div>
+                    <div className="text-xl font-bold tabular-nums">{fmt(utilidadUnidad)}</div>
                   </div>
                 </div>
 

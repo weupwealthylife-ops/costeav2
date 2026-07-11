@@ -232,7 +232,7 @@ export default function EscuelaPage() {
                   {/* App header */}
                   <div className="px-4 pt-2 pb-3 shrink-0 border-b border-white/5">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-white text-[11px] font-bold">Escuela de Costos</span>
+                      <span className="text-white text-[11px] font-bold">Escuela De Costos</span>
                       <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white text-[8px] font-bold">C</div>
                     </div>
                     <div className="text-blue-300/70 text-[9px]">Fundamentos de Costos</div>

@@ -172,6 +172,12 @@ export default function CosteaAppPage() {
                   {t("Usar la Calculadora gratis", "Use the Calculator free")}
                 </Link>
               </div>
+              <p className="mt-4 text-blue-200/70 text-sm">
+                {t("¿No tienes cuenta?", "Don't have an account?")}{" "}
+                <Link href="/auth/signup" className="text-white font-medium underline underline-offset-2 hover:text-blue-200 transition-colors">
+                  {t("Regístrate gratis", "Sign up free")}
+                </Link>
+              </p>
             </Reveal>
           </div>
         </div>
