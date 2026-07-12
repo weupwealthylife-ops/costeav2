@@ -207,7 +207,7 @@ export default function EscuelaPage() {
                   </Link>
                   <Link
                     href="#cursos"
-                    className="inline-flex items-center justify-center bg-white/8 hover:bg-white/14 border border-white/15 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
+                    className="inline-flex items-center justify-center bg-white/10 hover:bg-white/15 border border-white/15 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
                   >
                     {t("Ver cursos", "View courses")}
                   </Link>
@@ -243,7 +243,7 @@ export default function EscuelaPage() {
                   {/* Video player area */}
                   <div className="mx-3 mt-3 rounded-xl bg-gradient-to-br from-blue-900 to-blue-700 h-28 flex items-center justify-center shrink-0">
                     <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M8 5v14l11-7z"/>
                       </svg>
                     </div>
@@ -293,7 +293,7 @@ export default function EscuelaPage() {
             ].map((s, i) => (
               <Reveal key={s.label} delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
                 <div className="text-4xl font-extrabold tracking-tight text-white">{s.value}</div>
-                <div className="text-blue-200/70 text-sm mt-2">{s.label}</div>
+                <div className="text-blue-100/80 text-sm mt-2">{s.label}</div>
               </Reveal>
             ))}
           </div>
@@ -423,7 +423,7 @@ export default function EscuelaPage() {
                       </div>
                       <div className="flex-1 bg-white border border-gray-100 rounded-xl px-5 py-4 hover:border-blue-100 hover:shadow-[0_4px_20px_-4px_rgba(37,99,235,0.1)] transition-all duration-300">
                         <h3 className="font-bold tracking-tight text-gray-900 text-sm mb-1">{j.title}</h3>
-                        <p className="text-gray-500 text-xs leading-relaxed">{j.desc}</p>
+                        <p className="text-gray-500 text-sm leading-relaxed">{j.desc}</p>
                       </div>
                     </div>
                   </Reveal>
@@ -477,7 +477,7 @@ export default function EscuelaPage() {
                           </span>
                         )}
                       </div>
-                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-1">{course.description}</p>
+                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{course.description}</p>
                     </div>
 
                     {/* Meta + CTA */}
@@ -526,7 +526,7 @@ export default function EscuelaPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((item, i) => (
               <Reveal key={item.name} variant="scale" delay={(i + 1) as 0 | 1 | 2 | 3 | 4}>
-                <div className={`bg-white/5 border border-white/8 rounded-2xl p-8 h-full flex flex-col ${i === 2 ? "hidden md:flex" : ""}`}>
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-8 h-full flex flex-col">
                   <div className="flex gap-0.5 mb-5">
                     {[...Array(5)].map((_, s) => (
                       <span key={s} className="text-amber-400 text-sm">★</span>

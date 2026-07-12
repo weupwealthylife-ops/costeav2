@@ -9,10 +9,11 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setLoading(true);
     setError(null);
-    const result = await login(formData);
+    const result = await login(new FormData(e.currentTarget));
     if (result?.error) {
       setError(result.error);
       setLoading(false);
@@ -45,7 +46,7 @@ export default function LoginPage() {
             {[
               { value: "1,200+", label: "Estudiantes activos" },
               { value: "4", label: "Cursos disponibles" },
-              { value: "40h+", label: "Contenido" },
+              { value: "40+", label: "Horas de contenido" },
             ].map((s) => (
               <div key={s.label}>
                 <div className="text-3xl font-extrabold">{s.value}</div>
@@ -79,22 +80,24 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form action={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
                 Correo electrónico
               </label>
               <input
+                id="email"
                 name="email"
                 type="email"
                 required
+                autoComplete="email"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="tu@correo.com"
               />
             </div>
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-sm font-medium text-gray-700">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Contraseña
                 </label>
                 <Link href="/auth/forgot-password" className="text-xs text-blue-600 hover:text-blue-700 font-medium">
@@ -102,9 +105,11 @@ export default function LoginPage() {
                 </Link>
               </div>
               <input
+                id="password"
                 name="password"
                 type="password"
                 required
+                autoComplete="current-password"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="••••••••"
               />

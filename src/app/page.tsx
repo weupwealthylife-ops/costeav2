@@ -54,7 +54,7 @@ export default function HomePage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-600 text-white py-32 px-4">
+      <section className="bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-600 text-white py-20 sm:py-32 px-4">
         <div className="max-w-5xl mx-auto text-center">
           <Reveal variant="blur">
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-8">
@@ -83,7 +83,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/costea"
-                className="inline-flex items-center justify-center bg-white/12 hover:bg-white/20 border border-white/25 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
+                className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/25 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
               >
                 {t("Ir a la Costea App", "Go to Costea App")}
               </Link>
@@ -122,7 +122,7 @@ export default function HomePage() {
           {stats.map((s, i) => (
             <Reveal key={s.label} variant="fade" delay={(i % 4) as 0 | 1 | 2 | 3 | 4}>
               <div className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">{s.value}</div>
-              <div className="text-blue-200/60 text-sm mt-2">{s.label}</div>
+              <div className="text-blue-100/80 text-sm mt-2">{s.label}</div>
             </Reveal>
           ))}
         </div>
@@ -143,7 +143,7 @@ export default function HomePage() {
                   <>Everything in one place</>
                 )}
               </h2>
-              <p className="text-gray-500 mt-3 text-sm">
+              <p className="text-gray-600 mt-3 text-sm">
                 {t("Aprende, practica y gestiona los costos de tu negocio con una sola plataforma.", "Learn, practice and manage your business costs with a single platform.")}
               </p>
             </div>
@@ -166,7 +166,7 @@ export default function HomePage() {
                   <h3 className={`text-xl font-extrabold tracking-tight mb-2 ${i === 0 ? "text-white" : "text-gray-900"}`}>
                     {f.title}
                   </h3>
-                  <p className={`text-sm leading-relaxed mb-8 flex-1 ${i === 0 ? "text-blue-100" : "text-gray-500"}`}>
+                  <p className={`text-sm leading-relaxed mb-8 flex-1 ${i === 0 ? "text-blue-100" : "text-gray-600"}`}>
                     {f.description}
                   </p>
                   <Link

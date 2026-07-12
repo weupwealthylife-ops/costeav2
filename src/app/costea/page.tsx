@@ -130,7 +130,7 @@ export default function CosteaAppPage() {
       <section className="relative bg-gradient-to-b from-gray-950 via-[#0d2562] to-blue-700 text-white py-32 px-4 overflow-hidden">
         {/* Space glow */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/8 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl" />
         </div>
         <div className="max-w-5xl mx-auto relative">
@@ -148,7 +148,7 @@ export default function CosteaAppPage() {
               </h1>
             </Reveal>
             <Reveal delay={1}>
-              <p className="text-blue-100/70 text-xl leading-relaxed mb-10 max-w-xl">
+              <p className="text-blue-100/80 text-base sm:text-xl leading-relaxed mb-10 max-w-xl">
                 {t(
                   "Sin hojas de cálculo. Sin fórmulas manuales. Solo ingresa tus datos y Costea App hace los cálculos por ti en segundos.",
                   "No spreadsheets. No manual formulas. Just enter your data and Costea App does the calculations for you in seconds."
@@ -167,7 +167,7 @@ export default function CosteaAppPage() {
                 </Link>
                 <Link
                   href="/costea/calculadora"
-                  className="inline-flex items-center justify-center bg-white/12 hover:bg-white/20 border border-white/25 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
+                  className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/25 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 ease-out"
                 >
                   {t("Usar la Calculadora gratis", "Use the Calculator free")}
                 </Link>
@@ -194,7 +194,7 @@ export default function CosteaAppPage() {
               <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">
                 {t("Todo en un solo lugar", "Everything in one place")}
               </h2>
-              <p className="text-gray-500 mt-3 text-sm">
+              <p className="text-gray-600 mt-3 text-sm">
                 {t("Disponibles ahora y próximamente en Costea App.", "Available now and coming soon to Costea App.")}
               </p>
             </div>
@@ -274,7 +274,7 @@ export default function CosteaAppPage() {
       {/* Roadmap */}
       <section id="roadmap" className="py-28 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
 
             {/* Left: sticky panel — Apple/Platzi inspired */}
             <Reveal className="lg:sticky lg:top-28">
@@ -347,7 +347,7 @@ export default function CosteaAppPage() {
                           </span>
                         </div>
                         <h3 className="font-bold tracking-tight text-gray-900 mb-1 text-sm">{item.title}</h3>
-                        <p className="text-gray-500 text-xs leading-relaxed">{item.description}</p>
+                        <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
                       </div>
                     </div>
                   </Reveal>

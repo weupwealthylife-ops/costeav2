@@ -67,7 +67,7 @@ export default function CalculadoraPage() {
             <Link href="/costea" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
               ← {t("Volver a Costea App", "Back to Costea App")}
             </Link>
-            <h1 className="text-3xl font-extrabold text-gray-900 mt-3">{t("Calculadora de Costos", "Cost Calculator")}</h1>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-3">{t("Calculadora de Costos", "Cost Calculator")}</h1>
             <p className="text-gray-500 mt-1">{t("Calcula el costo real de tu producto o servicio y define el precio de venta.", "Calculate the real cost of your product or service and set your selling price.")}</p>
           </div>
 
@@ -153,7 +153,8 @@ export default function CalculadoraPage() {
                         />
                         <button
                           onClick={() => removeInsumo(insumo.id)}
-                          className="sm:col-span-1 text-gray-300 hover:text-red-400 transition-colors text-lg font-bold text-center px-1"
+                          aria-label={t("Eliminar insumo", "Remove input")}
+                          className="sm:col-span-1 w-9 h-9 flex items-center justify-center text-gray-300 hover:text-red-400 transition-colors text-lg font-bold rounded-lg hover:bg-red-50"
                         >
                           ×
                         </button>
@@ -184,7 +185,7 @@ export default function CalculadoraPage() {
                     placeholder="0"
                   />
                 </div>
-                <p className="text-xs text-gray-400 mt-2">
+                <p className="text-xs text-gray-500 mt-2">
                   {t("Incluye el valor de tu tiempo o el de tus empleados para producir este lote.", "Include the value of your time or your employees' time to produce this batch.")}
                 </p>
               </div>
@@ -203,7 +204,7 @@ export default function CalculadoraPage() {
                     placeholder="0"
                   />
                 </div>
-                <p className="text-xs text-gray-400 mt-2">
+                <p className="text-xs text-gray-500 mt-2">
                   {t("Luz, gas, arriendo del local, empaques u otros costos asociados al lote.", "Electricity, gas, rent, packaging, or other costs associated with the batch.")}
                 </p>
               </div>
@@ -221,7 +222,9 @@ export default function CalculadoraPage() {
                   step={5}
                   value={margenUtilidad}
                   onChange={(e) => setMargenUtilidad(Number(e.target.value))}
-                  className="w-full accent-blue-600"
+                  aria-label={t("Margen de utilidad deseado", "Desired profit margin")}
+                  aria-valuetext={`${margenUtilidad}%`}
+                  className="w-full accent-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
                 />
                 <div className="flex justify-between text-xs text-gray-400 mt-1">
                   <span>0%</span>
@@ -238,38 +241,38 @@ export default function CalculadoraPage() {
 
                 <div className="space-y-4">
                   <div className="flex justify-between text-sm">
-                    <span className="text-blue-100">{t("Materia prima", "Raw materials")}</span>
+                    <span className="text-white/80">{t("Materia prima", "Raw materials")}</span>
                     <span className="font-semibold tabular-nums">{fmt(costoMateriaPrima)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-blue-100">{t("Mano de obra", "Labor")}</span>
+                    <span className="text-white/80">{t("Mano de obra", "Labor")}</span>
                     <span className="font-semibold tabular-nums">{fmt(manoDeObra)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-blue-100">{t("Gastos indirectos", "Overhead")}</span>
+                    <span className="text-white/80">{t("Gastos indirectos", "Overhead")}</span>
                     <span className="font-semibold tabular-nums">{fmt(gastosIndirectos)}</span>
                   </div>
                   <div className="border-t border-blue-500 pt-3 flex justify-between text-sm">
-                    <span className="text-blue-100">{t("Costo total del lote", "Total batch cost")}</span>
+                    <span className="text-white/80">{t("Costo total del lote", "Total batch cost")}</span>
                     <span className="font-bold tabular-nums">{fmt(costoTotalLote)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-blue-100">{t("Unidades en el lote", "Units in batch")}</span>
+                    <span className="text-white/80">{t("Unidades en el lote", "Units in batch")}</span>
                     <span className="font-semibold">{unidadesPorLote}</span>
                   </div>
                 </div>
 
                 <div className="mt-6 bg-white/15 rounded-xl p-4 space-y-3">
                   <div>
-                    <div className="text-blue-200 text-xs mb-1">{t("Costo unitario", "Unit cost")}</div>
+                    <div className="text-white/70 text-xs mb-1">{t("Costo unitario", "Unit cost")}</div>
                     <div className="text-2xl font-extrabold tabular-nums">{fmt(costoUnitario)}</div>
                   </div>
                   <div>
-                    <div className="text-blue-200 text-xs mb-1">{t(`Precio mínimo de venta (${margenUtilidad}% utilidad)`, `Minimum selling price (${margenUtilidad}% margin)`)}</div>
+                    <div className="text-white/70 text-xs mb-1">{t(`Precio mínimo de venta (${margenUtilidad}% utilidad)`, `Minimum selling price (${margenUtilidad}% margin)`)}</div>
                     <div className="text-3xl font-extrabold tabular-nums">{fmt(precioMinimo)}</div>
                   </div>
                   <div>
-                    <div className="text-blue-200 text-xs mb-1">{t("Utilidad por unidad", "Profit per unit")}</div>
+                    <div className="text-white/70 text-xs mb-1">{t("Utilidad por unidad", "Profit per unit")}</div>
                     <div className="text-xl font-bold tabular-nums">{fmt(utilidadUnidad)}</div>
                   </div>
                 </div>

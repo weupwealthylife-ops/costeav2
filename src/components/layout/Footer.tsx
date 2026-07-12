@@ -63,7 +63,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/escuela/cursos/fundamentos-de-costos" className="text-[#94A3B8] hover:text-[#E2E8F0] hover:underline transition-colors duration-200">
+                <Link href="/escuela#cursos" className="text-[#94A3B8] hover:text-[#E2E8F0] hover:underline transition-colors duration-200">
                   {t("Todos los cursos", "All courses")}
                 </Link>
               </li>
@@ -102,14 +102,14 @@ export default function Footer() {
 
         {/* Divider + bottom bar */}
         <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="text-[13px] text-[#475569]">
-            © 2026 Costea® · {t("Todos los derechos reservados", "All rights reserved")} · Colombia
+          <span className="text-[13px] text-[#94A3B8]">
+            © {new Date().getFullYear()} Costea® · {t("Todos los derechos reservados", "All rights reserved")} · Colombia
           </span>
           <div className="flex items-center gap-4 text-[13px]">
-            <Link href="/auth/login" className="text-[#64748B] hover:text-[#94A3B8] transition-colors duration-200">
+            <Link href="/auth/login" className="text-[#94A3B8] hover:text-[#E2E8F0] transition-colors duration-200">
               {t("Iniciar sesión", "Sign in")}
             </Link>
-            <Link href="/auth/signup" className="text-[#64748B] hover:text-[#94A3B8] transition-colors duration-200">
+            <Link href="/auth/signup" className="text-[#94A3B8] hover:text-[#E2E8F0] transition-colors duration-200">
               {t("Registrarse", "Sign up")}
             </Link>
           </div>

@@ -16,10 +16,11 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setLoading(true);
     setError(null);
-    const result = await signup(formData);
+    const result = await signup(new FormData(e.currentTarget));
     if (result?.error) {
       setError(result.error);
       setLoading(false);
@@ -79,52 +80,59 @@ export default function SignupPage() {
             </div>
           )}
 
-          <form action={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">
                 Nombre completo
               </label>
               <input
+                id="name"
                 name="name"
                 type="text"
                 required
+                autoComplete="name"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="Tu nombre completo"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
                 Correo electrónico
               </label>
               <input
+                id="email"
                 name="email"
                 type="email"
                 required
+                autoComplete="email"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="tu@correo.com"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Teléfono / WhatsApp
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1.5">
+                Teléfono / WhatsApp <span className="text-gray-400 font-normal">(opcional)</span>
               </label>
               <input
+                id="phone"
                 name="phone"
                 type="tel"
-                required
+                autoComplete="tel"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="+57 300 000 0000"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1.5">
                 Contraseña
               </label>
               <input
+                id="password"
                 name="password"
                 type="password"
                 required
                 minLength={6}
+                autoComplete="new-password"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="Mínimo 6 caracteres"
               />
@@ -138,7 +146,7 @@ export default function SignupPage() {
             </button>
           </form>
 
-          <p className="mt-4 text-xs text-gray-400 text-center">
+          <p className="mt-4 text-xs text-gray-500 text-center">
             Sin tarjeta de crédito · Primer curso 100% gratis
           </p>
 
