@@ -263,7 +263,12 @@ export default function CosteaAppPage() {
                   </div>
                   <h3 className="font-extrabold text-gray-900 tracking-tight mb-2">{tool.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-6">{tool.description}</p>
-                  <div className="h-0.5 w-8 bg-blue-200 group-hover:w-12 group-hover:bg-blue-400 transition-all duration-300 rounded-full" />
+                  <Link
+                    href={tool.href}
+                    className="text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors duration-200"
+                  >
+                    {tool.cta}
+                  </Link>
                 </div>
               </Reveal>
             ))}
