@@ -6,6 +6,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useLang } from "@/contexts/LanguageContext";
 
+// ── Interfaces ────────────────────────────────────────────────────────────────
+
 interface Insumo {
   id: number;
   nombre: string;
@@ -21,6 +23,125 @@ interface MODRow {
   tiempoEstandar: number;
 }
 
+interface IndustryBenchmark {
+  label: string;
+  labelEn: string;
+  minGrossMargin: number;
+  goodGrossMargin: number;
+  minOpMargin: number;
+  goodOpMargin: number;
+  context: string;
+  contextEn: string;
+}
+
+// ── Industry benchmarks ───────────────────────────────────────────────────────
+// Margen bruto = % sobre costo; OpMargin = % sobre precio mínimo de venta
+
+const INDUSTRIES: Record<string, IndustryBenchmark> = {
+  alimentos: {
+    label: "Alimentos y Bebidas",
+    labelEn: "Food & Beverage",
+    minGrossMargin: 25,
+    goodGrossMargin: 45,
+    minOpMargin: 5,
+    goodOpMargin: 12,
+    context: "Alta rotación, perecederos y cumplimiento sanitario elevan los costos fijos.",
+    contextEn: "High turnover, perishables, and compliance costs raise fixed expenses.",
+  },
+  moda: {
+    label: "Moda y Confección",
+    labelEn: "Fashion & Apparel",
+    minGrossMargin: 40,
+    goodGrossMargin: 60,
+    minOpMargin: 10,
+    goodOpMargin: 20,
+    context: "Estacionalidad e inventario rezagado son los principales riesgos de margen.",
+    contextEn: "Seasonality and excess inventory are the main margin risks.",
+  },
+  manufactura: {
+    label: "Manufactura / Producción",
+    labelEn: "Manufacturing",
+    minGrossMargin: 20,
+    goodGrossMargin: 38,
+    minOpMargin: 8,
+    goodOpMargin: 15,
+    context: "CIF y mano de obra son los factores determinantes; eficiencia en planta es clave.",
+    contextEn: "Overhead and labor are the key drivers; plant efficiency is critical.",
+  },
+  retail: {
+    label: "Retail / Comercio",
+    labelEn: "Retail / Commerce",
+    minGrossMargin: 20,
+    goodGrossMargin: 50,
+    minOpMargin: 2,
+    goodOpMargin: 8,
+    context: "Alta competencia con márgenes ajustados; el volumen y la rotación son determinantes.",
+    contextEn: "Highly competitive with thin margins; volume and turnover are key.",
+  },
+  servicios: {
+    label: "Servicios Profesionales",
+    labelEn: "Professional Services",
+    minGrossMargin: 50,
+    goodGrossMargin: 75,
+    minOpMargin: 15,
+    goodOpMargin: 30,
+    context: "La MOD es el principal costo; maximizar la tarifa por hora y la ocupación es esencial.",
+    contextEn: "Labor is the main cost; maximizing hourly rate and utilization is essential.",
+  },
+  tecnologia: {
+    label: "Tecnología / Software",
+    labelEn: "Technology / Software",
+    minGrossMargin: 60,
+    goodGrossMargin: 80,
+    minOpMargin: 15,
+    goodOpMargin: 30,
+    context: "Márgenes brutos altos son la norma; ventas y marketing suelen ser el mayor costo operativo.",
+    contextEn: "High gross margins are the norm; sales and marketing are usually the biggest cost.",
+  },
+  salud: {
+    label: "Salud y Estética",
+    labelEn: "Health & Beauty",
+    minGrossMargin: 40,
+    goodGrossMargin: 65,
+    minOpMargin: 10,
+    goodOpMargin: 22,
+    context: "Insumos certificados y cumplimiento normativo elevan los costos; fidelización es clave.",
+    contextEn: "Certified inputs and regulatory compliance raise costs; customer retention is key.",
+  },
+  construccion: {
+    label: "Construcción / Obras",
+    labelEn: "Construction",
+    minGrossMargin: 15,
+    goodGrossMargin: 30,
+    minOpMargin: 3,
+    goodOpMargin: 10,
+    context: "Alta inversión inicial y riesgo de sobrecostos; la gestión de proveedores es crítica.",
+    contextEn: "High upfront investment and cost overrun risk; supplier management is critical.",
+  },
+  agro: {
+    label: "Agroindustria / Agro",
+    labelEn: "Agriculture",
+    minGrossMargin: 10,
+    goodGrossMargin: 25,
+    minOpMargin: 3,
+    goodOpMargin: 8,
+    context: "Dependencia de clima y precios de commodities; control de costos es la palanca principal.",
+    contextEn: "Dependent on weather and commodity prices; cost control is the main lever.",
+  },
+  artesania: {
+    label: "Artesanía / Manualidades",
+    labelEn: "Crafts & Handmade",
+    minGrossMargin: 50,
+    goodGrossMargin: 70,
+    minOpMargin: 15,
+    goodOpMargin: 30,
+    context: "El valor percibido permite márgenes altos; evita competir solo por precio.",
+    contextEn: "Perceived value enables high margins; avoid competing on price alone.",
+  },
+};
+
+// ── Defaults ──────────────────────────────────────────────────────────────────
+
 const defaultInsumos: Insumo[] = [
   { id: 1, nombre: "", cantidad: 1, unidad: "und", costoUnitario: 0 },
 ];
@@ -28,6 +149,8 @@ const defaultInsumos: Insumo[] = [
 const defaultMOD: MODRow[] = [
   { id: 1, area: "", costoHoraHombre: 0, tiempoEstandar: 0 },
 ];
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
 function fmt(n: number) {
   return new Intl.NumberFormat("es-CO", {
@@ -48,9 +171,12 @@ function selectAll(e: React.FocusEvent<HTMLInputElement>) {
   e.target.select();
 }
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function CalculadoraPage() {
   const { t } = useLang();
 
+  const [industria, setIndustria] = useState("");
   const [productoNombre, setProductoNombre] = useState("");
   const [insumos, setInsumos] = useState<Insumo[]>(defaultInsumos);
   const [modRows, setModRows] = useState<MODRow[]>(defaultMOD);
@@ -59,7 +185,7 @@ export default function CalculadoraPage() {
   const [gastosAdmonVentas, setGastosAdmonVentas] = useState(0);
   const [margenBruto, setMargenBruto] = useState(30);
 
-  // ── Calculations ──────────────────────────────────────────────────────────
+  // ── Calculations ───────────────────────────────────────────────────────────
   const costoMateriaPrima = insumos.reduce(
     (sum, i) => sum + i.cantidad * i.costoUnitario,
     0
@@ -73,9 +199,91 @@ export default function CalculadoraPage() {
   const margenBrutoPesos = costoUnitario * (margenBruto / 100);
   const precioMinimo = costoUnitario + margenBrutoPesos;
   const utilidadOperacional = margenBrutoPesos - gastosAdmonVentas;
-  const utilidadOperacionalPct = precioMinimo > 0 ? (utilidadOperacional / precioMinimo) * 100 : 0;
+  const utilidadOperacionalPct =
+    precioMinimo > 0 ? (utilidadOperacional / precioMinimo) * 100 : 0;
 
-  // ── Insumo handlers ───────────────────────────────────────────────────────
+  // ── Industry-aware recommendations ────────────────────────────────────────
+  const benchmark = industria ? INDUSTRIES[industria] : null;
+  const hasData = costoUnitario > 0;
+
+  type AlertLevel = "error" | "warning" | "success" | "info";
+  interface Rec { level: AlertLevel; title: string; titleEn: string; body: string; bodyEn: string }
+  const recommendations: Rec[] = [];
+
+  if (benchmark && hasData) {
+    // — Margen bruto —
+    if (margenBruto < benchmark.minGrossMargin) {
+      recommendations.push({
+        level: "error",
+        title: "Margen bruto muy bajo para tu sector",
+        titleEn: "Gross margin too low for your sector",
+        body: `Tu margen bruto es ${margenBruto}%, por debajo del mínimo recomendado para ${benchmark.label} (${benchmark.minGrossMargin}%). Revisa tus costos de producción o sube el precio de venta. ${benchmark.context}`,
+        bodyEn: `Your gross margin is ${margenBruto}%, below the recommended minimum for ${benchmark.labelEn} (${benchmark.minGrossMargin}%). Review production costs or raise the selling price. ${benchmark.contextEn}`,
+      });
+    } else if (margenBruto < benchmark.goodGrossMargin) {
+      recommendations.push({
+        level: "warning",
+        title: "Margen bruto aceptable, pero con margen de mejora",
+        titleEn: "Acceptable gross margin, room for improvement",
+        body: `Tu margen de ${margenBruto}% es aceptable para ${benchmark.label}, aunque el rango saludable está en ${benchmark.goodGrossMargin}%+. Busca optimizar costos de insumos o CIF.`,
+        bodyEn: `Your ${margenBruto}% margin is acceptable for ${benchmark.labelEn}, but the healthy range starts at ${benchmark.goodGrossMargin}%+. Look to optimize input or overhead costs.`,
+      });
+    } else {
+      recommendations.push({
+        level: "success",
+        title: "Margen bruto saludable",
+        titleEn: "Healthy gross margin",
+        body: `¡Bien! Tu margen de ${margenBruto}% supera el benchmark saludable para ${benchmark.label} (${benchmark.minGrossMargin}%–${benchmark.goodGrossMargin}%+).`,
+        bodyEn: `Your ${margenBruto}% margin exceeds the healthy benchmark for ${benchmark.labelEn} (${benchmark.minGrossMargin}%–${benchmark.goodGrossMargin}%+).`,
+      });
+    }
+
+    // — Utilidad operacional —
+    if (utilidadOperacional < 0) {
+      recommendations.push({
+        level: "error",
+        title: "Utilidad operacional negativa — estás operando a pérdida",
+        titleEn: "Negative operating profit — you are losing money",
+        body: `Tus gastos de administración y ventas (${fmt(gastosAdmonVentas)}) superan el margen bruto (${fmt(margenBrutoPesos)}). Reduce gastos fijos o incrementa el margen bruto.`,
+        bodyEn: `Your admin & sales expenses (${fmt(gastosAdmonVentas)}) exceed the gross margin (${fmt(margenBrutoPesos)}). Reduce fixed costs or increase the gross margin.`,
+      });
+    } else if (utilidadOperacionalPct < benchmark.minOpMargin) {
+      recommendations.push({
+        level: "warning",
+        title: "Utilidad operacional en zona de riesgo",
+        titleEn: "Operating profit in the risk zone",
+        body: `Con ${utilidadOperacionalPct.toFixed(1)}% de utilidad sobre el precio de venta, estás por debajo del mínimo recomendado para ${benchmark.label} (${benchmark.minOpMargin}%). Cualquier imprevisto puede generar pérdidas.`,
+        bodyEn: `At ${utilidadOperacionalPct.toFixed(1)}% operating profit over selling price, you are below the recommended minimum for ${benchmark.labelEn} (${benchmark.minOpMargin}%). Any unexpected cost can lead to losses.`,
+      });
+    } else if (utilidadOperacionalPct < benchmark.goodOpMargin) {
+      recommendations.push({
+        level: "warning",
+        title: "Utilidad operacional aceptable",
+        titleEn: "Acceptable operating profit",
+        body: `Tu utilidad operacional de ${utilidadOperacionalPct.toFixed(1)}% es aceptable, pero el nivel saludable para ${benchmark.label} está en ${benchmark.goodOpMargin}%+. Revisa si puedes reducir gastos administrativos.`,
+        bodyEn: `Your ${utilidadOperacionalPct.toFixed(1)}% operating profit is acceptable, but the healthy level for ${benchmark.labelEn} is ${benchmark.goodOpMargin}%+. Consider reducing admin costs.`,
+      });
+    } else {
+      recommendations.push({
+        level: "success",
+        title: "Utilidad operacional excelente",
+        titleEn: "Excellent operating profit",
+        body: `¡Excelente! Tu utilidad de ${utilidadOperacionalPct.toFixed(1)}% supera el benchmark para ${benchmark.label} (${benchmark.goodOpMargin}%+). Estás en una posición financiera sólida.`,
+        bodyEn: `Your ${utilidadOperacionalPct.toFixed(1)}% operating profit exceeds the benchmark for ${benchmark.labelEn} (${benchmark.goodOpMargin}%+). You are in a strong financial position.`,
+      });
+    }
+
+    // — Context tip —
+    recommendations.push({
+      level: "info",
+      title: `Contexto: ${benchmark.label}`,
+      titleEn: `Context: ${benchmark.labelEn}`,
+      body: benchmark.context,
+      bodyEn: benchmark.contextEn,
+    });
+  }
+
+  // ── Insumo handlers ────────────────────────────────────────────────────────
   function addInsumo() {
     setInsumos((prev) => [
       ...prev,
@@ -91,7 +299,7 @@ export default function CalculadoraPage() {
     );
   }
 
-  // ── MOD handlers ──────────────────────────────────────────────────────────
+  // ── MOD handlers ───────────────────────────────────────────────────────────
   function addMOD() {
     setModRows((prev) => [
       ...prev,
@@ -113,6 +321,45 @@ export default function CalculadoraPage() {
     [next[index], next[target]] = [next[target], next[index]];
     setModRows(next);
   }
+
+  // ── Alert styles ───────────────────────────────────────────────────────────
+  const alertStyles: Record<AlertLevel, { card: string; icon: string; title: string; body: string; dot: string }> = {
+    error: {
+      card: "bg-red-50 border border-red-200",
+      icon: "text-red-500",
+      title: "text-red-800",
+      body: "text-red-700",
+      dot: "bg-red-500",
+    },
+    warning: {
+      card: "bg-amber-50 border border-amber-200",
+      icon: "text-amber-500",
+      title: "text-amber-800",
+      body: "text-amber-700",
+      dot: "bg-amber-400",
+    },
+    success: {
+      card: "bg-green-50 border border-green-200",
+      icon: "text-green-600",
+      title: "text-green-800",
+      body: "text-green-700",
+      dot: "bg-green-500",
+    },
+    info: {
+      card: "bg-blue-50 border border-blue-100",
+      icon: "text-blue-500",
+      title: "text-blue-800",
+      body: "text-blue-700",
+      dot: "bg-blue-400",
+    },
+  };
+
+  const levelIcons: Record<AlertLevel, string> = {
+    error: "✕",
+    warning: "⚠",
+    success: "✓",
+    info: "i",
+  };
 
   return (
     <>
@@ -136,8 +383,58 @@ export default function CalculadoraPage() {
             </p>
           </div>
 
+          {/* ── Industry selector (full-width, above the grid) ─────────────── */}
+          <div className="bg-white rounded-2xl p-6 border border-gray-100 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+              <div className="shrink-0">
+                <label htmlFor="tipo-industria" className="font-bold text-gray-900 block">
+                  {t("Tipo de industria", "Industry type")}
+                </label>
+                <p className="text-xs text-gray-400 mt-0.5">
+                  {t(
+                    "Activa recomendaciones personalizadas según tu sector",
+                    "Activates personalized recommendations for your sector"
+                  )}
+                </p>
+              </div>
+              <div className="sm:ml-auto w-full sm:w-72">
+                <select
+                  id="tipo-industria"
+                  value={industria}
+                  onChange={(e) => setIndustria(e.target.value)}
+                  className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                >
+                  <option value="">{t("— Selecciona tu industria —", "— Select your industry —")}</option>
+                  {Object.entries(INDUSTRIES).map(([key, ind]) => (
+                    <option key={key} value={key}>
+                      {t(ind.label, ind.labelEn)}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Benchmark preview chips */}
+            {benchmark && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded-full px-3 py-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                  {t("Margen bruto mín.", "Min. gross margin")}: {benchmark.minGrossMargin}%
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded-full px-3 py-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
+                  {t("Margen bruto ideal", "Ideal gross margin")}: {benchmark.goodGrossMargin}%+
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded-full px-3 py-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
+                  {t("Utilidad op. ideal", "Ideal op. margin")}: {benchmark.goodOpMargin}%+
+                </span>
+              </div>
+            )}
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            {/* ── Left: Inputs ─────────────────────────────────────────── */}
+            {/* ── Left: Inputs ──────────────────────────────────────────────── */}
             <div className="lg:col-span-2 space-y-6">
 
               {/* Producto */}
@@ -267,7 +564,6 @@ export default function CalculadoraPage() {
 
                 {modRows.length > 0 && (
                   <div className="space-y-2">
-                    {/* Column headers */}
                     <div className="hidden sm:grid grid-cols-12 gap-2 text-xs text-gray-400 font-medium px-1 mb-1">
                       {ordenamientoHabilitado && <span className="col-span-1" />}
                       <span className={ordenamientoHabilitado ? "col-span-3" : "col-span-4"}>
@@ -347,7 +643,6 @@ export default function CalculadoraPage() {
                       );
                     })}
 
-                    {/* Totals row */}
                     <div className="border-t border-gray-100 pt-3 flex items-center justify-between text-sm px-1">
                       <span className="text-gray-500 text-xs">
                         {t("Total horas:", "Total hours:")}{" "}
@@ -361,7 +656,7 @@ export default function CalculadoraPage() {
                 )}
               </div>
 
-              {/* Costos indirectos por producto (CIF) */}
+              {/* CIF */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
                 <h2 className="font-bold text-gray-900 mb-4">
                   {t("Costos indirectos por producto", "Indirect costs per product")}
@@ -389,7 +684,7 @@ export default function CalculadoraPage() {
                 </p>
               </div>
 
-              {/* Margen bruto esperado */}
+              {/* Margen bruto */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
                 <div className="flex items-center justify-between mb-2">
                   <h2 className="font-bold text-gray-900">
@@ -399,6 +694,27 @@ export default function CalculadoraPage() {
                     {margenBruto}%
                   </span>
                 </div>
+
+                {/* Benchmark indicator on slider */}
+                {benchmark && (
+                  <div className="relative mb-1">
+                    <div
+                      className="absolute top-0 -translate-y-5 flex flex-col items-center pointer-events-none"
+                      style={{ left: `${Math.min((benchmark.minGrossMargin / 200) * 100, 98)}%` }}
+                    >
+                      <span className="text-[9px] font-semibold text-amber-600 whitespace-nowrap">mín</span>
+                      <span className="w-px h-2 bg-amber-400" />
+                    </div>
+                    <div
+                      className="absolute top-0 -translate-y-5 flex flex-col items-center pointer-events-none"
+                      style={{ left: `${Math.min((benchmark.goodGrossMargin / 200) * 100, 98)}%` }}
+                    >
+                      <span className="text-[9px] font-semibold text-green-600 whitespace-nowrap">ideal</span>
+                      <span className="w-px h-2 bg-green-500" />
+                    </div>
+                  </div>
+                )}
+
                 <input
                   type="range"
                   min={0}
@@ -417,7 +733,7 @@ export default function CalculadoraPage() {
                 </div>
               </div>
 
-              {/* Gastos de administración y ventas */}
+              {/* Gastos admon */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
                 <h2 className="font-bold text-gray-900 mb-4">
                   {t("Gastos de administración y ventas por unidad", "Admin & sales expenses per unit")}
@@ -454,9 +770,7 @@ export default function CalculadoraPage() {
                   </p>
                 </div>
 
-                {/* Equation tiles */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0">
-                  {/* Margen bruto */}
                   <div className="flex-1 bg-blue-50 border border-blue-100 rounded-xl p-4">
                     <div className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-2">
                       {t("Margen bruto", "Gross margin")}
@@ -466,12 +780,10 @@ export default function CalculadoraPage() {
                     </div>
                   </div>
 
-                  {/* − operator */}
                   <div className="flex items-center justify-center px-3 shrink-0">
                     <span className="text-xl font-bold text-gray-400">−</span>
                   </div>
 
-                  {/* Gastos admon */}
                   <div className="flex-1 bg-gray-50 border border-gray-100 rounded-xl p-4">
                     <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
                       {t("Gastos admon y ventas", "Admin & sales")}
@@ -481,12 +793,10 @@ export default function CalculadoraPage() {
                     </div>
                   </div>
 
-                  {/* = operator */}
                   <div className="flex items-center justify-center px-3 shrink-0">
                     <span className="text-xl font-bold text-gray-400">=</span>
                   </div>
 
-                  {/* Result */}
                   <div
                     className={`flex-1 rounded-xl p-4 border-2 ${
                       utilidadOperacional >= 0
@@ -521,7 +831,6 @@ export default function CalculadoraPage() {
                   </div>
                 </div>
 
-                {/* WhatsApp CTA */}
                 <div className="mt-5 text-center text-sm text-gray-500">
                   {t("¿Tienes dudas al calcularlo?", "Questions about the calculation?")}{" "}
                   <a
@@ -537,10 +846,9 @@ export default function CalculadoraPage() {
 
             </div>
 
-            {/* ── Right: Results (entire column sticky) ────────────────── */}
+            {/* ── Right: Results (sticky) ────────────────────────────────────── */}
             <div className="space-y-4 lg:sticky lg:top-20 lg:self-start">
 
-              {/* Results panel */}
               <div className="bg-blue-600 text-white rounded-2xl p-6">
                 <h2 className="font-bold text-lg mb-6">{t("Resumen de costos", "Cost summary")}</h2>
 
@@ -601,7 +909,6 @@ export default function CalculadoraPage() {
                 )}
               </div>
 
-              {/* Recuerda — stays with the sticky column */}
               <div className="bg-white border border-gray-100 rounded-2xl p-5 text-sm text-gray-600">
                 <div className="font-semibold text-gray-900 mb-2">
                   💡 {t("Recuerda", "Remember")}
@@ -618,6 +925,56 @@ export default function CalculadoraPage() {
 
             </div>
           </div>
+
+          {/* ── Recomendaciones (full-width below grid) ──────────────────────── */}
+          {(benchmark && hasData) ? (
+            <div className="mt-10">
+              <div className="flex items-center gap-3 mb-5">
+                <h2 className="text-lg font-extrabold text-gray-900">
+                  {t("Recomendaciones", "Recommendations")}
+                </h2>
+                <span className="text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100 rounded-full px-2.5 py-0.5">
+                  {t(benchmark.label, benchmark.labelEn)}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {recommendations.map((rec, i) => {
+                  const s = alertStyles[rec.level];
+                  return (
+                    <div key={i} className={`rounded-2xl p-5 ${s.card}`}>
+                      <div className="flex items-start gap-3">
+                        <span
+                          className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold ${s.dot}`}
+                        >
+                          {levelIcons[rec.level]}
+                        </span>
+                        <div className="min-w-0">
+                          <p className={`text-sm font-bold leading-snug ${s.title}`}>
+                            {t(rec.title, rec.titleEn)}
+                          </p>
+                          <p className={`text-xs mt-1.5 leading-relaxed ${s.body}`}>
+                            {t(rec.body, rec.bodyEn)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : !benchmark && hasData ? (
+            <div className="mt-10 bg-blue-50 border border-blue-100 rounded-2xl p-5 flex items-center gap-4">
+              <span className="shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold">i</span>
+              <p className="text-sm text-blue-700">
+                {t(
+                  "Selecciona tu tipo de industria arriba para ver recomendaciones personalizadas basadas en benchmarks de tu sector.",
+                  "Select your industry type above to see personalized recommendations based on sector benchmarks."
+                )}
+              </p>
+            </div>
+          ) : null}
+
         </div>
       </div>
       <Footer />
