@@ -180,7 +180,6 @@ export default function CalculadoraPage() {
   const [productoNombre, setProductoNombre] = useState("");
   const [insumos, setInsumos] = useState<Insumo[]>(defaultInsumos);
   const [modRows, setModRows] = useState<MODRow[]>(defaultMOD);
-  const [ordenamientoHabilitado, setOrdenamientoHabilitado] = useState(false);
   const [cifStr, setCifStr] = useState("");
   const [gastosStr, setGastosStr] = useState("");
   const [margenBruto, setMargenBruto] = useState(30);
@@ -313,14 +312,6 @@ export default function CalculadoraPage() {
       prev.map((r) => (r.id === id ? { ...r, [field]: value } : r))
     );
   }
-  function moveMOD(index: number, direction: -1 | 1) {
-    const next = [...modRows];
-    const target = index + direction;
-    if (target < 0 || target >= next.length) return;
-    [next[index], next[target]] = [next[target], next[index]];
-    setModRows(next);
-  }
-
   // ── Alert styles ───────────────────────────────────────────────────────────
   const alertStyles: Record<AlertLevel, { card: string; title: string; body: string; dot: string }> = {
     error:   { card: "bg-red-50 border border-red-200",     title: "text-red-800",    body: "text-red-700",    dot: "bg-red-500" },
@@ -425,14 +416,9 @@ export default function CalculadoraPage() {
 
               {/* Materia prima e insumos */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="font-bold text-gray-900">
-                    {t("Materia prima e insumos", "Raw materials & inputs")}
-                  </h2>
-                  <span className="text-sm text-blue-600 font-semibold tabular-nums">
-                    {fmt(costoMateriaPrima)}
-                  </span>
-                </div>
+                <h2 className="font-bold text-gray-900 mb-4">
+                  {t("Materia prima e insumos", "Raw materials & inputs")}
+                </h2>
 
                 <div className="space-y-3">
                   {/* Column headers — desktop */}
@@ -517,90 +503,47 @@ export default function CalculadoraPage() {
                   })}
                 </div>
 
-                {/* Grand total row */}
-                <div className="mt-3 border-t border-gray-100 pt-3 flex items-center justify-between px-1">
+                {/* Add row */}
+                <div className="mt-3 border-t border-gray-100 pt-3 px-1">
                   <button
                     onClick={addInsumo}
                     className="text-sm text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1"
                   >
                     + {t("Agregar insumo", "Add input")}
                   </button>
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="text-gray-500">{t("Total materia prima:", "Total raw materials:")}</span>
-                    <span className="font-bold text-gray-900 tabular-nums">{fmt(costoMateriaPrima)}</span>
-                  </div>
                 </div>
               </div>
 
               {/* Mano de obra */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                  <h2 className="font-bold text-gray-900">{t("Mano de obra", "Labor")}</h2>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <button
-                      onClick={addMOD}
-                      className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-100 transition-colors"
-                    >
-                      {t("Agregar área", "Add area")}
-                      <span className="text-sm leading-none font-bold">+</span>
-                    </button>
-                    <button
-                      onClick={() => setOrdenamientoHabilitado((o) => !o)}
-                      className={`inline-flex items-center text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
-                        ordenamientoHabilitado
-                          ? "bg-amber-100 text-amber-800 border-amber-200 hover:bg-amber-200"
-                          : "bg-amber-50 text-amber-700 border-amber-100 hover:bg-amber-100"
-                      }`}
-                    >
-                      {t("Habilitar Ordenamiento", "Enable Sorting")}
-                    </button>
+                <h2 className="font-bold text-gray-900 mb-4">{t("Mano de obra", "Labor")}</h2>
+
+                <div className="space-y-2">
+                  {/* Column headers — desktop */}
+                  <div className="hidden sm:grid grid-cols-12 gap-2 text-xs text-gray-400 font-medium px-1 mb-1">
+                    <span className="col-span-4">{t("Área", "Area")}</span>
+                    <span className="col-span-3">{t("$/hora hombre", "$/man-hour")}</span>
+                    <span className="col-span-2">{t("Horas", "Hours")}</span>
+                    <span className="col-span-2 text-right">{t("Costo", "Cost")}</span>
+                    <span className="col-span-1" />
                   </div>
-                </div>
 
-                {modRows.length > 0 && (
-                  <div className="space-y-2">
-                    <div className="hidden sm:grid grid-cols-12 gap-2 text-xs text-gray-400 font-medium px-1 mb-1">
-                      {ordenamientoHabilitado && <span className="col-span-1" />}
-                      <span className={ordenamientoHabilitado ? "col-span-3" : "col-span-4"}>
-                        {t("Área", "Area")}
-                      </span>
-                      <span className="col-span-3">{t("$/hora hombre", "$/man-hour")}</span>
-                      <span className="col-span-2">{t("Horas", "Hours")}</span>
-                      <span className="col-span-2 text-right">{t("Costo", "Cost")}</span>
-                      <span className="col-span-1" />
-                    </div>
-
-                    {modRows.map((row, idx) => {
-                      const costoPorArea = num(row.costoHoraStr) * num(row.tiempoStr);
-                      return (
-                        <div
-                          key={row.id}
-                          className="flex flex-col sm:grid sm:grid-cols-12 gap-2 sm:items-center bg-gray-50 sm:bg-transparent rounded-xl sm:rounded-none p-3 sm:p-0"
-                        >
-                          {ordenamientoHabilitado && (
-                            <div className="sm:col-span-1 hidden sm:flex flex-col gap-0.5 items-center">
-                              <button
-                                onClick={() => moveMOD(idx, -1)}
-                                disabled={idx === 0}
-                                aria-label={t("Mover arriba", "Move up")}
-                                className="text-gray-300 hover:text-gray-600 disabled:opacity-20 text-[10px] p-0.5 leading-none"
-                              >▲</button>
-                              <button
-                                onClick={() => moveMOD(idx, 1)}
-                                disabled={idx === modRows.length - 1}
-                                aria-label={t("Mover abajo", "Move down")}
-                                className="text-gray-300 hover:text-gray-600 disabled:opacity-20 text-[10px] p-0.5 leading-none"
-                              >▼</button>
-                            </div>
-                          )}
-                          <input
-                            type="text"
-                            value={row.area}
-                            onChange={(e) => updateMOD(row.id, "area", e.target.value)}
-                            placeholder={t("Ej: Confección", "e.g. Assembly")}
-                            aria-label={t("Área fabricante", "Production area")}
-                            className={`border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0 ${ordenamientoHabilitado ? "sm:col-span-3" : "sm:col-span-4"}`}
-                          />
+                  {modRows.map((row) => {
+                    const costoPorArea = num(row.costoHoraStr) * num(row.tiempoStr);
+                    return (
+                      <div
+                        key={row.id}
+                        className="flex flex-col sm:grid sm:grid-cols-12 gap-2 sm:items-center bg-gray-50 sm:bg-transparent rounded-xl sm:rounded-none p-3 sm:p-0"
+                      >
+                        <input
+                          type="text"
+                          value={row.area}
+                          onChange={(e) => updateMOD(row.id, "area", e.target.value)}
+                          placeholder={t("Ej: Confección", "e.g. Assembly")}
+                          aria-label={t("Área fabricante", "Production area")}
+                          className="sm:col-span-4 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
+                        />
+                        <div className="flex gap-2 sm:contents">
                           <input
                             type="text"
                             inputMode="decimal"
@@ -608,7 +551,7 @@ export default function CalculadoraPage() {
                             onChange={(e) => updateMOD(row.id, "costoHoraStr", e.target.value)}
                             aria-label={t("Costo hora hombre", "Hourly rate")}
                             placeholder="0"
-                            className="sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
+                            className="flex-1 sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
                           />
                           <input
                             type="text"
@@ -617,31 +560,47 @@ export default function CalculadoraPage() {
                             onChange={(e) => updateMOD(row.id, "tiempoStr", e.target.value)}
                             aria-label={t("Tiempo estándar en horas", "Standard time in hours")}
                             placeholder="0"
-                            className="sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
+                            className="flex-1 sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
                           />
-                          <div className="sm:col-span-2 text-right text-sm font-semibold text-gray-700 tabular-nums hidden sm:block pr-1">
-                            {fmt(costoPorArea)}
+                          <div className="hidden sm:flex sm:col-span-2 items-center justify-end pr-1 min-w-0">
+                            <span className="text-sm font-semibold text-gray-700 tabular-nums truncate">
+                              {fmt(costoPorArea)}
+                            </span>
                           </div>
                           <button
                             onClick={() => removeMOD(row.id)}
                             aria-label={t("Eliminar área", "Remove area")}
-                            className="sm:col-span-1 w-9 h-9 flex items-center justify-center text-gray-300 hover:text-red-400 transition-colors text-lg font-bold rounded-lg hover:bg-red-50 ml-auto sm:ml-0"
+                            className="sm:col-span-1 w-9 h-9 flex items-center justify-center text-gray-300 hover:text-red-400 transition-colors text-lg font-bold rounded-lg hover:bg-red-50 shrink-0"
                           >×</button>
                         </div>
-                      );
-                    })}
+                        {/* Mobile cost */}
+                        <div className="sm:hidden flex justify-between items-center text-xs text-gray-500 px-1">
+                          <span>{t("Costo área:", "Area cost:")}</span>
+                          <span className="font-semibold text-gray-800 tabular-nums">{fmt(costoPorArea)}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
 
-                    <div className="border-t border-gray-100 pt-3 flex items-center justify-between text-sm px-1">
+                  {/* Footer */}
+                  <div className="border-t border-gray-100 pt-3 flex items-center justify-between px-1">
+                    <button
+                      onClick={addMOD}
+                      className="text-sm text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1"
+                    >
+                      + {t("Agregar área", "Add area")}
+                    </button>
+                    <div className="flex items-center gap-2 text-sm">
                       <span className="text-gray-500 text-xs">
                         {t("Total horas:", "Total hours:")}{" "}
                         <span className="font-semibold text-gray-700 tabular-nums">{fmtDec(totalHoras)}</span>
                       </span>
-                      <span className="font-bold text-gray-800 tabular-nums text-sm">
+                      <span className="font-bold text-gray-800 tabular-nums ml-3">
                         {t("Total MOD:", "Total MOD:")} {fmt(totalMOD)}
                       </span>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
 
               {/* CIF */}
