@@ -11,16 +11,16 @@ import { useLang } from "@/contexts/LanguageContext";
 interface Insumo {
   id: number;
   nombre: string;
-  cantidad: number;
+  cantidadStr: string;
   unidad: string;
-  costoUnitario: number;
+  costoStr: string;
 }
 
 interface MODRow {
   id: number;
   area: string;
-  costoHoraHombre: number;
-  tiempoEstandar: number;
+  costoHoraStr: string;
+  tiempoStr: string;
 }
 
 interface IndustryBenchmark {
@@ -35,7 +35,6 @@ interface IndustryBenchmark {
 }
 
 // ── Industry benchmarks ───────────────────────────────────────────────────────
-// Margen bruto = % sobre costo; OpMargin = % sobre precio mínimo de venta
 
 const INDUSTRIES: Record<string, IndustryBenchmark> = {
   alimentos: {
@@ -143,11 +142,11 @@ const INDUSTRIES: Record<string, IndustryBenchmark> = {
 // ── Defaults ──────────────────────────────────────────────────────────────────
 
 const defaultInsumos: Insumo[] = [
-  { id: 1, nombre: "", cantidad: 1, unidad: "und", costoUnitario: 0 },
+  { id: 1, nombre: "", cantidadStr: "1", unidad: "und", costoStr: "" },
 ];
 
 const defaultMOD: MODRow[] = [
-  { id: 1, area: "", costoHoraHombre: 0, tiempoEstandar: 0 },
+  { id: 1, area: "", costoHoraStr: "", tiempoStr: "" },
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -167,8 +166,9 @@ function fmtDec(n: number) {
   }).format(n);
 }
 
-function selectAll(e: React.FocusEvent<HTMLInputElement>) {
-  e.target.select();
+function num(s: string) {
+  const v = parseFloat(s);
+  return isNaN(v) ? 0 : v;
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -181,20 +181,22 @@ export default function CalculadoraPage() {
   const [insumos, setInsumos] = useState<Insumo[]>(defaultInsumos);
   const [modRows, setModRows] = useState<MODRow[]>(defaultMOD);
   const [ordenamientoHabilitado, setOrdenamientoHabilitado] = useState(false);
-  const [cifPorUnidad, setCifPorUnidad] = useState(0);
-  const [gastosAdmonVentas, setGastosAdmonVentas] = useState(0);
+  const [cifStr, setCifStr] = useState("");
+  const [gastosStr, setGastosStr] = useState("");
   const [margenBruto, setMargenBruto] = useState(30);
 
   // ── Calculations ───────────────────────────────────────────────────────────
   const costoMateriaPrima = insumos.reduce(
-    (sum, i) => sum + i.cantidad * i.costoUnitario,
+    (sum, i) => sum + num(i.cantidadStr) * num(i.costoStr),
     0
   );
   const totalMOD = modRows.reduce(
-    (sum, r) => sum + r.costoHoraHombre * r.tiempoEstandar,
+    (sum, r) => sum + num(r.costoHoraStr) * num(r.tiempoStr),
     0
   );
-  const totalHoras = modRows.reduce((sum, r) => sum + r.tiempoEstandar, 0);
+  const totalHoras = modRows.reduce((sum, r) => sum + num(r.tiempoStr), 0);
+  const cifPorUnidad = num(cifStr);
+  const gastosAdmonVentas = num(gastosStr);
   const costoUnitario = costoMateriaPrima + totalMOD + cifPorUnidad;
   const margenBrutoPesos = costoUnitario * (margenBruto / 100);
   const precioMinimo = costoUnitario + margenBrutoPesos;
@@ -211,7 +213,6 @@ export default function CalculadoraPage() {
   const recommendations: Rec[] = [];
 
   if (benchmark && hasData) {
-    // — Margen bruto —
     if (margenBruto < benchmark.minGrossMargin) {
       recommendations.push({
         level: "error",
@@ -238,7 +239,6 @@ export default function CalculadoraPage() {
       });
     }
 
-    // — Utilidad operacional —
     if (utilidadOperacional < 0) {
       recommendations.push({
         level: "error",
@@ -273,7 +273,6 @@ export default function CalculadoraPage() {
       });
     }
 
-    // — Context tip —
     recommendations.push({
       level: "info",
       title: `Contexto: ${benchmark.label}`,
@@ -287,13 +286,13 @@ export default function CalculadoraPage() {
   function addInsumo() {
     setInsumos((prev) => [
       ...prev,
-      { id: Date.now(), nombre: "", cantidad: 1, unidad: "und", costoUnitario: 0 },
+      { id: Date.now(), nombre: "", cantidadStr: "1", unidad: "und", costoStr: "" },
     ]);
   }
   function removeInsumo(id: number) {
     setInsumos((prev) => prev.filter((i) => i.id !== id));
   }
-  function updateInsumo(id: number, field: keyof Insumo, value: string | number) {
+  function updateInsumo(id: number, field: keyof Insumo, value: string) {
     setInsumos((prev) =>
       prev.map((i) => (i.id === id ? { ...i, [field]: value } : i))
     );
@@ -303,13 +302,13 @@ export default function CalculadoraPage() {
   function addMOD() {
     setModRows((prev) => [
       ...prev,
-      { id: Date.now(), area: "", costoHoraHombre: 0, tiempoEstandar: 0 },
+      { id: Date.now(), area: "", costoHoraStr: "", tiempoStr: "" },
     ]);
   }
   function removeMOD(id: number) {
     setModRows((prev) => prev.filter((r) => r.id !== id));
   }
-  function updateMOD(id: number, field: keyof MODRow, value: string | number) {
+  function updateMOD(id: number, field: keyof MODRow, value: string) {
     setModRows((prev) =>
       prev.map((r) => (r.id === id ? { ...r, [field]: value } : r))
     );
@@ -323,43 +322,17 @@ export default function CalculadoraPage() {
   }
 
   // ── Alert styles ───────────────────────────────────────────────────────────
-  const alertStyles: Record<AlertLevel, { card: string; icon: string; title: string; body: string; dot: string }> = {
-    error: {
-      card: "bg-red-50 border border-red-200",
-      icon: "text-red-500",
-      title: "text-red-800",
-      body: "text-red-700",
-      dot: "bg-red-500",
-    },
-    warning: {
-      card: "bg-amber-50 border border-amber-200",
-      icon: "text-amber-500",
-      title: "text-amber-800",
-      body: "text-amber-700",
-      dot: "bg-amber-400",
-    },
-    success: {
-      card: "bg-green-50 border border-green-200",
-      icon: "text-green-600",
-      title: "text-green-800",
-      body: "text-green-700",
-      dot: "bg-green-500",
-    },
-    info: {
-      card: "bg-blue-50 border border-blue-100",
-      icon: "text-blue-500",
-      title: "text-blue-800",
-      body: "text-blue-700",
-      dot: "bg-blue-400",
-    },
+  const alertStyles: Record<AlertLevel, { card: string; title: string; body: string; dot: string }> = {
+    error:   { card: "bg-red-50 border border-red-200",     title: "text-red-800",    body: "text-red-700",    dot: "bg-red-500" },
+    warning: { card: "bg-amber-50 border border-amber-200", title: "text-amber-800",  body: "text-amber-700",  dot: "bg-amber-400" },
+    success: { card: "bg-green-50 border border-green-200", title: "text-green-800",  body: "text-green-700",  dot: "bg-green-500" },
+    info:    { card: "bg-blue-50 border border-blue-100",   title: "text-blue-800",   body: "text-blue-700",   dot: "bg-blue-400" },
   };
+  const levelIcons: Record<AlertLevel, string> = { error: "✕", warning: "⚠", success: "✓", info: "i" };
 
-  const levelIcons: Record<AlertLevel, string> = {
-    error: "✕",
-    warning: "⚠",
-    success: "✓",
-    info: "i",
-  };
+  // Slider benchmark marker positions (clamped so labels stay visible)
+  const minPct = benchmark ? Math.min(Math.max((benchmark.minGrossMargin / 200) * 100, 3), 94) : 0;
+  const goodPct = benchmark ? Math.min(Math.max((benchmark.goodGrossMargin / 200) * 100, 3), 94) : 0;
 
   return (
     <>
@@ -383,9 +356,9 @@ export default function CalculadoraPage() {
             </p>
           </div>
 
-          {/* ── Industry selector (full-width, above the grid) ─────────────── */}
+          {/* ── Industry selector ─────────────────────────────────────────── */}
           <div className="bg-white rounded-2xl p-6 border border-gray-100 mb-8">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-3">
               <div className="shrink-0">
                 <label htmlFor="tipo-industria" className="font-bold text-gray-900 block">
                   {t("Tipo de industria", "Industry type")}
@@ -414,7 +387,6 @@ export default function CalculadoraPage() {
               </div>
             </div>
 
-            {/* Benchmark preview chips */}
             {benchmark && (
               <div className="mt-4 flex flex-wrap gap-2">
                 <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded-full px-3 py-1">
@@ -463,78 +435,101 @@ export default function CalculadoraPage() {
                 </div>
 
                 <div className="space-y-3">
+                  {/* Column headers — desktop */}
                   <div className="hidden sm:grid grid-cols-12 gap-2 text-xs text-gray-400 font-medium px-1">
-                    <span className="col-span-4">{t("Insumo", "Input")}</span>
+                    <span className="col-span-3">{t("Insumo", "Input")}</span>
                     <span className="col-span-2">{t("Cant.", "Qty")}</span>
                     <span className="col-span-2">{t("Unidad", "Unit")}</span>
-                    <span className="col-span-3">{t("Costo c/u ($)", "Unit cost ($)")}</span>
+                    <span className="col-span-2">{t("Costo c/u ($)", "Unit cost ($)")}</span>
+                    <span className="col-span-2 text-right">{t("Total", "Total")}</span>
                     <span className="col-span-1" />
                   </div>
-                  {insumos.map((insumo) => (
-                    <div
-                      key={insumo.id}
-                      className="flex flex-col sm:grid sm:grid-cols-12 gap-2 sm:items-center bg-gray-50 sm:bg-transparent rounded-xl sm:rounded-none p-3 sm:p-0"
-                    >
-                      <input
-                        type="text"
-                        value={insumo.nombre}
-                        onChange={(e) => updateInsumo(insumo.id, "nombre", e.target.value)}
-                        placeholder={t("Ej: Harina", "e.g. Flour")}
-                        aria-label={t("Nombre del insumo", "Input name")}
-                        className="sm:col-span-4 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                      />
-                      <div className="flex gap-2 sm:contents">
+
+                  {insumos.map((insumo) => {
+                    const rowTotal = num(insumo.cantidadStr) * num(insumo.costoStr);
+                    return (
+                      <div key={insumo.id} className="flex flex-col sm:grid sm:grid-cols-12 gap-2 sm:items-center bg-gray-50 sm:bg-transparent rounded-xl sm:rounded-none p-3 sm:p-0">
+                        {/* Nombre */}
                         <input
-                          type="number"
-                          min={0}
-                          value={insumo.cantidad === 0 ? "" : insumo.cantidad}
-                          onFocus={selectAll}
-                          onChange={(e) => updateInsumo(insumo.id, "cantidad", e.target.value === "" ? 0 : Number(e.target.value))}
-                          aria-label={t("Cantidad", "Quantity")}
-                          className="flex-1 sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                          type="text"
+                          value={insumo.nombre}
+                          onChange={(e) => updateInsumo(insumo.id, "nombre", e.target.value)}
+                          placeholder={t("Ej: Harina", "e.g. Flour")}
+                          aria-label={t("Nombre del insumo", "Input name")}
+                          className="sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
                         />
-                        <select
-                          value={insumo.unidad}
-                          onChange={(e) => updateInsumo(insumo.id, "unidad", e.target.value)}
-                          aria-label={t("Unidad", "Unit")}
-                          className="flex-1 sm:col-span-2 border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                        >
-                          <option>und</option>
-                          <option>kg</option>
-                          <option>g</option>
-                          <option>lt</option>
-                          <option>ml</option>
-                          <option>m</option>
-                          <option>cm</option>
-                          <option>hora</option>
-                        </select>
-                        <input
-                          type="number"
-                          min={0}
-                          value={insumo.costoUnitario === 0 ? "" : insumo.costoUnitario}
-                          onFocus={selectAll}
-                          onChange={(e) => updateInsumo(insumo.id, "costoUnitario", e.target.value === "" ? 0 : Number(e.target.value))}
-                          aria-label={t("Costo unitario", "Unit cost")}
-                          className="flex-1 sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                        />
-                        <button
-                          onClick={() => removeInsumo(insumo.id)}
-                          aria-label={t("Eliminar insumo", "Remove input")}
-                          className="sm:col-span-1 w-9 h-9 flex items-center justify-center text-gray-300 hover:text-red-400 transition-colors text-lg font-bold rounded-lg hover:bg-red-50"
-                        >
-                          ×
-                        </button>
+                        {/* Cantidad + Unidad + Costo — flex row on mobile, grid cells on desktop */}
+                        <div className="flex gap-2 sm:contents">
+                          <input
+                            type="text"
+                            inputMode="decimal"
+                            value={insumo.cantidadStr}
+                            onChange={(e) => updateInsumo(insumo.id, "cantidadStr", e.target.value)}
+                            aria-label={t("Cantidad", "Quantity")}
+                            placeholder="0"
+                            className="flex-1 sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
+                          />
+                          <select
+                            value={insumo.unidad}
+                            onChange={(e) => updateInsumo(insumo.id, "unidad", e.target.value)}
+                            aria-label={t("Unidad", "Unit")}
+                            className="flex-1 sm:col-span-2 border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
+                          >
+                            <option>und</option>
+                            <option>kg</option>
+                            <option>g</option>
+                            <option>lt</option>
+                            <option>ml</option>
+                            <option>m</option>
+                            <option>cm</option>
+                            <option>hora</option>
+                          </select>
+                          <input
+                            type="text"
+                            inputMode="decimal"
+                            value={insumo.costoStr}
+                            onChange={(e) => updateInsumo(insumo.id, "costoStr", e.target.value)}
+                            aria-label={t("Costo unitario", "Unit cost")}
+                            placeholder="0"
+                            className="flex-1 sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
+                          />
+                          {/* Total — desktop: grid cell; mobile: hidden here, shown below */}
+                          <div className="hidden sm:flex sm:col-span-2 items-center justify-end pr-1 min-w-0">
+                            <span className="text-sm font-semibold text-gray-800 tabular-nums truncate">
+                              {fmt(rowTotal)}
+                            </span>
+                          </div>
+                          <button
+                            onClick={() => removeInsumo(insumo.id)}
+                            aria-label={t("Eliminar insumo", "Remove input")}
+                            className="sm:col-span-1 w-9 h-9 flex items-center justify-center text-gray-300 hover:text-red-400 transition-colors text-lg font-bold rounded-lg hover:bg-red-50 shrink-0"
+                          >
+                            ×
+                          </button>
+                        </div>
+                        {/* Mobile total */}
+                        <div className="sm:hidden flex justify-between items-center text-xs text-gray-500 px-1">
+                          <span>{t("Total fila:", "Row total:")}</span>
+                          <span className="font-semibold text-gray-800 tabular-nums">{fmt(rowTotal)}</span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
-                <button
-                  onClick={addInsumo}
-                  className="mt-4 text-sm text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1"
-                >
-                  + {t("Agregar insumo", "Add input")}
-                </button>
+                {/* Grand total row */}
+                <div className="mt-3 border-t border-gray-100 pt-3 flex items-center justify-between px-1">
+                  <button
+                    onClick={addInsumo}
+                    className="text-sm text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1"
+                  >
+                    + {t("Agregar insumo", "Add input")}
+                  </button>
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-gray-500">{t("Total materia prima:", "Total raw materials:")}</span>
+                    <span className="font-bold text-gray-900 tabular-nums">{fmt(costoMateriaPrima)}</span>
+                  </div>
+                </div>
               </div>
 
               {/* Mano de obra */}
@@ -551,7 +546,7 @@ export default function CalculadoraPage() {
                     </button>
                     <button
                       onClick={() => setOrdenamientoHabilitado((o) => !o)}
-                      className={`inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
+                      className={`inline-flex items-center text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
                         ordenamientoHabilitado
                           ? "bg-amber-100 text-amber-800 border-amber-200 hover:bg-amber-200"
                           : "bg-amber-50 text-amber-700 border-amber-100 hover:bg-amber-100"
@@ -576,7 +571,7 @@ export default function CalculadoraPage() {
                     </div>
 
                     {modRows.map((row, idx) => {
-                      const costoPorArea = row.costoHoraHombre * row.tiempoEstandar;
+                      const costoPorArea = num(row.costoHoraStr) * num(row.tiempoStr);
                       return (
                         <div
                           key={row.id}
@@ -589,17 +584,13 @@ export default function CalculadoraPage() {
                                 disabled={idx === 0}
                                 aria-label={t("Mover arriba", "Move up")}
                                 className="text-gray-300 hover:text-gray-600 disabled:opacity-20 text-[10px] p-0.5 leading-none"
-                              >
-                                ▲
-                              </button>
+                              >▲</button>
                               <button
                                 onClick={() => moveMOD(idx, 1)}
                                 disabled={idx === modRows.length - 1}
                                 aria-label={t("Mover abajo", "Move down")}
                                 className="text-gray-300 hover:text-gray-600 disabled:opacity-20 text-[10px] p-0.5 leading-none"
-                              >
-                                ▼
-                              </button>
+                              >▼</button>
                             </div>
                           )}
                           <input
@@ -608,26 +599,25 @@ export default function CalculadoraPage() {
                             onChange={(e) => updateMOD(row.id, "area", e.target.value)}
                             placeholder={t("Ej: Confección", "e.g. Assembly")}
                             aria-label={t("Área fabricante", "Production area")}
-                            className={`border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white ${ordenamientoHabilitado ? "sm:col-span-3" : "sm:col-span-4"}`}
+                            className={`border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0 ${ordenamientoHabilitado ? "sm:col-span-3" : "sm:col-span-4"}`}
                           />
                           <input
-                            type="number"
-                            min={0}
-                            value={row.costoHoraHombre === 0 ? "" : row.costoHoraHombre}
-                            onFocus={selectAll}
-                            onChange={(e) => updateMOD(row.id, "costoHoraHombre", e.target.value === "" ? 0 : Number(e.target.value))}
+                            type="text"
+                            inputMode="decimal"
+                            value={row.costoHoraStr}
+                            onChange={(e) => updateMOD(row.id, "costoHoraStr", e.target.value)}
                             aria-label={t("Costo hora hombre", "Hourly rate")}
-                            className="sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                            placeholder="0"
+                            className="sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
                           />
                           <input
-                            type="number"
-                            min={0}
-                            step={0.0001}
-                            value={row.tiempoEstandar === 0 ? "" : row.tiempoEstandar}
-                            onFocus={selectAll}
-                            onChange={(e) => updateMOD(row.id, "tiempoEstandar", e.target.value === "" ? 0 : Number(e.target.value))}
+                            type="text"
+                            inputMode="decimal"
+                            value={row.tiempoStr}
+                            onChange={(e) => updateMOD(row.id, "tiempoStr", e.target.value)}
                             aria-label={t("Tiempo estándar en horas", "Standard time in hours")}
-                            className="sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                            placeholder="0"
+                            className="sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-0"
                           />
                           <div className="sm:col-span-2 text-right text-sm font-semibold text-gray-700 tabular-nums hidden sm:block pr-1">
                             {fmt(costoPorArea)}
@@ -636,9 +626,7 @@ export default function CalculadoraPage() {
                             onClick={() => removeMOD(row.id)}
                             aria-label={t("Eliminar área", "Remove area")}
                             className="sm:col-span-1 w-9 h-9 flex items-center justify-center text-gray-300 hover:text-red-400 transition-colors text-lg font-bold rounded-lg hover:bg-red-50 ml-auto sm:ml-0"
-                          >
-                            ×
-                          </button>
+                          >×</button>
                         </div>
                       );
                     })}
@@ -667,11 +655,10 @@ export default function CalculadoraPage() {
                   </label>
                   <input
                     id="cif-por-unidad"
-                    type="number"
-                    min={0}
-                    value={cifPorUnidad === 0 ? "" : cifPorUnidad}
-                    onFocus={selectAll}
-                    onChange={(e) => setCifPorUnidad(e.target.value === "" ? 0 : Number(e.target.value))}
+                    type="text"
+                    inputMode="decimal"
+                    value={cifStr}
+                    onChange={(e) => setCifStr(e.target.value)}
                     className="w-full sm:w-48 border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="0"
                   />
@@ -686,7 +673,7 @@ export default function CalculadoraPage() {
 
               {/* Margen bruto */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-4">
                   <h2 className="font-bold text-gray-900">
                     {t("Margen bruto esperado", "Expected gross margin")}
                   </h2>
@@ -694,26 +681,6 @@ export default function CalculadoraPage() {
                     {margenBruto}%
                   </span>
                 </div>
-
-                {/* Benchmark indicator on slider */}
-                {benchmark && (
-                  <div className="relative mb-1">
-                    <div
-                      className="absolute top-0 -translate-y-5 flex flex-col items-center pointer-events-none"
-                      style={{ left: `${Math.min((benchmark.minGrossMargin / 200) * 100, 98)}%` }}
-                    >
-                      <span className="text-[9px] font-semibold text-amber-600 whitespace-nowrap">mín</span>
-                      <span className="w-px h-2 bg-amber-400" />
-                    </div>
-                    <div
-                      className="absolute top-0 -translate-y-5 flex flex-col items-center pointer-events-none"
-                      style={{ left: `${Math.min((benchmark.goodGrossMargin / 200) * 100, 98)}%` }}
-                    >
-                      <span className="text-[9px] font-semibold text-green-600 whitespace-nowrap">ideal</span>
-                      <span className="w-px h-2 bg-green-500" />
-                    </div>
-                  </div>
-                )}
 
                 <input
                   type="range"
@@ -726,7 +693,34 @@ export default function CalculadoraPage() {
                   aria-valuetext={`${margenBruto}%`}
                   className="w-full accent-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
                 />
-                <div className="flex justify-between text-xs text-gray-400 mt-1">
+
+                {/* Benchmark markers below slider */}
+                {benchmark ? (
+                  <div className="relative h-7 mt-1 mb-1">
+                    <div
+                      style={{ left: `${minPct}%` }}
+                      className="absolute top-0 -translate-x-1/2 flex flex-col items-center gap-px"
+                    >
+                      <span className="w-px h-2 bg-amber-400 block" />
+                      <span className="text-[10px] font-semibold text-amber-600 whitespace-nowrap leading-none">
+                        mín {benchmark.minGrossMargin}%
+                      </span>
+                    </div>
+                    <div
+                      style={{ left: `${goodPct}%` }}
+                      className="absolute top-0 -translate-x-1/2 flex flex-col items-center gap-px"
+                    >
+                      <span className="w-px h-2 bg-green-500 block" />
+                      <span className="text-[10px] font-semibold text-green-600 whitespace-nowrap leading-none">
+                        ideal {benchmark.goodGrossMargin}%
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="h-2 mt-1 mb-1" />
+                )}
+
+                <div className="flex justify-between text-xs text-gray-400">
                   <span>0%</span>
                   <span>100%</span>
                   <span>200%</span>
@@ -744,11 +738,10 @@ export default function CalculadoraPage() {
                   </label>
                   <input
                     id="gastos-admon"
-                    type="number"
-                    min={0}
-                    value={gastosAdmonVentas === 0 ? "" : gastosAdmonVentas}
-                    onFocus={selectAll}
-                    onChange={(e) => setGastosAdmonVentas(e.target.value === "" ? 0 : Number(e.target.value))}
+                    type="text"
+                    inputMode="decimal"
+                    value={gastosStr}
+                    onChange={(e) => setGastosStr(e.target.value)}
                     className="w-full sm:w-48 border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="0"
                   />
@@ -771,11 +764,11 @@ export default function CalculadoraPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0">
-                  <div className="flex-1 bg-blue-50 border border-blue-100 rounded-xl p-4">
-                    <div className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-2">
+                  <div className="flex-1 bg-blue-50 border border-blue-100 rounded-xl p-4 min-w-0">
+                    <div className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-2 truncate">
                       {t("Margen bruto", "Gross margin")}
                     </div>
-                    <div className="text-2xl font-extrabold text-gray-900 tabular-nums">
+                    <div className="text-2xl font-extrabold text-gray-900 tabular-nums truncate">
                       {fmt(margenBrutoPesos)}
                     </div>
                   </div>
@@ -784,11 +777,11 @@ export default function CalculadoraPage() {
                     <span className="text-xl font-bold text-gray-400">−</span>
                   </div>
 
-                  <div className="flex-1 bg-gray-50 border border-gray-100 rounded-xl p-4">
-                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                      {t("Gastos admon y ventas", "Admin & sales")}
+                  <div className="flex-1 bg-gray-50 border border-gray-100 rounded-xl p-4 min-w-0">
+                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2 truncate">
+                      {t("Gastos admon.", "Admin & sales")}
                     </div>
-                    <div className="text-2xl font-extrabold text-gray-900 tabular-nums">
+                    <div className="text-2xl font-extrabold text-gray-900 tabular-nums truncate">
                       {fmt(gastosAdmonVentas)}
                     </div>
                   </div>
@@ -798,21 +791,21 @@ export default function CalculadoraPage() {
                   </div>
 
                   <div
-                    className={`flex-1 rounded-xl p-4 border-2 ${
+                    className={`flex-1 rounded-xl p-4 border-2 min-w-0 ${
                       utilidadOperacional >= 0
                         ? "bg-green-50 border-green-200"
                         : "bg-red-50 border-red-200"
                     }`}
                   >
                     <div
-                      className={`text-xs font-semibold uppercase tracking-wide mb-2 ${
+                      className={`text-xs font-semibold uppercase tracking-wide mb-2 truncate ${
                         utilidadOperacional >= 0 ? "text-green-700" : "text-red-700"
                       }`}
                     >
-                      {t("Utilidad operacional", "Operating profit")}
+                      {t("Utilidad op.", "Op. profit")}
                     </div>
                     <div
-                      className={`text-2xl font-extrabold tabular-nums ${
+                      className={`text-2xl font-extrabold tabular-nums truncate ${
                         utilidadOperacional >= 0 ? "text-green-700" : "text-red-700"
                       }`}
                     >
@@ -853,21 +846,21 @@ export default function CalculadoraPage() {
                 <h2 className="font-bold text-lg mb-6">{t("Resumen de costos", "Cost summary")}</h2>
 
                 <div className="space-y-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-white/80">{t("Materia prima", "Raw materials")}</span>
-                    <span className="font-semibold tabular-nums">{fmt(costoMateriaPrima)}</span>
+                  <div className="flex justify-between text-sm gap-2">
+                    <span className="text-white/80 truncate">{t("Materia prima", "Raw materials")}</span>
+                    <span className="font-semibold tabular-nums shrink-0">{fmt(costoMateriaPrima)}</span>
                   </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-white/80">{t("Mano de obra (MOD)", "Labor (MOD)")}</span>
-                    <span className="font-semibold tabular-nums">{fmt(totalMOD)}</span>
+                  <div className="flex justify-between text-sm gap-2">
+                    <span className="text-white/80 truncate">{t("Mano de obra (MOD)", "Labor (MOD)")}</span>
+                    <span className="font-semibold tabular-nums shrink-0">{fmt(totalMOD)}</span>
                   </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-white/80">{t("CIF por unidad", "CIF per unit")}</span>
-                    <span className="font-semibold tabular-nums">{fmt(cifPorUnidad)}</span>
+                  <div className="flex justify-between text-sm gap-2">
+                    <span className="text-white/80 truncate">{t("CIF por unidad", "CIF per unit")}</span>
+                    <span className="font-semibold tabular-nums shrink-0">{fmt(cifPorUnidad)}</span>
                   </div>
-                  <div className="border-t border-blue-500 pt-3 flex justify-between text-sm">
-                    <span className="text-white/80">{t("Costo unitario", "Unit cost")}</span>
-                    <span className="font-bold tabular-nums">{fmt(costoUnitario)}</span>
+                  <div className="border-t border-blue-500 pt-3 flex justify-between text-sm gap-2">
+                    <span className="text-white/80 truncate">{t("Costo unitario", "Unit cost")}</span>
+                    <span className="font-bold tabular-nums shrink-0">{fmt(costoUnitario)}</span>
                   </div>
                 </div>
 
@@ -926,8 +919,8 @@ export default function CalculadoraPage() {
             </div>
           </div>
 
-          {/* ── Recomendaciones (full-width below grid) ──────────────────────── */}
-          {(benchmark && hasData) ? (
+          {/* ── Recomendaciones ───────────────────────────────────────────────── */}
+          {benchmark && hasData ? (
             <div className="mt-10">
               <div className="flex items-center gap-3 mb-5">
                 <h2 className="text-lg font-extrabold text-gray-900">
@@ -944,9 +937,7 @@ export default function CalculadoraPage() {
                   return (
                     <div key={i} className={`rounded-2xl p-5 ${s.card}`}>
                       <div className="flex items-start gap-3">
-                        <span
-                          className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold ${s.dot}`}
-                        >
+                        <span className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold ${s.dot}`}>
                           {levelIcons[rec.level]}
                         </span>
                         <div className="min-w-0">
