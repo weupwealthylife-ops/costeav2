@@ -73,6 +73,7 @@ export default function CalculadoraPage() {
   const margenBrutoPesos = costoUnitario * (margenBruto / 100);
   const precioMinimo = costoUnitario + margenBrutoPesos;
   const utilidadOperacional = margenBrutoPesos - gastosAdmonVentas;
+  const utilidadOperacionalPct = precioMinimo > 0 ? (utilidadOperacional / precioMinimo) * 100 : 0;
 
   // ── Insumo handlers ───────────────────────────────────────────────────────
   function addInsumo() {
@@ -189,9 +190,9 @@ export default function CalculadoraPage() {
                         <input
                           type="number"
                           min={0}
-                          value={insumo.cantidad}
+                          value={insumo.cantidad === 0 ? "" : insumo.cantidad}
                           onFocus={selectAll}
-                          onChange={(e) => updateInsumo(insumo.id, "cantidad", Number(e.target.value))}
+                          onChange={(e) => updateInsumo(insumo.id, "cantidad", e.target.value === "" ? 0 : Number(e.target.value))}
                           aria-label={t("Cantidad", "Quantity")}
                           className="flex-1 sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                         />
@@ -213,9 +214,9 @@ export default function CalculadoraPage() {
                         <input
                           type="number"
                           min={0}
-                          value={insumo.costoUnitario}
+                          value={insumo.costoUnitario === 0 ? "" : insumo.costoUnitario}
                           onFocus={selectAll}
-                          onChange={(e) => updateInsumo(insumo.id, "costoUnitario", Number(e.target.value))}
+                          onChange={(e) => updateInsumo(insumo.id, "costoUnitario", e.target.value === "" ? 0 : Number(e.target.value))}
                           aria-label={t("Costo unitario", "Unit cost")}
                           className="flex-1 sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                         />
@@ -260,7 +261,6 @@ export default function CalculadoraPage() {
                       }`}
                     >
                       {t("Habilitar Ordenamiento", "Enable Sorting")}
-                      <span className="text-sm leading-none">⇅</span>
                     </button>
                   </div>
                 </div>
@@ -317,9 +317,9 @@ export default function CalculadoraPage() {
                           <input
                             type="number"
                             min={0}
-                            value={row.costoHoraHombre}
+                            value={row.costoHoraHombre === 0 ? "" : row.costoHoraHombre}
                             onFocus={selectAll}
-                            onChange={(e) => updateMOD(row.id, "costoHoraHombre", Number(e.target.value))}
+                            onChange={(e) => updateMOD(row.id, "costoHoraHombre", e.target.value === "" ? 0 : Number(e.target.value))}
                             aria-label={t("Costo hora hombre", "Hourly rate")}
                             className="sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                           />
@@ -327,9 +327,9 @@ export default function CalculadoraPage() {
                             type="number"
                             min={0}
                             step={0.0001}
-                            value={row.tiempoEstandar}
+                            value={row.tiempoEstandar === 0 ? "" : row.tiempoEstandar}
                             onFocus={selectAll}
-                            onChange={(e) => updateMOD(row.id, "tiempoEstandar", Number(e.target.value))}
+                            onChange={(e) => updateMOD(row.id, "tiempoEstandar", e.target.value === "" ? 0 : Number(e.target.value))}
                             aria-label={t("Tiempo estándar en horas", "Standard time in hours")}
                             className="sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                           />
@@ -374,10 +374,10 @@ export default function CalculadoraPage() {
                     id="cif-por-unidad"
                     type="number"
                     min={0}
-                    value={cifPorUnidad}
+                    value={cifPorUnidad === 0 ? "" : cifPorUnidad}
                     onFocus={selectAll}
-                    onChange={(e) => setCifPorUnidad(Number(e.target.value))}
-                    className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    onChange={(e) => setCifPorUnidad(e.target.value === "" ? 0 : Number(e.target.value))}
+                    className="w-full sm:w-48 border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="0"
                   />
                 </div>
@@ -430,10 +430,10 @@ export default function CalculadoraPage() {
                     id="gastos-admon"
                     type="number"
                     min={0}
-                    value={gastosAdmonVentas}
+                    value={gastosAdmonVentas === 0 ? "" : gastosAdmonVentas}
                     onFocus={selectAll}
-                    onChange={(e) => setGastosAdmonVentas(Number(e.target.value))}
-                    className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    onChange={(e) => setGastosAdmonVentas(e.target.value === "" ? 0 : Number(e.target.value))}
+                    className="w-full sm:w-48 border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="0"
                   />
                 </div>
@@ -508,7 +508,30 @@ export default function CalculadoraPage() {
                     >
                       {fmt(utilidadOperacional)}
                     </div>
+                    <div
+                      className={`text-sm font-semibold tabular-nums mt-1 ${
+                        utilidadOperacional >= 0 ? "text-green-600" : "text-red-600"
+                      }`}
+                    >
+                      {utilidadOperacionalPct.toFixed(1)}%{" "}
+                      <span className="font-normal text-xs opacity-70">
+                        {t("sobre precio", "of price")}
+                      </span>
+                    </div>
                   </div>
+                </div>
+
+                {/* WhatsApp CTA */}
+                <div className="mt-5 text-center text-sm text-gray-500">
+                  {t("¿Tienes dudas al calcularlo?", "Questions about the calculation?")}{" "}
+                  <a
+                    href="https://wa.me/573205046723?text=Hola%2C%20tengo%20dudas%20usando%20la%20calculadora%20de%20costos%2C%20me%20gustar%C3%ADa%20una%20consultor%C3%ADa."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-700 font-medium underline underline-offset-2"
+                  >
+                    {t("contáctanos", "contact us")}
+                  </a>
                 </div>
               </div>
 
