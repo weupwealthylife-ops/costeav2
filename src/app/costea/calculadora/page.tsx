@@ -497,8 +497,8 @@ export default function CalculadoraPage() {
             </div>
 
             {/* ── Right: Results ────────────────────────────────────────── */}
-            <div className="space-y-4">
-              <div className="bg-blue-600 text-white rounded-2xl p-6 sticky top-20 z-10">
+            <div className="space-y-4 lg:sticky lg:top-20 lg:self-start">
+              <div className="bg-blue-600 text-white rounded-2xl p-6">
                 <h2 className="font-bold text-lg mb-6">{t("Resumen de costos", "Cost summary")}</h2>
 
                 <div className="space-y-4">
