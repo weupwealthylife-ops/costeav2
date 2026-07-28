@@ -44,6 +44,10 @@ function fmtDec(n: number) {
   }).format(n);
 }
 
+function selectAll(e: React.FocusEvent<HTMLInputElement>) {
+  e.target.select();
+}
+
 export default function CalculadoraPage() {
   const { t } = useLang();
 
@@ -131,7 +135,7 @@ export default function CalculadoraPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             {/* ── Left: Inputs ─────────────────────────────────────────── */}
             <div className="lg:col-span-2 space-y-6">
 
@@ -163,7 +167,7 @@ export default function CalculadoraPage() {
                 <div className="space-y-3">
                   <div className="hidden sm:grid grid-cols-12 gap-2 text-xs text-gray-400 font-medium px-1">
                     <span className="col-span-4">{t("Insumo", "Input")}</span>
-                    <span className="col-span-2">{t("Cantidad", "Qty")}</span>
+                    <span className="col-span-2">{t("Cant.", "Qty")}</span>
                     <span className="col-span-2">{t("Unidad", "Unit")}</span>
                     <span className="col-span-3">{t("Costo c/u ($)", "Unit cost ($)")}</span>
                     <span className="col-span-1" />
@@ -186,6 +190,7 @@ export default function CalculadoraPage() {
                           type="number"
                           min={0}
                           value={insumo.cantidad}
+                          onFocus={selectAll}
                           onChange={(e) => updateInsumo(insumo.id, "cantidad", Number(e.target.value))}
                           aria-label={t("Cantidad", "Quantity")}
                           className="flex-1 sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
@@ -209,6 +214,7 @@ export default function CalculadoraPage() {
                           type="number"
                           min={0}
                           value={insumo.costoUnitario}
+                          onFocus={selectAll}
                           onChange={(e) => updateInsumo(insumo.id, "costoUnitario", Number(e.target.value))}
                           aria-label={t("Costo unitario", "Unit cost")}
                           className="flex-1 sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
@@ -235,16 +241,9 @@ export default function CalculadoraPage() {
 
               {/* Mano de obra */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                   <h2 className="font-bold text-gray-900">{t("Mano de obra", "Labor")}</h2>
                   <div className="flex flex-wrap items-center gap-2">
-                    <button
-                      onClick={addMOD}
-                      className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-100 transition-colors"
-                    >
-                      {t("Agregar MOD", "Add MOD")}
-                      <span className="text-sm leading-none font-bold">+</span>
-                    </button>
                     <button
                       onClick={addMOD}
                       className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-100 transition-colors"
@@ -261,30 +260,23 @@ export default function CalculadoraPage() {
                       }`}
                     >
                       {t("Habilitar Ordenamiento", "Enable Sorting")}
-                      <span className="text-sm leading-none font-bold">⇅</span>
+                      <span className="text-sm leading-none">⇅</span>
                     </button>
                   </div>
                 </div>
 
-                <p className="text-xs text-blue-700 bg-blue-50 rounded-lg px-3 py-2 mb-4">
-                  {t(
-                    'Si deseas agregar un costo de mano de obra externa, omita el campo "Tiempo estándar en horas"',
-                    'To add an external labor cost, leave the "Standard time in hours" field empty'
-                  )}
-                </p>
-
                 {modRows.length > 0 && (
                   <div className="space-y-2">
                     {/* Column headers */}
-                    <div className={`hidden sm:grid gap-2 text-xs text-gray-400 font-medium px-1 ${ordenamientoHabilitado ? "grid-cols-13" : "grid-cols-12"}`}>
+                    <div className="hidden sm:grid grid-cols-12 gap-2 text-xs text-gray-400 font-medium px-1 mb-1">
                       {ordenamientoHabilitado && <span className="col-span-1" />}
                       <span className={ordenamientoHabilitado ? "col-span-3" : "col-span-4"}>
-                        {t("Área fabricante del producto", "Production area")}
+                        {t("Área", "Area")}
                       </span>
-                      <span className="col-span-3">{t("Costo hora hombre", "Hourly rate")}</span>
-                      <span className="col-span-2">{t("Tiempo estándar en horas", "Std. time (h)")}</span>
-                      <span className="col-span-2 text-right">{t("Costo por área", "Area cost")}</span>
-                      <span className="col-span-1">{t("Guardar/Remover", "")}</span>
+                      <span className="col-span-3">{t("$/hora hombre", "$/man-hour")}</span>
+                      <span className="col-span-2">{t("Horas", "Hours")}</span>
+                      <span className="col-span-2 text-right">{t("Costo", "Cost")}</span>
+                      <span className="col-span-1" />
                     </div>
 
                     {modRows.map((row, idx) => {
@@ -326,6 +318,7 @@ export default function CalculadoraPage() {
                             type="number"
                             min={0}
                             value={row.costoHoraHombre}
+                            onFocus={selectAll}
                             onChange={(e) => updateMOD(row.id, "costoHoraHombre", Number(e.target.value))}
                             aria-label={t("Costo hora hombre", "Hourly rate")}
                             className="sm:col-span-3 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
@@ -335,11 +328,12 @@ export default function CalculadoraPage() {
                             min={0}
                             step={0.0001}
                             value={row.tiempoEstandar}
+                            onFocus={selectAll}
                             onChange={(e) => updateMOD(row.id, "tiempoEstandar", Number(e.target.value))}
                             aria-label={t("Tiempo estándar en horas", "Standard time in hours")}
                             className="sm:col-span-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                           />
-                          <div className="sm:col-span-2 text-right text-sm font-semibold text-gray-700 tabular-nums hidden sm:block">
+                          <div className="sm:col-span-2 text-right text-sm font-semibold text-gray-700 tabular-nums hidden sm:block pr-1">
                             {fmt(costoPorArea)}
                           </div>
                           <button
@@ -356,12 +350,10 @@ export default function CalculadoraPage() {
                     {/* Totals row */}
                     <div className="border-t border-gray-100 pt-3 flex items-center justify-between text-sm px-1">
                       <span className="text-gray-500 text-xs">
-                        {t("Total:", "Total:")}{" "}
-                        <span className="font-semibold text-gray-700 tabular-nums">
-                          {fmtDec(totalHoras)}
-                        </span>
+                        {t("Total horas:", "Total hours:")}{" "}
+                        <span className="font-semibold text-gray-700 tabular-nums">{fmtDec(totalHoras)}</span>
                       </span>
-                      <span className="font-bold text-gray-800 tabular-nums">
+                      <span className="font-bold text-gray-800 tabular-nums text-sm">
                         {t("Total MOD:", "Total MOD:")} {fmt(totalMOD)}
                       </span>
                     </div>
@@ -383,6 +375,7 @@ export default function CalculadoraPage() {
                     type="number"
                     min={0}
                     value={cifPorUnidad}
+                    onFocus={selectAll}
                     onChange={(e) => setCifPorUnidad(Number(e.target.value))}
                     className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="0"
@@ -438,6 +431,7 @@ export default function CalculadoraPage() {
                     type="number"
                     min={0}
                     value={gastosAdmonVentas}
+                    onFocus={selectAll}
                     onChange={(e) => setGastosAdmonVentas(Number(e.target.value))}
                     className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="0"
@@ -453,32 +447,62 @@ export default function CalculadoraPage() {
 
               {/* Utilidad operacional */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                <h2 className="font-bold text-gray-900 mb-5">
-                  {t("Utilidad operacional", "Operating profit")}
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="bg-gray-50 rounded-xl p-4 text-center border border-gray-100">
-                    <div className="text-xs text-gray-500 mb-1.5">{t("Margen bruto", "Gross margin")}</div>
-                    <div className="text-lg font-extrabold text-gray-900 tabular-nums">{fmt(margenBrutoPesos)}</div>
-                  </div>
-                  <div className="bg-gray-50 rounded-xl p-4 text-center border border-gray-100">
-                    <div className="text-xs text-gray-500 mb-1.5">
-                      {t("− Gastos admon y ventas", "− Admin & sales")}
+                <div className="mb-5">
+                  <h2 className="font-bold text-gray-900">{t("Utilidad operacional", "Operating profit")}</h2>
+                  <p className="text-xs text-gray-400 mt-0.5">
+                    {t("Margen bruto − Gastos de administración y ventas", "Gross margin − Admin & sales expenses")}
+                  </p>
+                </div>
+
+                {/* Equation tiles */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0">
+                  {/* Margen bruto */}
+                  <div className="flex-1 bg-blue-50 border border-blue-100 rounded-xl p-4">
+                    <div className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-2">
+                      {t("Margen bruto", "Gross margin")}
                     </div>
-                    <div className="text-lg font-extrabold text-gray-900 tabular-nums">{fmt(gastosAdmonVentas)}</div>
+                    <div className="text-2xl font-extrabold text-gray-900 tabular-nums">
+                      {fmt(margenBrutoPesos)}
+                    </div>
                   </div>
+
+                  {/* − operator */}
+                  <div className="flex items-center justify-center px-3 shrink-0">
+                    <span className="text-xl font-bold text-gray-400">−</span>
+                  </div>
+
+                  {/* Gastos admon */}
+                  <div className="flex-1 bg-gray-50 border border-gray-100 rounded-xl p-4">
+                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                      {t("Gastos admon y ventas", "Admin & sales")}
+                    </div>
+                    <div className="text-2xl font-extrabold text-gray-900 tabular-nums">
+                      {fmt(gastosAdmonVentas)}
+                    </div>
+                  </div>
+
+                  {/* = operator */}
+                  <div className="flex items-center justify-center px-3 shrink-0">
+                    <span className="text-xl font-bold text-gray-400">=</span>
+                  </div>
+
+                  {/* Result */}
                   <div
-                    className={`rounded-xl p-4 text-center border ${
+                    className={`flex-1 rounded-xl p-4 border-2 ${
                       utilidadOperacional >= 0
-                        ? "bg-green-50 border-green-100"
-                        : "bg-red-50 border-red-100"
+                        ? "bg-green-50 border-green-200"
+                        : "bg-red-50 border-red-200"
                     }`}
                   >
-                    <div className="text-xs text-gray-500 mb-1.5">
-                      {t("= Utilidad operacional", "= Operating profit")}
+                    <div
+                      className={`text-xs font-semibold uppercase tracking-wide mb-2 ${
+                        utilidadOperacional >= 0 ? "text-green-700" : "text-red-700"
+                      }`}
+                    >
+                      {t("Utilidad operacional", "Operating profit")}
                     </div>
                     <div
-                      className={`text-xl font-extrabold tabular-nums ${
+                      className={`text-2xl font-extrabold tabular-nums ${
                         utilidadOperacional >= 0 ? "text-green-700" : "text-red-700"
                       }`}
                     >
@@ -486,18 +510,14 @@ export default function CalculadoraPage() {
                     </div>
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-3">
-                  {t(
-                    "Utilidad operacional = Margen bruto − Gastos de administración y ventas por unidad",
-                    "Operating profit = Gross margin − Admin & sales expenses per unit"
-                  )}
-                </p>
               </div>
 
             </div>
 
-            {/* ── Right: Results ────────────────────────────────────────── */}
+            {/* ── Right: Results (entire column sticky) ────────────────── */}
             <div className="space-y-4 lg:sticky lg:top-20 lg:self-start">
+
+              {/* Results panel */}
               <div className="bg-blue-600 text-white rounded-2xl p-6">
                 <h2 className="font-bold text-lg mb-6">{t("Resumen de costos", "Cost summary")}</h2>
 
@@ -558,6 +578,7 @@ export default function CalculadoraPage() {
                 )}
               </div>
 
+              {/* Recuerda — stays with the sticky column */}
               <div className="bg-white border border-gray-100 rounded-2xl p-5 text-sm text-gray-600">
                 <div className="font-semibold text-gray-900 mb-2">
                   💡 {t("Recuerda", "Remember")}
@@ -571,6 +592,7 @@ export default function CalculadoraPage() {
                   {t("para no vender a pérdida.", "to avoid selling at a loss.")}
                 </p>
               </div>
+
             </div>
           </div>
         </div>
