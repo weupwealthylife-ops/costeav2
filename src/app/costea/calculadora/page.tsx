@@ -339,8 +339,10 @@ export default function CalculadoraPage() {
   const levelIcons: Record<AlertLevel, string> = { error: "✕", warning: "⚠", success: "✓", info: "i" };
 
   // Slider benchmark marker positions (clamped so labels stay visible)
-  const minPct = benchmark ? Math.min(Math.max((benchmark.minGrossMargin / 200) * 100, 3), 94) : 0;
-  const goodPct = benchmark ? Math.min(Math.max((benchmark.goodGrossMargin / 200) * 100, 3), 94) : 0;
+  const activeMin = benchmark ? benchmark.minGrossMargin : 20;
+  const activeGood = benchmark ? benchmark.goodGrossMargin : 40;
+  const minPct = Math.min(Math.max((activeMin / 200) * 100, 3), 94);
+  const goodPct = Math.min(Math.max((activeGood / 200) * 100, 3), 94);
 
   return (
     <>
@@ -710,31 +712,27 @@ export default function CalculadoraPage() {
                   className="w-full accent-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
                 />
 
-                {/* Benchmark markers */}
-                {benchmark ? (
-                  <div className="relative h-7 mt-1 mb-1">
-                    <div
-                      style={{ left: `${minPct}%` }}
-                      className="absolute top-0 -translate-x-1/2 flex flex-col items-center gap-px"
-                    >
-                      <span className="w-px h-2 bg-amber-400 block" />
-                      <span className="text-[10px] font-semibold text-amber-600 whitespace-nowrap leading-none">
-                        mín {benchmark.minGrossMargin}%
-                      </span>
-                    </div>
-                    <div
-                      style={{ left: `${goodPct}%` }}
-                      className="absolute top-0 -translate-x-1/2 flex flex-col items-center gap-px"
-                    >
-                      <span className="w-px h-2 bg-green-500 block" />
-                      <span className="text-[10px] font-semibold text-green-600 whitespace-nowrap leading-none">
-                        ideal {benchmark.goodGrossMargin}%
-                      </span>
-                    </div>
+                {/* Benchmark markers — always visible; defaults to 20 / 40% when no industry selected */}
+                <div className="relative h-7 mt-1 mb-1">
+                  <div
+                    style={{ left: `${minPct}%` }}
+                    className="absolute top-0 -translate-x-1/2 flex flex-col items-center gap-px"
+                  >
+                    <span className="w-px h-2 bg-amber-400 block" />
+                    <span className="text-[10px] font-semibold text-amber-600 whitespace-nowrap leading-none">
+                      mín {activeMin}%
+                    </span>
                   </div>
-                ) : (
-                  <div className="h-2 mt-1 mb-1" />
-                )}
+                  <div
+                    style={{ left: `${goodPct}%` }}
+                    className="absolute top-0 -translate-x-1/2 flex flex-col items-center gap-px"
+                  >
+                    <span className="w-px h-2 bg-green-500 block" />
+                    <span className="text-[10px] font-semibold text-green-600 whitespace-nowrap leading-none">
+                      ideal {activeGood}%
+                    </span>
+                  </div>
+                </div>
 
                 <div className="flex justify-between text-xs text-gray-400">
                   <span>0%</span>
