@@ -171,6 +171,22 @@ function num(s: string) {
   return isNaN(v) ? 0 : v;
 }
 
+// ── Tooltip ───────────────────────────────────────────────────────────────────
+
+function TooltipIcon({ content }: { content: string }) {
+  return (
+    <div className="relative group inline-flex items-center ml-1.5 align-middle">
+      <span className="cursor-help text-[10px] text-gray-400 hover:text-blue-500 border border-gray-200 hover:border-blue-300 rounded-full w-4 h-4 inline-flex items-center justify-center font-bold leading-none transition-colors select-none">
+        ?
+      </span>
+      <div className="absolute bottom-full left-0 mb-2 w-64 bg-gray-900 text-white text-xs rounded-xl p-3 leading-relaxed opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-150 z-30 shadow-xl whitespace-normal">
+        {content}
+        <span className="absolute top-full left-4 border-[5px] border-transparent border-t-gray-900" />
+      </div>
+    </div>
+  );
+}
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function CalculadoraPage() {
@@ -182,9 +198,10 @@ export default function CalculadoraPage() {
   const [modRows, setModRows] = useState<MODRow[]>(defaultMOD);
   const [cifStr, setCifStr] = useState("");
   const [gastosStr, setGastosStr] = useState("");
-  const [margenBruto, setMargenBruto] = useState(30);
+  const [margenBrutoStr, setMargenBrutoStr] = useState("30");
 
   // ── Calculations ───────────────────────────────────────────────────────────
+  const margenBruto = Math.min(200, Math.max(0, num(margenBrutoStr)));
   const costoMateriaPrima = insumos.reduce(
     (sum, i) => sum + num(i.cantidadStr) * num(i.costoStr),
     0
@@ -416,9 +433,15 @@ export default function CalculadoraPage() {
 
               {/* Materia prima e insumos */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                <h2 className="font-bold text-gray-900 mb-4">
-                  {t("Materia prima e insumos", "Raw materials & inputs")}
-                </h2>
+                <div className="flex items-center mb-4">
+                  <h2 className="font-bold text-gray-900">
+                    {t("Materia prima e insumos", "Raw materials & inputs")}
+                  </h2>
+                  <TooltipIcon content={t(
+                    "Incluye todos los materiales que entran directamente al producto: telas, ingredientes, empaques, partes, etc. Ingresa la cantidad y el costo por unidad para calcular el total.",
+                    "Include all materials that go directly into the product: fabrics, ingredients, packaging, parts, etc. Enter quantity and unit cost to calculate the total."
+                  )} />
+                </div>
 
                 <div className="space-y-3">
                   {/* Column headers — desktop */}
@@ -516,7 +539,13 @@ export default function CalculadoraPage() {
 
               {/* Mano de obra */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                <h2 className="font-bold text-gray-900 mb-4">{t("Mano de obra", "Labor")}</h2>
+                <div className="flex items-center mb-4">
+                  <h2 className="font-bold text-gray-900">{t("Mano de obra", "Labor")}</h2>
+                  <TooltipIcon content={t(
+                    "Costo de las personas que trabajan directamente en producción. Multiplica el valor por hora hombre por las horas que toma fabricar una unidad de producto.",
+                    "Cost of people who work directly in production. Multiply the hourly rate by the hours it takes to produce one unit."
+                  )} />
+                </div>
 
                 <div className="space-y-2">
                   {/* Column headers — desktop */}
@@ -605,9 +634,15 @@ export default function CalculadoraPage() {
 
               {/* CIF */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                <h2 className="font-bold text-gray-900 mb-4">
-                  {t("Costos indirectos por producto", "Indirect costs per product")}
-                </h2>
+                <div className="flex items-center mb-4">
+                  <h2 className="font-bold text-gray-900">
+                    {t("Costos indirectos por producto", "Indirect costs per product")}
+                  </h2>
+                  <TooltipIcon content={t(
+                    "Costos que no van al producto directamente pero son necesarios para producir: arriendo, luz, gas, herramientas. Divide el total mensual entre las unidades que produces al mes.",
+                    "Costs not directly in the product but needed to produce: rent, electricity, gas, tools. Divide the monthly total by units produced per month."
+                  )} />
+                </div>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                   <label htmlFor="cif-por-unidad" className="text-sm text-gray-600 sm:whitespace-nowrap">
                     {t("CIF por unidad ($):", "CIF per unit ($):")}
@@ -632,13 +667,35 @@ export default function CalculadoraPage() {
 
               {/* Margen bruto */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="font-bold text-gray-900">
-                    {t("Margen bruto esperado", "Expected gross margin")}
-                  </h2>
-                  <span className="text-2xl font-extrabold text-blue-600 tabular-nums">
-                    {margenBruto}%
-                  </span>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center">
+                    <h2 className="font-bold text-gray-900">
+                      {t("Margen bruto esperado", "Expected gross margin")}
+                    </h2>
+                    <TooltipIcon content={t(
+                      "Porcentaje de ganancia sobre el costo de producción. Un margen del 30% significa que vendes a 1.3× el costo. Ajusta según tu industria y competencia.",
+                      "Profit percentage over production cost. A 30% margin means you sell at 1.3× cost. Adjust based on your industry and competition."
+                    )} />
+                  </div>
+                  {/* Numeric input synced with slider */}
+                  <div className="flex items-center gap-1 bg-blue-50 border border-blue-200 rounded-xl px-3 py-1.5">
+                    <input
+                      type="text"
+                      inputMode="decimal"
+                      value={margenBrutoStr}
+                      onChange={(e) => {
+                        const raw = e.target.value;
+                        if (raw === "" || /^\d{0,3}(\.\d{0,1})?$/.test(raw)) setMargenBrutoStr(raw);
+                      }}
+                      onBlur={() => {
+                        const v = Math.min(200, Math.max(0, num(margenBrutoStr)));
+                        setMargenBrutoStr(String(v));
+                      }}
+                      aria-label={t("Margen bruto %", "Gross margin %")}
+                      className="w-12 bg-transparent text-right text-xl font-extrabold text-blue-600 tabular-nums focus:outline-none"
+                    />
+                    <span className="text-xl font-extrabold text-blue-600">%</span>
+                  </div>
                 </div>
 
                 <input
@@ -647,13 +704,13 @@ export default function CalculadoraPage() {
                   max={200}
                   step={5}
                   value={margenBruto}
-                  onChange={(e) => setMargenBruto(Number(e.target.value))}
+                  onChange={(e) => setMargenBrutoStr(e.target.value)}
                   aria-label={t("Margen bruto esperado", "Expected gross margin")}
                   aria-valuetext={`${margenBruto}%`}
                   className="w-full accent-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
                 />
 
-                {/* Benchmark markers below slider */}
+                {/* Benchmark markers */}
                 {benchmark ? (
                   <div className="relative h-7 mt-1 mb-1">
                     <div
@@ -688,9 +745,15 @@ export default function CalculadoraPage() {
 
               {/* Gastos admon */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                <h2 className="font-bold text-gray-900 mb-4">
-                  {t("Gastos de administración y ventas por unidad", "Admin & sales expenses per unit")}
-                </h2>
+                <div className="flex items-center mb-4">
+                  <h2 className="font-bold text-gray-900">
+                    {t("Gastos de administración y ventas por unidad", "Admin & sales expenses per unit")}
+                  </h2>
+                  <TooltipIcon content={t(
+                    "Salarios administrativos, comisiones de ventas, publicidad, transporte y otros gastos que no son de producción. Prorratea el total mensual entre las unidades que produces.",
+                    "Admin salaries, sales commissions, advertising, delivery, and other non-production expenses. Allocate the monthly total across the units you produce."
+                  )} />
+                </div>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                   <label htmlFor="gastos-admon" className="text-sm text-gray-600 sm:whitespace-nowrap">
                     {t("Gasto por unidad ($):", "Expense per unit ($):")}
@@ -716,7 +779,13 @@ export default function CalculadoraPage() {
               {/* Utilidad operacional */}
               <div className="bg-white rounded-2xl p-6 border border-gray-100">
                 <div className="mb-5">
-                  <h2 className="font-bold text-gray-900">{t("Utilidad operacional", "Operating profit")}</h2>
+                  <div className="flex items-center">
+                    <h2 className="font-bold text-gray-900">{t("Utilidad operacional", "Operating profit")}</h2>
+                    <TooltipIcon content={t(
+                      "Lo que queda después de restar todos los costos (producción + gastos admin y ventas) al precio de venta. Si es negativo, estás vendiendo a pérdida.",
+                      "What remains after subtracting all costs (production + admin & sales) from the selling price. If negative, you are selling at a loss."
+                    )} />
+                  </div>
                   <p className="text-xs text-gray-400 mt-0.5">
                     {t("Margen bruto − Gastos de administración y ventas", "Gross margin − Admin & sales expenses")}
                   </p>
@@ -847,6 +916,12 @@ export default function CalculadoraPage() {
                       }`}
                     >
                       {fmt(utilidadOperacional)}
+                    </div>
+                    <div className={`text-sm font-semibold tabular-nums mt-0.5 ${utilidadOperacional >= 0 ? "text-green-400" : "text-red-400"}`}>
+                      {utilidadOperacionalPct.toFixed(1)}%{" "}
+                      <span className="font-normal text-xs text-white/50">
+                        {t("sobre precio", "of price")}
+                      </span>
                     </div>
                   </div>
                 </div>
